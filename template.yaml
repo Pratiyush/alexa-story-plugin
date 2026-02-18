@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Alexa Story Player Lambda
+
+# Global settings for all Lambda functions.
+Globals:
+  Function:
+    Runtime: nodejs18.x
+    Timeout: 10
+
+Parameters:
+  S3Bucket:
+    Type: String
+  LatestJsonKey:
+    Type: String
+    Default: latest.json
+
+Resources:
+  # Lambda function that backs the Alexa custom skill.
+  AlexaStoryLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: alexa-story-plugin
+      CodeUri: .
+      Handler: src/handler.handler
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+              Resource:
+                - !Sub arn:aws:s3:::${S3Bucket}/${LatestJsonKey}
+      # Environment variables define where latest.json lives.
+      Environment:
+        Variables:
+          S3_BUCKET: !Ref S3Bucket
+          LATEST_JSON_KEY: !Ref LatestJsonKey
+      # AlexaSkill event source allows direct invocation from an Alexa skill.
+      Events:
+        AlexaSkillEvent:
+          Type: AlexaSkill
+
+Outputs:
+  AlexaStoryLambdaArn:
+    Description: ARN of the Alexa story Lambda
+    Value: !GetAtt AlexaStoryLambda.Arn

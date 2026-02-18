@@ -1,0 +1,34 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Plays the latest approved story from your library.",
+          "examplePhrases": [
+            "Alexa, open Story Player",
+            "Alexa, ask Story Player to play"
+          ],
+          "name": "Story Player",
+          "description": "Story Player plays the latest approved story from your CDN or S3 bucket."
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Say 'open Story Player' to play the latest story.",
+      "category": "GAMES"
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:REGION:ACCOUNT_ID:function:alexa-story-plugin"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ]
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": []
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "story player",
+      "intents": [
+        {
+          "name": "LaunchRequestIntent",
+          "samples": []
+        },
+        {
+          "name": "PlayLatestIntent",
+          "slots": [],
+          "samples": [
+            "play latest story",
+            "play newest story",
+            "start latest episode",
+            "play today's story",
+            "tell me the latest story"
+          ]
+        },
+        {
+          "name": "PlayStoryByNameIntent",
+          "slots": [
+            {
+              "name": "storyName",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "play story {storyName}",
+            "start {storyName}",
+            "tell me story {storyName}",
+            "play the story called {storyName}"
+          ]
+        },
+        {
+          "name": "RepeatOneIntent",
+          "slots": [],
+          "samples": [
+            "repeat this",
+            "play it again",
+            "repeat story",
+            "start again",
+            "replay"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "help",
+            "what can I say",
+            "what can you do"
+          ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": [
+            "I don't understand",
+            "random phrase testing"
+          ]
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        }
+      ],
+      "types": []
+    }
+  }
+}

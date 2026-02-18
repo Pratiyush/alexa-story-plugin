@@ -1,0 +1,23 @@
+{
+  "name": "alexa-story-plugin",
+  "version": "1.0.0",
+  "description": "Alexa skill Lambda to play the latest approved story from S3/CDN",
+  "main": "src/handler.js",
+  "scripts": {
+    "lint": "eslint --config eslint.config.mjs src test",
+    "test": "node test/run-tests.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ask-sdk-core": "^2.14.0",
+    "ask-sdk-model": "^1.74.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.10.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
