@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "session": {
+    "new": true,
+    "sessionId": "SessionId.sample",
+    "application": {
+      "applicationId": "amzn1.ask.skill.sample"
+    },
+    "user": {
+      "userId": "amzn1.ask.account.sample"
+    }
+  },
+  "context": {
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill.sample"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.sample"
+      },
+      "device": {
+        "deviceId": "amzn1.ask.device.sample",
+        "supportedInterfaces": {
+          "AudioPlayer": {}
+        }
+      }
+    }
+  },
+  "request": {
+    "type": "LaunchRequest",
+    "requestId": "EdwRequestId.sample",
+    "locale": "en-US",
+    "timestamp": "2026-01-01T00:00:00Z"
+  }
+}

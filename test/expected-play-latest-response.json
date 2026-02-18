@@ -1,0 +1,28 @@
+{
+  "response": {
+    "outputSpeech": {
+      "type": "SSML",
+      "ssml": "<speak>Playing The Brave Little Mouse</speak>"
+    },
+    "directives": [
+      {
+        "type": "AudioPlayer.Play",
+        "playBehavior": "REPLACE_ALL",
+        "audioItem": {
+          "stream": {
+            "token": "story-2026-01",
+            "url": "https://your-cdn-url/story-2026-01.mp3",
+            "offsetInMilliseconds": 0
+          },
+          "metadata": {
+            "title": "The Brave Little Mouse",
+            "art": {
+              "sources": []
+            }
+          }
+        }
+      }
+    ],
+    "shouldEndSession": true
+  }
+}
