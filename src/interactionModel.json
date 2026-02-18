@@ -15,7 +15,9 @@
             "play newest story",
             "start latest episode",
             "play today's story",
-            "tell me the latest story"
+            "tell me the latest story",
+            "read today's story",
+            "read the latest story"
           ]
         },
         {
@@ -41,7 +43,9 @@
             "play it again",
             "repeat story",
             "start again",
-            "replay"
+            "replay",
+            "play that story again",
+            "play the last story again"
           ]
         },
         {

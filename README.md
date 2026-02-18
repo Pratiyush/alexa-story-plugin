@@ -63,6 +63,8 @@ During `sam deploy`, provide:
 - `S3Bucket` – the bucket that contains `latest.json`
 - `LatestJsonKey` – object key for `latest.json` (default `latest.json`)
 
+After deployment you can find the Lambda function ARN in the stack outputs and wire that ARN into the Alexa Developer Console as the skill endpoint.
+
 ### Connecting to Alexa console
 
 1. Create a new Alexa custom skill in the Alexa Developer Console.
@@ -105,6 +107,20 @@ You still need to complete these steps manually in your AWS and Alexa accounts:
 - (Optional) Configure CloudFront in front of S3 to serve MP3s from a CDN URL.
 - (Optional) Configure a GitHub repository secret set so GitHub Actions can run against your AWS account if you later add deployment steps.
 
+### Monitoring and logging
+
+This project writes basic logs using `console.log` and `console.error` from within the Lambda handler. AWS automatically sends these logs to CloudWatch.
+
+To inspect logs:
+
+- Open the CloudWatch console.
+- Navigate to **Logs** → **Log groups**.
+- Find the log group for your Lambda function (typically `/aws/lambda/alexa-story-plugin`).
+- Inspect recent log streams to see:
+  - Which intents were invoked.
+  - Any failures while fetching `latest.json`.
+  - Any unhandled errors caught by the global error handler.
+
 ### Next steps
 
 - Implement the Admin API described in `ADMIN_API_FUTURE.md` to manage stories.
@@ -113,3 +129,16 @@ You still need to complete these steps manually in your AWS and Alexa accounts:
 - Expand tests to cover more utterance variations and error branches.
 - Add deployment automation (SAM or CDK) into a GitHub Actions workflow.
 - Add alarms for Lambda errors and elevated 4xx/5xx responses in CloudWatch.
+
+### Publishing checklist
+
+When you are ready to submit the skill for certification, make sure the following are completed in the Alexa Developer Console:
+
+- Set the public skill name and invocation name.
+- Provide a short and long description for the skill store.
+- Add example phrases such as “Alexa, open Story Player”.
+- Upload small and large skill icons.
+- Choose an appropriate category (for example, Games or Kids).
+- Add keywords so users can find the skill.
+- Provide URLs for a privacy policy and terms of use.
+- Ensure testing instructions explain how to reach the main use cases.

@@ -10,6 +10,7 @@ const LaunchRequestHandler = {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === "LaunchRequest";
   },
   async handle(handlerInput) {
+    console.log("LaunchRequest received");
     return PlayLatestIntentHandler.handle(handlerInput);
   }
 };
@@ -24,13 +25,19 @@ const PlayLatestIntentHandler = {
     return requestType === "IntentRequest" && intentName === "PlayLatestIntent";
   },
   async handle(handlerInput) {
+    console.log("PlayLatestIntent invoked");
     const bucket = process.env.S3_BUCKET;
     const key = process.env.LATEST_JSON_KEY || "latest.json";
 
     let latest;
     try {
       latest = await fetchLatestStory(bucket, key);
-    } catch {
+    } catch (error) {
+      console.error("Failed to fetch latest story metadata", {
+        error: error && error.message ? error.message : error,
+        bucket,
+        key
+      });
       const speakOutput = "I could not reach the latest story feed. Please try again later.";
       return handlerInput.responseBuilder.speak(speakOutput).getResponse();
     }
@@ -69,13 +76,19 @@ const PlayStoryByNameIntentHandler = {
     return requestType === "IntentRequest" && intentName === "PlayStoryByNameIntent";
   },
   async handle(handlerInput) {
+    console.log("PlayStoryByNameIntent invoked");
     const bucket = process.env.S3_BUCKET;
     const key = process.env.LATEST_JSON_KEY || "latest.json";
 
     let latest;
     try {
       latest = await fetchLatestStory(bucket, key);
-    } catch {
+    } catch (error) {
+      console.error("Failed to fetch latest story metadata for PlayStoryByName", {
+        error: error && error.message ? error.message : error,
+        bucket,
+        key
+      });
       const speakOutput = "I could not reach the latest story feed. Please try again later.";
       return handlerInput.responseBuilder.speak(speakOutput).getResponse();
     }
@@ -120,13 +133,19 @@ const RepeatOneIntentHandler = {
     return requestType === "IntentRequest" && intentName === "RepeatOneIntent";
   },
   async handle(handlerInput) {
+    console.log("RepeatOneIntent invoked");
     const bucket = process.env.S3_BUCKET;
     const key = process.env.LATEST_JSON_KEY || "latest.json";
 
     let latest;
     try {
       latest = await fetchLatestStory(bucket, key);
-    } catch {
+    } catch (error) {
+      console.error("Failed to fetch latest story metadata for RepeatOne", {
+        error: error && error.message ? error.message : error,
+        bucket,
+        key
+      });
       const speakOutput = "I could not reach the latest story feed. Please try again later.";
       return handlerInput.responseBuilder.speak(speakOutput).getResponse();
     }
@@ -170,6 +189,7 @@ const HelpIntentHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("HelpIntent invoked");
     const speakOutput =
       "You can say play latest story, play newest story, or play story by name.";
 
@@ -189,6 +209,7 @@ const CancelAndStopIntentHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("Cancel/Stop intent invoked");
     return handlerInput.responseBuilder
       .speak("Goodbye.")
       .addAudioPlayerStopDirective()
@@ -207,6 +228,7 @@ const PauseIntentHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("PauseIntent invoked");
     return handlerInput.responseBuilder
       .addAudioPlayerStopDirective()
       .getResponse();
@@ -224,6 +246,7 @@ const ResumeIntentHandler = {
     );
   },
   async handle(handlerInput) {
+    console.log("ResumeIntent invoked");
     return RepeatOneIntentHandler.handle(handlerInput);
   }
 };
@@ -239,6 +262,7 @@ const FallbackIntentHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("FallbackIntent invoked");
     const speakOutput =
       "I did not understand that. You can say play latest story.";
     return handlerInput.responseBuilder.speak(speakOutput).reprompt(speakOutput).getResponse();
@@ -254,6 +278,7 @@ const SessionEndedRequestHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("SessionEndedRequest received");
     return handlerInput.responseBuilder.getResponse();
   }
 };
@@ -267,6 +292,7 @@ const PlaybackStartedHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("AudioPlayer.PlaybackStarted received");
     return handlerInput.responseBuilder.getResponse();
   }
 };
@@ -279,6 +305,7 @@ const PlaybackFinishedHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("AudioPlayer.PlaybackFinished received");
     return handlerInput.responseBuilder.getResponse();
   }
 };
@@ -291,16 +318,21 @@ const PlaybackStoppedHandler = {
     );
   },
   handle(handlerInput) {
+    console.log("AudioPlayer.PlaybackStopped received");
     return handlerInput.responseBuilder.getResponse();
   }
 };
 
-// Catch-all error handler to return a generic apology.
+// Catch-all error handler to return a generic apology and log details.
 const ErrorHandler = {
   canHandle() {
     return true;
   },
-  handle(handlerInput) {
+  handle(handlerInput, error) {
+    console.error("Unhandled error while processing Alexa request", {
+      error: error && error.message ? error.message : error,
+      requestType: Alexa.getRequestType(handlerInput.requestEnvelope)
+    });
     const speakOutput = "Sorry, something went wrong.";
     return handlerInput.responseBuilder.speak(speakOutput).getResponse();
   }

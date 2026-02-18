@@ -7,7 +7,8 @@ export default [
         require: "readonly",
         module: "readonly",
         exports: "readonly",
-        process: "readonly"
+        process: "readonly",
+        console: "readonly"
       }
     },
     linterOptions: {

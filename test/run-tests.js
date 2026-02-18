@@ -275,18 +275,20 @@ async function testAudioPlayerEventHandlersNoop() {
 }
 
 async function run() {
-  await testFetchLatestStoryOverride();
-  await testPlayLatestIntentAudioDirective();
-  await testLaunchRequestDelegatesToPlayLatest();
-  await testRepeatOneUsesAudioPlayerToken();
-  await testHelpAndFallbackSpeech();
-   await testMissingAudioUrlFallback();
-   await testPlayStoryByNameIntentUsesRequestedName();
-   await testPauseAndStopIntents();
-   await testAudioPlayerEventHandlersNoop();
-  process.exit(0);
+  try {
+    await testFetchLatestStoryOverride();
+    await testPlayLatestIntentAudioDirective();
+    await testLaunchRequestDelegatesToPlayLatest();
+    await testRepeatOneUsesAudioPlayerToken();
+    await testHelpAndFallbackSpeech();
+    await testMissingAudioUrlFallback();
+    await testPlayStoryByNameIntentUsesRequestedName();
+    await testPauseAndStopIntents();
+    await testAudioPlayerEventHandlersNoop();
+    process.exit(0);
+  } catch (error) {
+    console.error("Test run failed", error);
+    process.exit(1);
+  }
 }
-
-run().catch(() => {
-  process.exit(1);
-});
+run();
