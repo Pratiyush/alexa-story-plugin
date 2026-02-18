@@ -103,11 +103,13 @@ You still need to complete these steps manually in your AWS and Alexa accounts:
   - Ensure the skill has the AudioPlayer interface enabled.
   - Build the interaction model after importing `interactionModel.json`.
 - (Optional) Configure CloudFront in front of S3 to serve MP3s from a CDN URL.
-- (Optional) Configure a GitLab project that points at this repository so `.gitlab-ci.yml` is used.
+- (Optional) Configure a GitHub repository secret set so GitHub Actions can run against your AWS account if you later add deployment steps.
 
 ### Next steps
 
 - Implement the Admin API described in `ADMIN_API_FUTURE.md` to manage stories.
 - Add DynamoDB and update workflows to keep `latest.json` in sync automatically.
 - Add more robust logging and monitoring via CloudWatch for production.
-- Expand tests to cover pause/resume flows end-to-end with real AudioPlayer events.
+- Expand tests to cover more utterance variations and error branches.
+- Add deployment automation (SAM or CDK) into a GitHub Actions workflow.
+- Add alarms for Lambda errors and elevated 4xx/5xx responses in CloudWatch.

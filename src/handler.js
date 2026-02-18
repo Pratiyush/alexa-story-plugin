@@ -1,4 +1,6 @@
-// Main Alexa skill entry point and intent handlers.
+// Main Alexa skill entry point and intent handlers. This Lambda is invoked by
+// the Alexa custom skill and is responsible for mapping user utterances onto
+// AudioPlayer directives that stream the latest approved story.
 const Alexa = require("ask-sdk-core");
 const { fetchLatestStory } = require("./utils/s3Client");
 
@@ -12,7 +14,9 @@ const LaunchRequestHandler = {
   }
 };
 
-// PlayLatestIntent: fetch latest.json and stream the newest story.
+// PlayLatestIntent: fetch latest.json from S3 and stream the newest story. This
+// is the central path used both for direct PlayLatestIntent utterances and
+// when the user simply opens the skill.
 const PlayLatestIntentHandler = {
   canHandle(handlerInput) {
     const requestType = Alexa.getRequestType(handlerInput.requestEnvelope);
@@ -55,7 +59,9 @@ const PlayLatestIntentHandler = {
   }
 };
 
-// PlayStoryByNameIntent: play the latest story but acknowledge requested name.
+// PlayStoryByNameIntent: the current implementation still plays the latest
+// story, but changes the spoken prefix to include the requested storyName so
+// that users hear the name they asked for.
 const PlayStoryByNameIntentHandler = {
   canHandle(handlerInput) {
     const requestType = Alexa.getRequestType(handlerInput.requestEnvelope);
@@ -104,7 +110,9 @@ const PlayStoryByNameIntentHandler = {
   }
 };
 
-// RepeatOneIntent: replay the last story using the AudioPlayer token.
+// RepeatOneIntent: replay the last story using the AudioPlayer token. The
+// token is supplied by Alexa on AudioPlayer events and in the playback
+// context for subsequent requests.
 const RepeatOneIntentHandler = {
   canHandle(handlerInput) {
     const requestType = Alexa.getRequestType(handlerInput.requestEnvelope);

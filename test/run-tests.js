@@ -142,12 +142,148 @@ async function testHelpAndFallbackSpeech() {
   );
 }
 
+async function testMissingAudioUrlFallback() {
+  // When audio_url is missing, handler should speak the fallback message.
+  process.env.S3_BUCKET = "example-bucket";
+  process.env.LATEST_JSON_KEY = "latest.json";
+  process.env.TEST_LATEST_STORY_JSON = JSON.stringify({
+    id: "story-2026-02",
+    title: "Story Without Audio"
+  });
+
+  const handler = AlexaHandler.handler;
+  const event = require("./sample-play-latest-intent.json");
+  const response = await handler(event, {});
+
+  const ssml = response.response.outputSpeech.ssml;
+  if (!ssml.includes("I couldn't find a recording")) {
+    throw new Error("Expected missing audio fallback speech");
+  }
+
+  delete process.env.TEST_LATEST_STORY_JSON;
+}
+
+async function testPlayStoryByNameIntentUsesRequestedName() {
+  // Ensure the spoken prefix acknowledges the storyName slot.
+  process.env.S3_BUCKET = "example-bucket";
+  process.env.LATEST_JSON_KEY = "latest.json";
+  process.env.TEST_LATEST_STORY_JSON = JSON.stringify(buildTestStoryPayload());
+
+  const handler = AlexaHandler.handler;
+  const baseEvent = require("./sample-play-latest-intent.json");
+
+  const event = {
+    ...baseEvent,
+    request: {
+      ...baseEvent.request,
+      intent: {
+        name: "PlayStoryByNameIntent",
+        confirmationStatus: "NONE",
+        slots: {
+          storyName: {
+            name: "storyName",
+            value: "The Brave Little Mouse",
+            confirmationStatus: "NONE"
+          }
+        }
+      }
+    }
+  };
+
+  const response = await handler(event, {});
+  const ssml = response.response.outputSpeech.ssml;
+  if (!ssml.includes("Playing The Brave Little Mouse")) {
+    throw new Error("Expected PlayStoryByName to reference requested storyName");
+  }
+
+  delete process.env.TEST_LATEST_STORY_JSON;
+}
+
+async function testPauseAndStopIntents() {
+  const handler = AlexaHandler.handler;
+  const baseEvent = require("./sample-play-latest-intent.json");
+
+  const pauseEvent = {
+    ...baseEvent,
+    request: {
+      ...baseEvent.request,
+      intent: {
+        name: "AMAZON.PauseIntent",
+        confirmationStatus: "NONE"
+      }
+    }
+  };
+
+  const pauseResponse = await handler(pauseEvent, {});
+  if (
+    !Array.isArray(pauseResponse.response.directives) ||
+    pauseResponse.response.directives[0].type !== "AudioPlayer.Stop"
+  ) {
+    throw new Error("PauseIntent must send AudioPlayer.Stop directive");
+  }
+
+  const stopEvent = {
+    ...baseEvent,
+    request: {
+      ...baseEvent.request,
+      intent: {
+        name: "AMAZON.StopIntent",
+        confirmationStatus: "NONE"
+      }
+    }
+  };
+
+  const stopResponse = await handler(stopEvent, {});
+  if (!stopResponse.response.outputSpeech.ssml.includes("Goodbye")) {
+    throw new Error("StopIntent must say Goodbye");
+  }
+}
+
+async function testAudioPlayerEventHandlersNoop() {
+  const handler = AlexaHandler.handler;
+
+  const playbackStartedEvent = {
+    version: "1.0",
+    context: {},
+    request: {
+      type: "AudioPlayer.PlaybackStarted",
+      requestId: "req-1",
+      locale: "en-US",
+      timestamp: new Date().toISOString()
+    }
+  };
+
+  const playbackFinishedEvent = {
+    ...playbackStartedEvent,
+    request: {
+      ...playbackStartedEvent.request,
+      type: "AudioPlayer.PlaybackFinished"
+    }
+  };
+
+  const playbackStoppedEvent = {
+    ...playbackStartedEvent,
+    request: {
+      ...playbackStartedEvent.request,
+      type: "AudioPlayer.PlaybackStopped"
+    }
+  };
+
+  await handler(playbackStartedEvent, {});
+  await handler(playbackFinishedEvent, {});
+  await handler(playbackStoppedEvent, {});
+}
+
 async function run() {
   await testFetchLatestStoryOverride();
   await testPlayLatestIntentAudioDirective();
   await testLaunchRequestDelegatesToPlayLatest();
   await testRepeatOneUsesAudioPlayerToken();
   await testHelpAndFallbackSpeech();
+   await testMissingAudioUrlFallback();
+   await testPlayStoryByNameIntentUsesRequestedName();
+   await testPauseAndStopIntents();
+   await testAudioPlayerEventHandlersNoop();
   process.exit(0);
 }
 
