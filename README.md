@@ -1,144 +1,164 @@
-## Alexa Story Player
+# Its Story Time — Alexa Skill
 
-This project contains an AWS Lambda function and Alexa skill configuration that plays the latest approved story MP3 from an S3 bucket or CDN URL.
+Bilingual Indian folklore storytelling skill for Alexa. Tells stories in English and Hindi with expressive SSML narration, sound effects, and dramatic pauses.
 
-### Prerequisites
+**Invocation:** "Alexa, open its story time"
 
-- Node.js 18 or later
-- AWS account with permission to deploy SAM stacks
-- An S3 bucket containing a `latest.json` metadata file and MP3 assets
+## Stories Included
 
-### Project structure
+| # | Story | Collection |
+|---|-------|-----------|
+| 1 | Leo and the Firefly | Original |
+| 2 | The Monkey and the Crocodile | Panchatantra |
+| 3 | Birbal Counts the Crows | Akbar-Birbal |
+| 4 | Vikram and the Three Suitors | Vikram-Betaal |
+| 5 | Tenali Raman and the Biggest Fool | Tenali Raman |
 
-- `src/handler.js` – main Lambda handler for Alexa requests
-- `src/utils/s3Client.js` – fetches `latest.json` from S3
-- `src/interactionModel.json` – Alexa interaction model
-- `src/skill.json` – Alexa skill manifest
-- `template.yaml` – AWS SAM template
-- `test/` – unit tests and sample Alexa requests
+All stories available in both English and Hindi.
 
-### Installing dependencies
+## Quick Start
 
 ```bash
+# Install dependencies
 npm install
-```
 
-### Running tests
-
-```bash
+# Run tests (33 tests)
 npm test
-```
 
-This runs a small Node-based test harness that exercises:
-
-- Fetching `latest.json` via the test override.
-- Playing the latest story for `PlayLatestIntent`.
-- Delegation from `LaunchRequest` to `PlayLatestIntent`.
-- Repeat behavior using `RepeatOneIntent` and the AudioPlayer token.
-- Help and fallback responses.
-
-Sample request/response fixtures:
-
-- `test/sample-launch-request.json`
-- `test/sample-play-latest-intent.json`
-- `test/expected-play-latest-response.json`
-
-### Linting
-
-```bash
+# Lint
 npm run lint
 ```
 
-### Deploying with SAM
+## Project Structure
 
-Build and deploy using AWS SAM from the project root:
+```
+src/
+  handler.js              # Main Lambda handler
+  stories.js              # All story content (en + hi)
+  utils/ssml.js           # SSML builder (converts effect tags)
+  interactionModel.json   # English interaction model
+  interactionModel.hi.json # Hindi interaction model
+  skill.json              # Alexa skill manifest
 
-```bash
-sam build
-sam deploy --guided
+lambda/                   # Alexa-hosted deployment copy
+  index.js, stories.js, ssml.js, package.json
+
+skill-package/            # ASK CLI skill package
+  interactionModels/custom/
+    en-IN.json, en-US.json, hi-IN.json
+
+test/
+  run-tests.js            # 33 unit + integration tests
+  test-alexa-cli.sh       # E2E tests via ASK CLI
 ```
 
-During `sam deploy`, provide:
+## ASK CLI Commands
 
-- `S3Bucket` – the bucket that contains `latest.json`
-- `LatestJsonKey` – object key for `latest.json` (default `latest.json`)
+```bash
+# Install ASK CLI
+npm install -g ask-cli
 
-After deployment you can find the Lambda function ARN in the stack outputs and wire that ARN into the Alexa Developer Console as the skill endpoint.
+# Configure (opens browser for Amazon login)
+ask configure
 
-### Connecting to Alexa console
+# List your skills
+ask smapi list-skills-for-vendor
 
-1. Create a new Alexa custom skill in the Alexa Developer Console.
-2. Set the invocation name to `story player`.
-3. Import `src/interactionModel.json` into the interaction model editor.
-4. Set the endpoint to the Lambda ARN output by the SAM deployment.
-5. Enable the AudioPlayer interface for the skill.
+# Test skill (direct Lambda invoke)
+ask smapi invoke-skill \
+  --skill-id amzn1.ask.skill.5ccffded-9bba-4373-86c7-dbf610cc9b34 \
+  --endpoint-region EU \
+  --skill-request-body '{"version":"1.0","session":{"new":true,"sessionId":"t1","application":{"applicationId":"amzn1.ask.skill.5ccffded-9bba-4373-86c7-dbf610cc9b34"},"attributes":{},"user":{"userId":"u1"}},"context":{"System":{"application":{"applicationId":"amzn1.ask.skill.5ccffded-9bba-4373-86c7-dbf610cc9b34"},"user":{"userId":"u1"},"device":{"supportedInterfaces":{}}}},"request":{"type":"LaunchRequest","requestId":"r1","timestamp":"2026-04-12T18:00:00Z","locale":"en-IN"}}'
 
-### Testing the skill
+# Update interaction model
+ask smapi set-interaction-model \
+  --skill-id amzn1.ask.skill.5ccffded-9bba-4373-86c7-dbf610cc9b34 \
+  --stage development --locale en-IN \
+  --interaction-model "file:src/interactionModel.json"
 
-Use the Alexa simulator or a device logged into your developer account and try:
+# Check build status
+ask smapi get-skill-status \
+  --skill-id amzn1.ask.skill.5ccffded-9bba-4373-86c7-dbf610cc9b34
+```
 
-- `Alexa, open Story Player`
-- `Alexa, play latest story`
-- `Alexa, ask Story Player to play`
+## Deploy to Alexa
 
-The skill should fetch `latest.json`, extract `title` and `audio_url`, and send an `AudioPlayer.Play` directive for the associated MP3.
+### Manual Deploy (via git push to hosted skill)
+```bash
+# Clone hosted skill repo
+ask init --hosted-skill-id amzn1.ask.skill.5ccffded-9bba-4373-86c7-dbf610cc9b34
 
-### Manual setup steps
+# Copy source files to lambda/
+cp src/handler.js <skill-dir>/lambda/index.js
+cp src/stories.js <skill-dir>/lambda/stories.js
+cp src/utils/ssml.js <skill-dir>/lambda/ssml.js
+sed -i "s|require('./utils/ssml')|require('./ssml')|g" <skill-dir>/lambda/index.js
 
-You still need to complete these steps manually in your AWS and Alexa accounts:
+# Push to deploy
+cd <skill-dir> && git add -A && git commit -m "Deploy" && git push
+```
 
-- Create or choose an S3 bucket for story MP3s.
-- Upload your MP3 file to S3 or a CDN and make it accessible to the skill.
-- Create `latest.json` in the same bucket with contents similar to:
+### Auto Deploy (GitHub Actions)
+On push to `main`, the CI pipeline:
+1. Runs lint + tests
+2. Syncs code to Alexa-hosted CodeCommit repo
+3. Updates interaction models
 
-  ```json
-  {
-    "id": "story-2026-01",
-    "title": "The Brave Little Mouse",
-    "audio_url": "https://your-cdn-url/story-2026-01.mp3"
-  }
-  ```
+**Required GitHub Secrets:**
+- `ASK_ACCESS_TOKEN` — from `~/.ask/cli_config`
+- `ASK_REFRESH_TOKEN` — from `~/.ask/cli_config`
+- `ASK_VENDOR_ID` — from `~/.ask/cli_config`
+- `ALEXA_SKILL_ID` — `amzn1.ask.skill.5ccffded-9bba-4373-86c7-dbf610cc9b34`
 
-- Deploy the SAM template and note the Lambda ARN output.
-- In the Alexa Developer Console:
-  - Configure the skill endpoint to use the Lambda ARN.
-  - Ensure the skill has the AudioPlayer interface enabled.
-  - Build the interaction model after importing `interactionModel.json`.
-- (Optional) Configure CloudFront in front of S3 to serve MP3s from a CDN URL.
-- (Optional) Configure a GitHub repository secret set so GitHub Actions can run against your AWS account if you later add deployment steps.
+## Adding a New Story
 
-### Monitoring and logging
+1. Edit `src/stories.js`
+2. Add story object to both `en` and `hi` arrays:
+```javascript
+{
+  id: 'story-slug',
+  title: 'Story Title',
+  category: 'panchatantra',
+  content: 'Once upon a time… <chuckle> story text here. <gasp> More text. <sigh>'
+}
+```
+3. Run `npm test` to verify SSML generation
+4. Push to `main` — auto-deploys to Alexa
 
-This project writes basic logs using `console.log` and `console.error` from within the Lambda handler. AWS automatically sends these logs to CloudWatch.
+## SSML Effect Tags
 
-To inspect logs:
+| Tag | Effect | Alexa Output |
+|-----|--------|-------------|
+| `<chuckle>` | Light laugh | "tee hee" (en) / "हीही" (hi) |
+| `<gasp>` | Surprise | "oh my" (en) / "अरे" (hi) |
+| `<sniffle>` | Sad pause | 500ms silence |
+| `<sigh>` | Relief | "ah" (en) / "आह" (hi) |
+| `…` | Dramatic pause | 600ms silence |
 
-- Open the CloudWatch console.
-- Navigate to **Logs** → **Log groups**.
-- Find the log group for your Lambda function (typically `/aws/lambda/alexa-story-plugin`).
-- Inspect recent log streams to see:
-  - Which intents were invoked.
-  - Any failures while fetching `latest.json`.
-  - Any unhandled errors caught by the global error handler.
+## Voice Commands
 
-### Next steps
+| Say | What happens |
+|-----|-------------|
+| "Alexa, open its story time" | Launch — welcome message |
+| "play a story" | Plays a random story |
+| "play the monkey and the crocodile" | Plays specific story |
+| "list stories" | Lists available stories |
+| "Hindi" / "English" | Switch language |
+| "play again" | Repeat current story |
+| "help" | Usage instructions |
+| "stop" | Exit skill |
 
-- Implement the Admin API described in `ADMIN_API_FUTURE.md` to manage stories.
-- Add DynamoDB and update workflows to keep `latest.json` in sync automatically.
-- Add more robust logging and monitoring via CloudWatch for production.
-- Expand tests to cover more utterance variations and error branches.
-- Add deployment automation (SAM or CDK) into a GitHub Actions workflow.
-- Add alarms for Lambda errors and elevated 4xx/5xx responses in CloudWatch.
+## Phase 2 Roadmap
 
-### Publishing checklist
+See [GitHub Issues](https://github.com/Pratiyush/alexa-story-plugin/issues) for full roadmap.
 
-When you are ready to submit the skill for certification, make sure the following are completed in the Alexa Developer Console:
+- **Phase 2a:** Move stories to S3/CDN (performance benchmark)
+- **Phase 2b:** MP3 audio playback with metadata
+- **Phase 2c:** Admin API for content management
+- **Marketplace:** Alexa Skill Store submission
 
-- Set the public skill name and invocation name.
-- Provide a short and long description for the skill store.
-- Add example phrases such as “Alexa, open Story Player”.
-- Upload small and large skill icons.
-- Choose an appropriate category (for example, Games or Kids).
-- Add keywords so users can find the skill.
-- Provide URLs for a privacy policy and terms of use.
-- Ensure testing instructions explain how to reach the main use cases.
+## Docs
+
+- [LEARNING.md](LEARNING.md) — What we learned building this
+- [STORY_WRITING_GUIDE.md](STORY_WRITING_GUIDE.md) — How to write stories in Alexa format
+- [ADMIN_API_FUTURE.md](ADMIN_API_FUTURE.md) — Phase 2c API design

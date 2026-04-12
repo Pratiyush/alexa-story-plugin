@@ -2,30 +2,37 @@
   "manifest": {
     "publishingInformation": {
       "locales": {
-        "en-US": {
-          "summary": "Plays the latest approved story from your library.",
+        "en-IN": {
+          "summary": "Listen to stories in English and Hindi with expressive narration.",
           "examplePhrases": [
-            "Alexa, open Story Player",
-            "Alexa, ask Story Player to play"
+            "Alexa, open Story Time",
+            "Alexa, ask Story Time to play a story",
+            "Alexa, ask Story Time for Hindi"
           ],
-          "name": "Story Player",
-          "description": "Story Player plays the latest approved story from your CDN or S3 bucket."
+          "name": "Story Time",
+          "description": "Story Time tells you beautiful stories in English and Hindi with expressive SSML narration, sound effects, and dramatic pauses. Perfect for bedtime stories, language learning, and entertainment."
+        },
+        "hi-IN": {
+          "summary": "अंग्रेज़ी और हिंदी में कहानियाँ सुनें, आवाज़ के साथ।",
+          "examplePhrases": [
+            "Alexa, कहानी टाइम खोलो",
+            "Alexa, कहानी टाइम से कहानी सुनाओ",
+            "Alexa, कहानी टाइम में हिंदी"
+          ],
+          "name": "कहानी टाइम",
+          "description": "कहानी टाइम आपको अंग्रेज़ी और हिंदी में सुंदर कहानियाँ सुनाती है। SSML नैरेशन, ध्वनि प्रभाव और नाटकीय विराम के साथ। सोने की कहानियों, भाषा सीखने और मनोरंजन के लिए।"
         }
       },
       "isAvailableWorldwide": true,
-      "testingInstructions": "Say 'open Story Player' to play the latest story.",
-      "category": "GAMES"
+      "testingInstructions": "Say 'Alexa, open Story Time' then 'play a story'. Say 'Hindi' to switch language.",
+      "category": "EDUCATION_AND_REFERENCE"
     },
     "apis": {
       "custom": {
         "endpoint": {
           "uri": "arn:aws:lambda:REGION:ACCOUNT_ID:function:alexa-story-plugin"
         },
-        "interfaces": [
-          {
-            "type": "AUDIO_PLAYER"
-          }
-        ]
+        "interfaces": []
       }
     },
     "manifestVersion": "1.0",

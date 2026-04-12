@@ -1,7 +1,7 @@
 {
   "name": "alexa-story-plugin",
-  "version": "1.0.0",
-  "description": "Alexa skill Lambda to play the latest approved story from S3/CDN",
+  "version": "2.0.0",
+  "description": "Alexa Story Time — bilingual TTS storytelling skill (English + Hindi)",
   "main": "src/handler.js",
   "scripts": {
     "lint": "eslint --config eslint.config.mjs src test",
@@ -11,8 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "ask-sdk-core": "^2.14.0",
-    "ask-sdk-model": "^1.74.0",
-    "node-fetch": "^2.7.0"
+    "ask-sdk-model": "^1.74.0"
   },
   "devDependencies": {
     "eslint": "^9.10.0"

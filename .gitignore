@@ -4,3 +4,14 @@ dist
 .DS_Store
 coverage
 *.log
+
+# ASK CLI
+.ask/
+ask-resources.json
+
+# Lambda build artifacts
+lambda/node_modules/
+
+# IDE
+.vscode/
+.idea/

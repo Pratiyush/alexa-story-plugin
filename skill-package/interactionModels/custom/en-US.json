@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "its story time",
+      "invocationName": "story time",
       "intents": [
         {
           "name": "PlayLatestIntent",
@@ -13,8 +13,8 @@
             "start a story",
             "read a story",
             "play story",
-            "tell a story",
-            "surprise me"
+            "story time",
+            "tell a story"
           ]
         },
         {

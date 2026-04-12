@@ -1,0 +1,135 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "इट्स स्टोरी टाइम",
+      "intents": [
+        {
+          "name": "PlayLatestIntent",
+          "slots": [],
+          "samples": [
+            "कहानी सुनाओ",
+            "एक कहानी सुनाओ",
+            "कहानी शुरू करो",
+            "कोई कहानी सुनाओ",
+            "कहानी पढ़ो",
+            "नई कहानी",
+            "आज की कहानी"
+          ]
+        },
+        {
+          "name": "PlayStoryIntent",
+          "slots": [
+            {
+              "name": "storyName",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "{storyName} सुनाओ",
+            "{storyName} कहानी सुनाओ",
+            "मुझे {storyName} सुनाओ",
+            "{storyName} शुरू करो",
+            "{storyName} पढ़ो"
+          ]
+        },
+        {
+          "name": "SetLanguageIntent",
+          "slots": [
+            {
+              "name": "language",
+              "type": "LanguageType"
+            }
+          ],
+          "samples": [
+            "{language}",
+            "{language} में सुनाओ",
+            "भाषा {language} करो",
+            "{language} में बताओ",
+            "{language} में कहानी"
+          ]
+        },
+        {
+          "name": "ListStoriesIntent",
+          "slots": [],
+          "samples": [
+            "कहानियाँ बताओ",
+            "कौन सी कहानियाँ हैं",
+            "क्या क्या है",
+            "सूची दिखाओ",
+            "कौन कौन सी कहानी है"
+          ]
+        },
+        {
+          "name": "NextPartIntent",
+          "slots": [],
+          "samples": [
+            "आगे",
+            "अगला भाग",
+            "जारी रखो",
+            "आगे बढ़ो",
+            "और सुनाओ"
+          ]
+        },
+        {
+          "name": "RepeatOneIntent",
+          "slots": [],
+          "samples": [
+            "फिर से सुनाओ",
+            "दोबारा",
+            "दोबारा सुनाओ",
+            "शुरू से",
+            "फिर से शुरू करो"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "मदद",
+            "क्या बोलूं",
+            "क्या कर सकते हो"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "रुको",
+            "बंद करो"
+          ]
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NextIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "LanguageType",
+          "values": [
+            { "name": { "value": "अंग्रेज़ी", "synonyms": ["English", "english", "इंग्लिश"] } },
+            { "name": { "value": "हिंदी", "synonyms": ["Hindi", "hindi"] } }
+          ]
+        }
+      ]
+    }
+  }
+}

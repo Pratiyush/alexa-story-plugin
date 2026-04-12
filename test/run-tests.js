@@ -1,294 +1,354 @@
-// Minimal test harness using Node's assert module.
-const assert = require("assert");
-const { fetchLatestStory } = require("../src/utils/s3Client");
-const AlexaHandler = require("../src/handler");
+// Test harness for Alexa Story Time skill (Phase 1 — TTS/SSML)
+const assert = require('assert');
 
-function buildTestStoryPayload() {
+// --- Unit tests for SSML builder ---
+
+const { toSsml, toSsmlParts } = require('../src/utils/ssml');
+
+function testSsmlBasicConversion() {
+  const result = toSsml('Hello world', 'en');
+  assert.strictEqual(result, '<speak>Hello world</speak>');
+}
+
+function testSsmlEllipsisReplacement() {
+  const result = toSsml('Once upon a time…', 'en');
+  assert.ok(result.includes('<break time="600ms"/>'));
+  assert.ok(!result.includes('…'));
+}
+
+function testSsmlTripleDotReplacement() {
+  const result = toSsml('Wait for it...', 'en');
+  assert.ok(result.includes('<break time="600ms"/>'));
+}
+
+function testSsmlChuckleTag() {
+  const result = toSsml('He laughed. <chuckle> Then left.', 'en');
+  assert.ok(!result.includes('<chuckle>'), 'Custom tag should be replaced');
+  assert.ok(result.includes('tee hee'), 'English chuckle should use "tee hee"');
+}
+
+function testSsmlGaspTag() {
+  const result = toSsml('She saw it. <gasp> Amazing!', 'en');
+  assert.ok(!result.includes('<gasp>'));
+  assert.ok(result.includes('oh my'));
+}
+
+function testSsmlSniffleTag() {
+  const result = toSsml('So sad. <sniffle> He cried.', 'en');
+  assert.ok(!result.includes('<sniffle>'));
+  assert.ok(result.includes('<break time="500ms"/>'));
+}
+
+function testSsmlSighTag() {
+  const result = toSsml('Finally safe. <sigh> Relief.', 'en');
+  assert.ok(!result.includes('<sigh>'));
+}
+
+function testSsmlHindiEffects() {
+  const result = toSsml('वह हँसा। <chuckle> फिर गया।', 'hi');
+  assert.ok(!result.includes('<chuckle>'));
+  assert.ok(result.includes('हीही'), 'Hindi chuckle should use "हीही"');
+}
+
+function testSsmlHindiGasp() {
+  const result = toSsml('उसने देखा। <gasp> अद्भुत!', 'hi');
+  assert.ok(!result.includes('<gasp>'));
+  assert.ok(result.includes('अरे'));
+}
+
+function testSsmlParagraphBreaks() {
+  const result = toSsml('Para one.\n\nPara two.', 'en');
+  assert.ok(result.includes('<break time="800ms"/>'));
+}
+
+function testSsmlWrappedInSpeak() {
+  const result = toSsml('Test', 'en');
+  assert.ok(result.startsWith('<speak>'));
+  assert.ok(result.endsWith('</speak>'));
+}
+
+function testSsmlPartsShortStory() {
+  const parts = toSsmlParts('Short story content.', 'en');
+  assert.strictEqual(parts.length, 1, 'Short story should be one part');
+}
+
+function testSsmlPartsAllWrapped() {
+  const parts = toSsmlParts('Part one.\n\nPart two.', 'en');
+  for (const part of parts) {
+    assert.ok(part.startsWith('<speak>'), 'Each part should be wrapped in <speak>');
+    assert.ok(part.endsWith('</speak>'));
+  }
+}
+
+// --- Unit tests for stories module ---
+
+const { getStoriesByLanguage, findStory, findStoryByTitle, getSupportedLanguages } = require('../src/stories');
+
+function testStoriesEnglishExists() {
+  const en = getStoriesByLanguage('en');
+  assert.ok(en.length > 0, 'Should have at least one English story');
+  assert.strictEqual(en[0].id, 'leo-and-the-firefly');
+}
+
+function testStoriesHindiExists() {
+  const hi = getStoriesByLanguage('hi');
+  assert.ok(hi.length > 0, 'Should have at least one Hindi story');
+  assert.strictEqual(hi[0].id, 'leo-and-the-firefly');
+  assert.ok(hi[0].title.includes('जुगनू'), 'Hindi title should contain जुगनू');
+}
+
+function testFindStoryById() {
+  const story = findStory('en', 'leo-and-the-firefly');
+  assert.ok(story, 'Should find story by ID');
+  assert.strictEqual(story.title, 'Leo and the Firefly');
+}
+
+function testFindStoryByTitleExact() {
+  const story = findStoryByTitle('en', 'Leo and the Firefly');
+  assert.ok(story);
+  assert.strictEqual(story.id, 'leo-and-the-firefly');
+}
+
+function testFindStoryByTitlePartial() {
+  const story = findStoryByTitle('en', 'firefly');
+  assert.ok(story, 'Should find story by partial title');
+}
+
+function testFindStoryByTitleHindi() {
+  const story = findStoryByTitle('hi', 'जुगनू');
+  assert.ok(story, 'Should find Hindi story by partial title');
+}
+
+function testUnknownLanguageReturnsEmpty() {
+  const list = getStoriesByLanguage('fr');
+  assert.strictEqual(list.length, 0);
+}
+
+function testSupportedLanguages() {
+  const langs = getSupportedLanguages();
+  assert.ok(langs.includes('en'));
+  assert.ok(langs.includes('hi'));
+}
+
+// --- Integration: SSML output from actual story content ---
+
+function testFullEnglishStorySsml() {
+  const story = findStory('en', 'leo-and-the-firefly');
+  const parts = toSsmlParts(story.content, 'en');
+  assert.ok(parts.length >= 1, 'Should produce at least one SSML part');
+  const full = parts.join('');
+  assert.ok(!full.includes('<chuckle>'), 'No raw custom tags should remain');
+  assert.ok(!full.includes('<gasp>'));
+  assert.ok(!full.includes('<sniffle>'));
+  assert.ok(!full.includes('<sigh>'));
+  // Check SSML size limit (each part under 8000 chars)
+  for (const part of parts) {
+    assert.ok(part.length < 8000, `SSML part too long: ${part.length} chars`);
+  }
+}
+
+function testFullHindiStorySsml() {
+  const story = findStory('hi', 'leo-and-the-firefly');
+  const parts = toSsmlParts(story.content, 'hi');
+  assert.ok(parts.length >= 1);
+  const full = parts.join('');
+  assert.ok(!full.includes('<chuckle>'));
+  assert.ok(!full.includes('<gasp>'));
+  assert.ok(full.includes('हीही'), 'Hindi SSML should use Hindi interjections');
+  for (const part of parts) {
+    assert.ok(part.length < 8000, `Hindi SSML part too long: ${part.length} chars`);
+  }
+}
+
+// --- Handler integration tests ---
+
+const AlexaHandler = require('../src/handler');
+
+/** Wrap the Lambda callback-style handler in a promise. */
+function invoke(event) {
+  return new Promise((resolve, reject) => {
+    AlexaHandler.handler(event, {}, (err, result) => {
+      if (err) return reject(err);
+      resolve(result);
+    });
+  });
+}
+
+function buildBaseEvent(locale = 'en-IN') {
   return {
-    id: "story-2026-01",
-    title: "The Brave Little Mouse",
-    audio_url: "https://your-cdn-url/story-2026-01.mp3"
-  };
-}
-
-async function testFetchLatestStoryOverride() {
-  // Verify that TEST_LATEST_STORY_JSON shortcut is respected.
-  process.env.TEST_LATEST_STORY_JSON = JSON.stringify(buildTestStoryPayload());
-  const story = await fetchLatestStory("ignored-bucket", "ignored-key");
-  assert.strictEqual(story.id, "story-2026-01");
-  assert.strictEqual(
-    story.audio_url,
-    "https://your-cdn-url/story-2026-01.mp3"
-  );
-  delete process.env.TEST_LATEST_STORY_JSON;
-}
-
-async function testPlayLatestIntentAudioDirective() {
-  process.env.S3_BUCKET = "example-bucket";
-  process.env.LATEST_JSON_KEY = "latest.json";
-  process.env.TEST_LATEST_STORY_JSON = JSON.stringify(buildTestStoryPayload());
-
-  const handler = AlexaHandler.handler;
-  const event = require("./sample-play-latest-intent.json");
-  const context = {};
-  const response = await handler(event, context);
-
-  assert.ok(response);
-  const directives = response.response.directives;
-  assert.ok(Array.isArray(directives));
-  assert.ok(directives.length > 0);
-  const playDirective = directives[0];
-  assert.strictEqual(playDirective.type, "AudioPlayer.Play");
-  assert.strictEqual(playDirective.playBehavior, "REPLACE_ALL");
-  assert.strictEqual(
-    playDirective.audioItem.stream.url,
-    "https://your-cdn-url/story-2026-01.mp3"
-  );
-
-  delete process.env.TEST_LATEST_STORY_JSON;
-}
-
-async function testLaunchRequestDelegatesToPlayLatest() {
-  process.env.S3_BUCKET = "example-bucket";
-  process.env.LATEST_JSON_KEY = "latest.json";
-  process.env.TEST_LATEST_STORY_JSON = JSON.stringify(buildTestStoryPayload());
-
-  const handler = AlexaHandler.handler;
-  const event = require("./sample-launch-request.json");
-  const context = {};
-  const response = await handler(event, context);
-
-  assert.ok(response);
-  const directives = response.response.directives;
-  assert.ok(Array.isArray(directives));
-  assert.strictEqual(directives[0].type, "AudioPlayer.Play");
-
-  delete process.env.TEST_LATEST_STORY_JSON;
-}
-
-async function testRepeatOneUsesAudioPlayerToken() {
-  process.env.S3_BUCKET = "example-bucket";
-  process.env.LATEST_JSON_KEY = "latest.json";
-  process.env.TEST_LATEST_STORY_JSON = JSON.stringify(buildTestStoryPayload());
-
-  const handler = AlexaHandler.handler;
-  const baseEvent = require("./sample-play-latest-intent.json");
-
-  const repeatEvent = {
-    ...baseEvent,
-    request: {
-      ...baseEvent.request,
-      type: "IntentRequest",
-      intent: {
-        name: "RepeatOneIntent",
-        confirmationStatus: "NONE"
-      }
+    version: '1.0',
+    session: {
+      new: true,
+      sessionId: 'test-session-1',
+      application: { applicationId: 'amzn1.ask.skill.test' },
+      attributes: {},
+      user: { userId: 'test-user-1' },
     },
     context: {
-      ...baseEvent.context,
-      AudioPlayer: {
-        token: "story-2026-01",
-        offsetInMilliseconds: 0,
-        playerActivity: "FINISHED"
-      }
-    }
+      System: {
+        application: { applicationId: 'amzn1.ask.skill.test' },
+        user: { userId: 'test-user-1' },
+        device: { supportedInterfaces: {} },
+      },
+    },
+    request: {
+      type: 'LaunchRequest',
+      requestId: 'req-1',
+      timestamp: new Date().toISOString(),
+      locale,
+    },
   };
-
-  const response = await handler(repeatEvent, {});
-  const directives = response.response.directives;
-  assert.ok(Array.isArray(directives));
-  const playDirective = directives[0];
-  assert.strictEqual(playDirective.type, "AudioPlayer.Play");
-  assert.strictEqual(playDirective.audioItem.stream.token, "story-2026-01");
-
-  delete process.env.TEST_LATEST_STORY_JSON;
 }
 
-async function testHelpAndFallbackSpeech() {
-  const handler = AlexaHandler.handler;
-
-  const helpEvent = {
-    ...require("./sample-play-latest-intent.json"),
+function intentEvent(intentName, slots = {}, locale = 'en-IN') {
+  const base = buildBaseEvent(locale);
+  return {
+    ...base,
+    session: { ...base.session, new: false, attributes: {} },
     request: {
-      ...require("./sample-play-latest-intent.json").request,
-      intent: {
-        name: "AMAZON.HelpIntent",
-        confirmationStatus: "NONE"
-      }
-    }
+      type: 'IntentRequest',
+      requestId: 'req-2',
+      timestamp: new Date().toISOString(),
+      locale,
+      intent: { name: intentName, confirmationStatus: 'NONE', slots },
+    },
   };
-
-  const helpResponse = await handler(helpEvent, {});
-  assert.ok(
-    helpResponse.response.outputSpeech.ssml.includes("play latest story")
-  );
-
-  const fallbackEvent = {
-    ...require("./sample-play-latest-intent.json"),
-    request: {
-      ...require("./sample-play-latest-intent.json").request,
-      intent: {
-        name: "AMAZON.FallbackIntent",
-        confirmationStatus: "NONE"
-      }
-    }
-  };
-
-  const fallbackResponse = await handler(fallbackEvent, {});
-  assert.ok(
-    fallbackResponse.response.outputSpeech.ssml.includes(
-      "You can say play latest story"
-    )
-  );
 }
 
-async function testMissingAudioUrlFallback() {
-  // When audio_url is missing, handler should speak the fallback message.
-  process.env.S3_BUCKET = "example-bucket";
-  process.env.LATEST_JSON_KEY = "latest.json";
-  process.env.TEST_LATEST_STORY_JSON = JSON.stringify({
-    id: "story-2026-02",
-    title: "Story Without Audio"
-  });
-
-  const handler = AlexaHandler.handler;
-  const event = require("./sample-play-latest-intent.json");
-  const response = await handler(event, {});
-
+async function testLaunchRequest() {
+  const response = await invoke(buildBaseEvent());
   const ssml = response.response.outputSpeech.ssml;
-  if (!ssml.includes("I couldn't find a recording")) {
-    throw new Error("Expected missing audio fallback speech");
-  }
-
-  delete process.env.TEST_LATEST_STORY_JSON;
+  assert.ok(ssml.includes('Story Time'), 'Launch should mention Story Time');
+  assert.ok(ssml.includes('English'), 'Launch should mention language options');
 }
 
-async function testPlayStoryByNameIntentUsesRequestedName() {
-  // Ensure the spoken prefix acknowledges the storyName slot.
-  process.env.S3_BUCKET = "example-bucket";
-  process.env.LATEST_JSON_KEY = "latest.json";
-  process.env.TEST_LATEST_STORY_JSON = JSON.stringify(buildTestStoryPayload());
-
-  const handler = AlexaHandler.handler;
-  const baseEvent = require("./sample-play-latest-intent.json");
-
-  const event = {
-    ...baseEvent,
-    request: {
-      ...baseEvent.request,
-      intent: {
-        name: "PlayStoryByNameIntent",
-        confirmationStatus: "NONE",
-        slots: {
-          storyName: {
-            name: "storyName",
-            value: "The Brave Little Mouse",
-            confirmationStatus: "NONE"
-          }
-        }
-      }
-    }
-  };
-
-  const response = await handler(event, {});
+async function testLaunchRequestHindi() {
+  const response = await invoke(buildBaseEvent('hi-IN'));
   const ssml = response.response.outputSpeech.ssml;
-  if (!ssml.includes("Playing The Brave Little Mouse")) {
-    throw new Error("Expected PlayStoryByName to reference requested storyName");
-  }
-
-  delete process.env.TEST_LATEST_STORY_JSON;
+  assert.ok(ssml.includes('कहानी'), 'Hindi launch should use Hindi');
 }
 
-async function testPauseAndStopIntents() {
-  const handler = AlexaHandler.handler;
-  const baseEvent = require("./sample-play-latest-intent.json");
-
-  const pauseEvent = {
-    ...baseEvent,
-    request: {
-      ...baseEvent.request,
-      intent: {
-        name: "AMAZON.PauseIntent",
-        confirmationStatus: "NONE"
-      }
-    }
-  };
-
-  const pauseResponse = await handler(pauseEvent, {});
-  if (
-    !Array.isArray(pauseResponse.response.directives) ||
-    pauseResponse.response.directives[0].type !== "AudioPlayer.Stop"
-  ) {
-    throw new Error("PauseIntent must send AudioPlayer.Stop directive");
-  }
-
-  const stopEvent = {
-    ...baseEvent,
-    request: {
-      ...baseEvent.request,
-      intent: {
-        name: "AMAZON.StopIntent",
-        confirmationStatus: "NONE"
-      }
-    }
-  };
-
-  const stopResponse = await handler(stopEvent, {});
-  if (!stopResponse.response.outputSpeech.ssml.includes("Goodbye")) {
-    throw new Error("StopIntent must say Goodbye");
-  }
+async function testPlayLatestIntent() {
+  const response = await invoke(intentEvent('PlayLatestIntent'));
+  const ssml = response.response.outputSpeech.ssml;
+  // Random story selection — just verify it plays SOME story with SSML content
+  assert.ok(ssml.includes('Here is'), 'Should announce story with "Here is"');
+  assert.ok(ssml.includes('break'), 'Should contain SSML breaks from story content');
 }
 
-async function testAudioPlayerEventHandlersNoop() {
-  const handler = AlexaHandler.handler;
-
-  const playbackStartedEvent = {
-    version: "1.0",
-    context: {},
-    request: {
-      type: "AudioPlayer.PlaybackStarted",
-      requestId: "req-1",
-      locale: "en-US",
-      timestamp: new Date().toISOString()
-    }
-  };
-
-  const playbackFinishedEvent = {
-    ...playbackStartedEvent,
-    request: {
-      ...playbackStartedEvent.request,
-      type: "AudioPlayer.PlaybackFinished"
-    }
-  };
-
-  const playbackStoppedEvent = {
-    ...playbackStartedEvent,
-    request: {
-      ...playbackStartedEvent.request,
-      type: "AudioPlayer.PlaybackStopped"
-    }
-  };
-
-  await handler(playbackStartedEvent, {});
-  await handler(playbackFinishedEvent, {});
-  await handler(playbackStoppedEvent, {});
+async function testPlayStoryByName() {
+  const response = await invoke(
+    intentEvent('PlayStoryIntent', {
+      storyName: { name: 'storyName', value: 'Leo and the Firefly', confirmationStatus: 'NONE' },
+    })
+  );
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('Leo and the Firefly'));
 }
+
+async function testPlayStoryNotFound() {
+  const response = await invoke(
+    intentEvent('PlayStoryIntent', {
+      storyName: { name: 'storyName', value: 'nonexistent story xyz', confirmationStatus: 'NONE' },
+    })
+  );
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('could not find') || ssml.includes('not find'));
+}
+
+async function testHelpIntent() {
+  const response = await invoke(intentEvent('AMAZON.HelpIntent'));
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('play a story') || ssml.includes('play'));
+}
+
+async function testStopIntent() {
+  const response = await invoke(intentEvent('AMAZON.StopIntent'));
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('Goodbye') || ssml.includes('goodbye'));
+}
+
+async function testFallbackIntent() {
+  const response = await invoke(intentEvent('AMAZON.FallbackIntent'));
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('help') || ssml.includes('catch'));
+}
+
+async function testSetLanguageHindi() {
+  const response = await invoke(
+    intentEvent('SetLanguageIntent', {
+      language: { name: 'language', value: 'Hindi', confirmationStatus: 'NONE' },
+    })
+  );
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('Hindi') || ssml.includes('हिंदी'));
+}
+
+async function testListStoriesIntent() {
+  const response = await invoke(intentEvent('ListStoriesIntent'));
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('Leo') || ssml.includes('stories'));
+}
+
+// --- Run all tests ---
+
+const tests = [
+  // SSML unit tests
+  ['ssml: basic conversion', testSsmlBasicConversion],
+  ['ssml: ellipsis replacement', testSsmlEllipsisReplacement],
+  ['ssml: triple dot replacement', testSsmlTripleDotReplacement],
+  ['ssml: chuckle tag', testSsmlChuckleTag],
+  ['ssml: gasp tag', testSsmlGaspTag],
+  ['ssml: sniffle tag', testSsmlSniffleTag],
+  ['ssml: sigh tag', testSsmlSighTag],
+  ['ssml: hindi effects', testSsmlHindiEffects],
+  ['ssml: hindi gasp', testSsmlHindiGasp],
+  ['ssml: paragraph breaks', testSsmlParagraphBreaks],
+  ['ssml: wrapped in speak', testSsmlWrappedInSpeak],
+  ['ssml: parts short story', testSsmlPartsShortStory],
+  ['ssml: parts all wrapped', testSsmlPartsAllWrapped],
+  // Story module tests
+  ['stories: english exists', testStoriesEnglishExists],
+  ['stories: hindi exists', testStoriesHindiExists],
+  ['stories: find by id', testFindStoryById],
+  ['stories: find by title exact', testFindStoryByTitleExact],
+  ['stories: find by title partial', testFindStoryByTitlePartial],
+  ['stories: find by title hindi', testFindStoryByTitleHindi],
+  ['stories: unknown language', testUnknownLanguageReturnsEmpty],
+  ['stories: supported languages', testSupportedLanguages],
+  // Integration tests
+  ['integration: english story ssml', testFullEnglishStorySsml],
+  ['integration: hindi story ssml', testFullHindiStorySsml],
+  // Handler tests
+  ['handler: launch request', testLaunchRequest],
+  ['handler: launch request hindi', testLaunchRequestHindi],
+  ['handler: play latest', testPlayLatestIntent],
+  ['handler: play by name', testPlayStoryByName],
+  ['handler: play not found', testPlayStoryNotFound],
+  ['handler: help', testHelpIntent],
+  ['handler: stop', testStopIntent],
+  ['handler: fallback', testFallbackIntent],
+  ['handler: set language hindi', testSetLanguageHindi],
+  ['handler: list stories', testListStoriesIntent],
+];
 
 async function run() {
-  try {
-    await testFetchLatestStoryOverride();
-    await testPlayLatestIntentAudioDirective();
-    await testLaunchRequestDelegatesToPlayLatest();
-    await testRepeatOneUsesAudioPlayerToken();
-    await testHelpAndFallbackSpeech();
-    await testMissingAudioUrlFallback();
-    await testPlayStoryByNameIntentUsesRequestedName();
-    await testPauseAndStopIntents();
-    await testAudioPlayerEventHandlersNoop();
-    process.exit(0);
-  } catch (error) {
-    console.error("Test run failed", error);
-    process.exit(1);
+  let passed = 0;
+  let failed = 0;
+
+  for (const [name, fn] of tests) {
+    try {
+      await fn();
+      console.log(`  PASS  ${name}`);
+      passed++;
+    } catch (err) {
+      console.error(`  FAIL  ${name}: ${err.message}`);
+      failed++;
+    }
   }
+
+  console.log(`\n${passed} passed, ${failed} failed, ${tests.length} total`);
+  process.exit(failed > 0 ? 1 : 0);
 }
+
 run();

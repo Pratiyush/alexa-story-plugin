@@ -10,7 +10,7 @@
 
 const Alexa = require('ask-sdk-core');
 const { getStoriesByLanguage, findStory, findStoryByTitle } = require('./stories');
-const { toSsmlParts } = require('./utils/ssml');
+const { toSsmlParts } = require('./ssml');
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -25,14 +25,7 @@ function getLang(handlerInput) {
 
 function setSession(handlerInput, attrs) {
   const current = handlerInput.attributesManager.getSessionAttributes();
-  handlerInput.attributesManager.setSessionAttributes(Object.assign({}, current, attrs));
-}
-
-/** Pick a random story from the list. */
-function pickRandomStory(lang) {
-  const list = getStoriesByLanguage(lang);
-  if (list.length === 0) return null;
-  return list[Math.floor(Math.random() * list.length)];
+  handlerInput.attributesManager.setSessionAttributes({ ...current, ...attrs });
 }
 
 function getSession(handlerInput) {
@@ -182,7 +175,8 @@ const PlayStoryIntentHandler = {
     let story;
 
     if (intentName === 'PlayLatestIntent' || !storyNameSlot) {
-      story = pickRandomStory(lang);
+      const list = getStoriesByLanguage(lang);
+      story = list.length > 0 ? list[0] : null;
     } else {
       story = findStoryByTitle(lang, storyNameSlot) || findStory(lang, storyNameSlot);
     }
