@@ -1,0 +1,30 @@
+=== English (IN) — Skill Store Listing ===
+
+Public Name: Its Story Time
+Invocation Name: its story time
+
+One Sentence Description:
+Listen to beloved Indian folklore stories in English and Hindi with expressive narration and sound effects.
+
+Detailed Description:
+Its Story Time brings India's timeless folklore to life through expressive voice narration. Enjoy stories from Panchatantra, Akbar-Birbal, Vikram-Betaal, Tenali Raman, Jataka Tales, and more in both English and Hindi. Each story features dramatic pauses, sound effects, and vivid storytelling. Perfect for bedtime stories, language learning, and family entertainment. Say 'Alexa, open Its Story Time' to begin.
+
+Example Phrases:
+1. Alexa, open its story time
+2. Alexa, ask its story time to play a story
+3. Alexa, ask its story time to play birbal counts the crows
+
+Keywords:
+stories, kahani, Indian, folklore, panchatantra, bedtime, Hindi, English, kids, family, Akbar Birbal, Vikram Betaal, Tenali Raman
+
+Category: Education & Reference
+
+Privacy Policy: https://github.com/Pratiyush/alexa-story-plugin/blob/main/docs/privacy-policy.html
+Terms of Use: https://github.com/Pratiyush/alexa-story-plugin/blob/main/docs/terms-of-use.html
+
+Icons:
+- Small (108x108): docs/icons/icon-108.png
+- Large (512x512): docs/icons/icon-512.png
+
+Testing Instructions:
+Say "Alexa, open its story time" then "play a story". Say "Hindi" to switch language. Say "list stories" to see all. Say "play birbal" for a specific story.

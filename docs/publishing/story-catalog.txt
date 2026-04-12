@@ -1,0 +1,24 @@
+=== STORY CATALOG (20 stories) ===
+
+#  | English Title                      | Hindi Title                | Category
+---|-------------------------------------|----------------------------|------------
+ 1 | Leo and the Firefly                 | लियो और जुगनू              | original    
+ 2 | The Monkey and the Crocodile        | बंदर और मगरमच्छ            | panchatantra
+ 3 | Birbal Counts the Crows             | बीरबल ने गिने कौवे         | akbar-birbal
+ 4 | Vikram and the Three Suitors        | विक्रम और तीन चाहने वाले   | vikram-betaal
+ 5 | Tenali Raman and the Biggest Fool   | तेनाली रामन और सबसे बड़ा मूर्ख | tenali-raman
+ 6 | The Blue Jackal                     | नीला सियार                 | panchatantra
+ 7 | The Tortoise and the Geese          | कछुआ और हंस                | panchatantra
+ 8 | The Lion and the Rabbit             | शेर और खरगोश               | panchatantra
+ 9 | The Loyal Mongoose                  | वफ़ादार नेवला              | panchatantra
+10 | Birbal's Khichdi                    | बीरबल की खिचड़ी            | akbar-birbal
+11 | The Blind Man's Sight               | अंधे की नज़र               | akbar-birbal
+12 | The Well Dispute                    | कुएँ का झगड़ा              | akbar-birbal
+13 | Vikram and the Four Dolls           | विक्रम और चार गुड़ियाँ     | vikram-betaal
+14 | The Merchant's Daughter             | सौदागर की बेटी             | vikram-betaal
+15 | Tenali and the Cat                  | तेनाली और बिल्ली           | tenali-raman
+16 | Tenali and the Thieves              | तेनाली और चोर              | tenali-raman
+17 | The Golden Deer                     | सोने का हिरण               | jataka      
+18 | The Wise Quail                      | समझदार बटेर                | jataka      
+19 | Shravan Kumar                       | श्रवण कुमार                | epic        
+20 | Eklavya's Dedication                | एकलव्य की निष्ठा           | epic        

@@ -1,0 +1,20 @@
+=== Hindi (IN) — Skill Store Listing ===
+
+Public Name: Its Story Time
+Invocation Name: इट्स स्टोरी टाइम
+
+One Sentence Description:
+Indian folklore in English and Hindi with expressive narration and sound effects.
+
+Detailed Description:
+Its Story Time tells beloved Indian folklore in English and Hindi. Panchatantra, Akbar-Birbal, Vikram-Betaal, Tenali Raman stories with dramatic pauses and sound effects. Perfect for bedtime and family entertainment.
+
+Example Phrases:
+1. Alexa इट्स स्टोरी टाइम खोलो
+2. कहानी सुनाओ
+3. Hindi
+
+Keywords:
+kahani, stories, Indian, folklore, panchatantra, bedtime, Hindi, English, kids, family, Akbar Birbal, Vikram Betaal, Tenali Raman
+
+Category: Education & Reference
