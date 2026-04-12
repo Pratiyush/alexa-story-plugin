@@ -1,41 +1,54 @@
 {
   "manifest": {
-    "publishingInformation": {
-      "locales": {
-        "en-IN": {
-          "summary": "Listen to stories in English and Hindi with expressive narration.",
-          "examplePhrases": [
-            "Alexa, open Story Time",
-            "Alexa, ask Story Time to play a story",
-            "Alexa, ask Story Time for Hindi"
-          ],
-          "name": "Story Time",
-          "description": "Story Time tells you beautiful stories in English and Hindi with expressive SSML narration, sound effects, and dramatic pauses. Perfect for bedtime stories, language learning, and entertainment."
-        },
-        "hi-IN": {
-          "summary": "अंग्रेज़ी और हिंदी में कहानियाँ सुनें, आवाज़ के साथ।",
-          "examplePhrases": [
-            "Alexa, कहानी टाइम खोलो",
-            "Alexa, कहानी टाइम से कहानी सुनाओ",
-            "Alexa, कहानी टाइम में हिंदी"
-          ],
-          "name": "कहानी टाइम",
-          "description": "कहानी टाइम आपको अंग्रेज़ी और हिंदी में सुंदर कहानियाँ सुनाती है। SSML नैरेशन, ध्वनि प्रभाव और नाटकीय विराम के साथ। सोने की कहानियों, भाषा सीखने और मनोरंजन के लिए।"
-        }
-      },
-      "isAvailableWorldwide": true,
-      "testingInstructions": "Say 'Alexa, open Story Time' then 'play a story'. Say 'Hindi' to switch language.",
-      "category": "EDUCATION_AND_REFERENCE"
-    },
     "apis": {
-      "custom": {
-        "endpoint": {
-          "uri": "arn:aws:lambda:REGION:ACCOUNT_ID:function:alexa-story-plugin"
-        },
-        "interfaces": []
-      }
+      "custom": {}
     },
     "manifestVersion": "1.0",
-    "permissions": []
+    "publishingInformation": {
+      "category": "EDUCATION_AND_REFERENCE",
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Say 'Alexa, open its story time' then 'play a story'. Say 'Hindi' to switch language. Say 'list stories' to see all. Say 'play birbal' for a specific story.",
+      "locales": {
+        "en-IN": {
+          "name": "Its Story Time",
+          "summary": "Listen to beloved Indian folklore stories in English and Hindi with expressive narration.",
+          "description": "Its Story Time brings India's timeless folklore to life. Enjoy Panchatantra, Akbar-Birbal, Vikram-Betaal, Tenali Raman, Jataka Tales and more in English and Hindi. Each story features dramatic pauses, sound effects, and vivid storytelling. Perfect for bedtime, language learning, and family fun.",
+          "examplePhrases": ["Alexa, open its story time", "play a story", "play birbal counts the crows"],
+          "keywords": ["stories","kahani","Indian","folklore","panchatantra","bedtime","Hindi","English","kids","family","Akbar Birbal","Vikram Betaal","Tenali Raman"],
+          "smallIconUri": "https://pratiyush.github.io/alexa-story-plugin/icons/icon-108.png",
+          "largeIconUri": "https://pratiyush.github.io/alexa-story-plugin/icons/icon-512.png"
+        },
+        "en-US": {
+          "name": "Its Story Time",
+          "summary": "Listen to beloved Indian folklore stories in English and Hindi with expressive narration.",
+          "description": "Its Story Time brings India's timeless folklore to life. Enjoy Panchatantra, Akbar-Birbal, Vikram-Betaal, Tenali Raman, Jataka Tales and more in English and Hindi. Each story features dramatic pauses, sound effects, and vivid storytelling. Perfect for bedtime, language learning, and family fun.",
+          "examplePhrases": ["Alexa, open its story time", "play a story", "play birbal counts the crows"],
+          "keywords": ["stories","kahani","Indian","folklore","panchatantra","bedtime","Hindi","English","kids","family","Akbar Birbal","Vikram Betaal","Tenali Raman"],
+          "smallIconUri": "https://pratiyush.github.io/alexa-story-plugin/icons/icon-108.png",
+          "largeIconUri": "https://pratiyush.github.io/alexa-story-plugin/icons/icon-512.png"
+        },
+        "hi-IN": {
+          "name": "Its Story Time",
+          "summary": "Indian folklore in English and Hindi with expressive narration and sound effects.",
+          "description": "Its Story Time tells beloved Indian folklore in English and Hindi. Panchatantra, Akbar-Birbal, Vikram-Betaal, Tenali Raman stories with dramatic pauses and sound effects. Perfect for bedtime and family entertainment.",
+          "examplePhrases": ["Alexa open its story time", "play a story", "Hindi"],
+          "keywords": ["stories","kahani","Indian","folklore","panchatantra","bedtime","Hindi","English","kids","family","Akbar Birbal","Vikram Betaal","Tenali Raman"],
+          "smallIconUri": "https://pratiyush.github.io/alexa-story-plugin/icons/icon-108.png",
+          "largeIconUri": "https://pratiyush.github.io/alexa-story-plugin/icons/icon-512.png"
+        }
+      }
+    },
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "usesPersonalInfo": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "locales": {
+        "en-IN": {"privacyPolicyUrl": "https://pratiyush.github.io/alexa-story-plugin/privacy-policy.html", "termsOfUseUrl": "https://pratiyush.github.io/alexa-story-plugin/terms-of-use.html"},
+        "en-US": {"privacyPolicyUrl": "https://pratiyush.github.io/alexa-story-plugin/privacy-policy.html", "termsOfUseUrl": "https://pratiyush.github.io/alexa-story-plugin/terms-of-use.html"},
+        "hi-IN": {"privacyPolicyUrl": "https://pratiyush.github.io/alexa-story-plugin/privacy-policy.html", "termsOfUseUrl": "https://pratiyush.github.io/alexa-story-plugin/terms-of-use.html"}
+      }
+    }
   }
 }
