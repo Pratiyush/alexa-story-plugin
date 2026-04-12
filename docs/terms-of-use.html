@@ -3,32 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Its Story Time — Terms of Use</title>
-<style>body{font-family:system-ui,-apple-system,sans-serif;max-width:700px;margin:40px auto;padding:0 20px;line-height:1.6;color:#333}h1{color:#1a1a2e}h2{color:#16213e;margin-top:2em}</style>
+<title>Terms of Use — Its Story Time</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Terms of Use — Its Story Time</h1>
-<p><strong>Last updated:</strong> April 12, 2026</p>
-
-<h2>1. About the Skill</h2>
-<p>Its Story Time is a free Alexa skill that narrates Indian folklore stories in English and Hindi. Stories include tales from Panchatantra, Akbar-Birbal, Vikram-Betaal, Tenali Raman, Jataka Tales, and other Indian traditions.</p>
-
-<h2>2. Content</h2>
-<p>All stories are original retellings of traditional Indian folklore that are in the public domain. The content is family-friendly and suitable for all ages. Stories are provided for entertainment and educational purposes.</p>
-
-<h2>3. No Warranty</h2>
-<p>This skill is provided "as is" without warranty of any kind. We do not guarantee uninterrupted availability or error-free operation.</p>
-
-<h2>4. Usage</h2>
-<p>You may use this skill for personal, non-commercial enjoyment. The skill is free and contains no advertisements or in-skill purchases.</p>
-
-<h2>5. Intellectual Property</h2>
-<p>The story retellings, SSML narration, and skill code are open source under the MIT License. The underlying folklore tales are part of India's cultural heritage and are in the public domain.</p>
-
-<h2>6. Changes</h2>
-<p>We may update these terms or the skill's content at any time. Continued use of the skill constitutes acceptance of any changes.</p>
-
-<h2>7. Contact</h2>
-<p>For questions or feedback, please visit <a href="https://github.com/Pratiyush/alexa-story-plugin">github.com/Pratiyush/alexa-story-plugin</a>.</p>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+<div class="container">
+  <div class="header">
+    <h1>Terms of Use</h1>
+    <p class="subtitle">Its Story Time</p>
+  </div>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="catalog.html">Story Catalog</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-use.html" class="active">Terms</a>
+  </div>
+  <div class="card content">
+    <p><strong>Last updated:</strong> April 12, 2026</p>
+    <h2>1. About the Skill</h2>
+    <p>Its Story Time is a free Alexa skill that narrates Indian folklore stories in English and Hindi. Stories include tales from Panchatantra, Akbar-Birbal, Vikram-Betaal, Tenali Raman, Jataka Tales, and other Indian traditions.</p>
+    <h2>2. Content</h2>
+    <p>All stories are original retellings of traditional Indian folklore that are in the public domain. The content is family-friendly and suitable for all ages. Stories are provided for entertainment and educational purposes.</p>
+    <h2>3. No Warranty</h2>
+    <p>This skill is provided "as is" without warranty of any kind. We do not guarantee uninterrupted availability or error-free operation.</p>
+    <h2>4. Usage</h2>
+    <p>You may use this skill for personal, non-commercial enjoyment. The skill is free and contains no advertisements or in-skill purchases.</p>
+    <h2>5. Intellectual Property</h2>
+    <p>The story retellings, SSML narration, and skill code are open source under the MIT License. The underlying folklore tales are part of India's cultural heritage and are in the public domain.</p>
+    <h2>6. Changes</h2>
+    <p>We may update these terms or the skill's content at any time. Continued use of the skill constitutes acceptance of any changes.</p>
+    <h2>7. Contact</h2>
+    <p>For questions or feedback, please visit <a href="https://github.com/Pratiyush/alexa-story-plugin">github.com/Pratiyush/alexa-story-plugin</a>.</p>
+  </div>
+  <div class="footer">Made with <span class="heart">&#10084;</span> by <a href="https://github.com/Pratiyush">Pratiyush</a></div>
+</div>
+<script>
+function toggleTheme(){const h=document.documentElement,c=h.getAttribute('data-theme'),n=c==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.querySelector('.theme-toggle').textContent=n==='dark'?'☀️':'🌙'}
+(function(){const s=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',s);if(s==='dark')document.querySelector('.theme-toggle').textContent='☀️'})();
+</script>
 </body>
 </html>

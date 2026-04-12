@@ -4,23 +4,70 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Its Story Time — Indian Folklore on Alexa</title>
-<style>
-body{font-family:system-ui,sans-serif;max-width:800px;margin:0 auto;padding:20px;color:#333;background:#fafafa}
-h1{color:#1a1a2e;text-align:center;margin-top:30px}
-.subtitle{text-align:center;color:#666;font-size:18px}
-.links{text-align:center;margin:30px 0}
-.links a{display:inline-block;margin:8px;padding:10px 20px;background:#1a1a2e;color:#f0a500;text-decoration:none;border-radius:8px}
-.links a:hover{background:#16213e}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Its Story Time</h1>
-<p class="subtitle">Indian Folklore Stories in English and Hindi for Alexa</p>
-<div class="links">
-  <a href="catalog.html">Story Catalog</a>
-  <a href="privacy-policy.html">Privacy Policy</a>
-  <a href="terms-of-use.html">Terms of Use</a>
-  <a href="https://github.com/Pratiyush/alexa-story-plugin">GitHub</a>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+
+<div class="container">
+  <div class="header">
+    <h1>Its Story Time</h1>
+    <p class="subtitle">Indian Folklore Stories in English &amp; Hindi for Alexa</p>
+  </div>
+
+  <div class="nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="catalog.html">Story Catalog</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-use.html">Terms</a>
+    <a href="https://github.com/Pratiyush/alexa-story-plugin">GitHub</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">20</div><div class="label">Stories</div></div>
+    <div class="stat"><div class="num">2</div><div class="label">Languages</div></div>
+    <div class="stat"><div class="num">6</div><div class="label">Collections</div></div>
+    <div class="stat"><div class="num">3</div><div class="label">Locales</div></div>
+  </div>
+
+  <div class="card">
+    <h2>How to Use</h2>
+    <p><strong>"Alexa, open its story time"</strong> — start the skill</p>
+    <p><strong>"Play a story"</strong> — hear a random folklore tale</p>
+    <p><strong>"Play birbal counts the crows"</strong> — pick a specific story</p>
+    <p><strong>"Hindi"</strong> — switch to Hindi narration</p>
+    <p><strong>"List stories"</strong> — hear all available stories</p>
+  </div>
+
+  <div class="card">
+    <h2>Collections</h2>
+    <p><span class="badge panchatantra">Panchatantra</span> Ancient animal fables with timeless morals</p>
+    <p><span class="badge akbar-birbal">Akbar-Birbal</span> Wit and wisdom from the Mughal court</p>
+    <p><span class="badge vikram-betaal">Vikram-Betaal</span> Riddle stories with philosophical twists</p>
+    <p><span class="badge tenali-raman">Tenali Raman</span> Clever humor from the Vijayanagara court</p>
+    <p><span class="badge jataka">Jataka</span> Buddhist wisdom stories</p>
+    <p><span class="badge epic">Epic</span> Stories from the Mahabharata and Indian tradition</p>
+  </div>
+
+  <div class="footer">
+    Made with <span class="heart">&#10084;</span> by <a href="https://github.com/Pratiyush">Pratiyush</a>
+  </div>
 </div>
+
+<script>
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.querySelector('.theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+(function() {
+  const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', saved);
+  if (saved === 'dark') document.querySelector('.theme-toggle').textContent = '☀️';
+})();
+</script>
 </body>
 </html>
