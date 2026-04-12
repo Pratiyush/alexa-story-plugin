@@ -251,6 +251,11 @@ const stories = {
   ],
 };
 
+// Merge 15 new folklore stories
+const { newStoriesEn, newStoriesHi } = require('./stories_new');
+stories.en.push(...newStoriesEn);
+stories.hi.push(...newStoriesHi);
+
 /**
  * Get all stories for a language.
  * @param {'en'|'hi'} lang

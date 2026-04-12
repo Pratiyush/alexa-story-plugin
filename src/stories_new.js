@@ -1,0 +1,933 @@
+/**
+ * 15 new Indian folklore stories — English and Hindi.
+ *
+ * Each story uses custom effect tags for expressive Alexa narration:
+ *   <chuckle>  — light laugh / amusement
+ *   <gasp>     — surprise / shock
+ *   <sniffle>  — sadness / tears
+ *   <sigh>     — relief / weariness
+ *   …          — dramatic pause
+ *   \n\n       — scene / paragraph break
+ *
+ * Categories: panchatantra, akbar-birbal, vikram-betaal, tenali-raman, jataka, epic
+ */
+
+const newStoriesEn = [
+  // ===================================================================
+  // 1. THE BLUE JACKAL (Panchatantra)
+  // ===================================================================
+  {
+    id: 'the-blue-jackal',
+    title: 'The Blue Jackal',
+    category: 'panchatantra',
+    content:
+      'Deep in a dense forest… there lived a jackal named Chandarava. <chuckle> He was thin, always hungry… and not very brave.\n\n' +
+      'One evening… driven by hunger… he crept into a nearby village to find food. But the village dogs spotted him. <gasp> "Get him!" they barked… and chased him through the narrow lanes.\n\n' +
+      'Chandarava ran for his life… darting left and right… until he tumbled headfirst into a large tub. <gasp> It was the washerman\'s vat… filled with deep blue indigo dye!\n\n' +
+      'He held his breath… and stayed hidden until the dogs gave up and left. <sigh> When he finally climbed out… he could not believe his eyes. His entire body… from nose to tail… was a brilliant, shining blue.\n\n' +
+      'Chandarava returned to the forest. The animals saw him and froze. <gasp> "What creature is this?" whispered the deer. "I have never seen such a being!" said the elephant.\n\n' +
+      'The clever jackal saw his chance. <chuckle> He puffed up his chest and declared… "I am Kakabhushundi… sent by the gods to be your king! The heavens have chosen me to rule this forest."\n\n' +
+      'The animals were amazed. They bowed before him… brought him the finest fruits and meats… and treated him like royalty. <chuckle> The lion became his guard. The tiger became his minister. Even the mighty elephant fanned him with large leaves.\n\n' +
+      'Days passed… and Chandarava lived like a true king. <sigh> He almost forgot he was just a common jackal.\n\n' +
+      'But one night… a pack of jackals passed through the forest. They lifted their heads to the moon… and began to howl. <gasp> That long, mournful howl… it stirred something deep inside Chandarava.\n\n' +
+      'He tried to stop himself… he bit his lip… he covered his mouth… but the urge was too strong. He threw back his head and howled with all his might. <gasp>\n\n' +
+      'The animals stared in horror. <sniffle> "He is no divine creature," the lion growled. "He is just a jackal… a common, lying jackal!"\n\n' +
+      'The tiger roared. The elephant trumpeted. And all the animals chased Chandarava out of the forest. <sigh> He ran and ran… never looking back… losing everything he had gained.\n\n' +
+      'And so… the blue jackal learned a hard lesson. You can pretend to be something you are not… but the truth always finds a way out. <chuckle> A howl in the night was all it took… to bring a false king crashing down.',
+  },
+
+  // ===================================================================
+  // 2. THE TORTOISE AND THE GEESE (Panchatantra)
+  // ===================================================================
+  {
+    id: 'the-tortoise-and-the-geese',
+    title: 'The Tortoise and the Geese',
+    category: 'panchatantra',
+    content:
+      'Beside a beautiful lake… surrounded by tall reeds and lotus flowers… there lived a tortoise named Kambugriva. <chuckle> He had two best friends… a pair of geese named Sankata and Vikata.\n\n' +
+      'Every day… the three friends would spend hours together. The geese would tell stories of faraway lands they had seen while flying… and the tortoise… well… the tortoise would talk. And talk. And talk. <chuckle> He simply could not stop talking.\n\n' +
+      '"Kambugriva, you really must learn to be quiet sometimes," Sankata would say gently. <sigh>\n\n' +
+      '"Quiet? Me? But I have so much to say!" the tortoise would reply… and keep on chattering.\n\n' +
+      'One terrible summer… the lake began to dry up. <gasp> Day after day… the water got lower and lower. The fish struggled. The frogs croaked sadly. And the tortoise grew worried.\n\n' +
+      '"Dear friends… I will die if I stay here," Kambugriva said. <sniffle> "Please… take me with you to another lake."\n\n' +
+      'The geese thought carefully. "We have a plan," Vikata said. "We will hold a strong stick between our beaks. You must bite the middle of the stick… and hold on tightly. We will fly you to a new lake."\n\n' +
+      '"But there is one condition," Sankata added seriously. "You must not open your mouth. No matter what happens… you must stay silent. If you speak… you will fall." <gasp>\n\n' +
+      '"Of course! I can do that. Easy!" the tortoise said cheerfully. <chuckle>\n\n' +
+      'The next morning… the geese picked up the stick… the tortoise bit down hard on the middle… and they rose into the sky. <gasp> Higher and higher they flew… over forests and fields and shining rivers.\n\n' +
+      'Below… the village children looked up. "Look! Look!" they shouted. "Two birds are carrying a tortoise! How strange! How funny!" <chuckle>\n\n' +
+      'The tortoise heard their laughter. His blood boiled. He wanted to shout back… "I am not funny! My friends are helping me!"\n\n' +
+      'He held on. His jaw ached… but he held on. <sigh>\n\n' +
+      'Then more people gathered… pointing and laughing. "Silly tortoise! Foolish creature!" they mocked.\n\n' +
+      'That was too much. Kambugriva could not bear it. He opened his mouth and yelled… "Mind your own business, you…" <gasp>\n\n' +
+      'But the moment he opened his mouth… he let go of the stick. <sniffle>\n\n' +
+      'Down… down… down he fell… tumbling through the air. And that… was the end of poor Kambugriva. <sigh>\n\n' +
+      'The geese circled above… their hearts breaking. "We warned him," Sankata whispered sadly.\n\n' +
+      'And so… the tale teaches us a lesson as old as the hills. There is great power in silence. Sometimes… the wisest thing you can do… is simply keep your mouth shut.',
+  },
+
+  // ===================================================================
+  // 3. THE LION AND THE RABBIT (Panchatantra)
+  // ===================================================================
+  {
+    id: 'the-lion-and-the-rabbit',
+    title: 'The Lion and the Rabbit',
+    category: 'panchatantra',
+    content:
+      'In a thick, dark jungle… there ruled a fierce lion named Bhasuraka. <gasp> He was cruel and greedy… killing far more animals than he could ever eat.\n\n' +
+      'Every day… the animals lived in terror. The deer hid in the bushes… the rabbits trembled in their burrows… and even the bears avoided his path. <sniffle>\n\n' +
+      'Finally… the animals gathered in a secret meeting. "We must do something," said the old elephant. "At this rate… none of us will survive."\n\n' +
+      'They went to the lion with a proposal. "O mighty king… if you promise not to hunt… we will send one animal to you every day as your meal. You will eat without any effort." <sigh>\n\n' +
+      'The lazy lion liked this idea. <chuckle> "Very well. But if my meal is late even once… I will kill all of you."\n\n' +
+      'And so… every day… one unfortunate animal walked to the lion\'s den. The forest was heavy with sorrow. <sniffle>\n\n' +
+      'One day… it was the turn of a small rabbit. A tiny, little rabbit… with bright eyes and a very sharp mind. <chuckle>\n\n' +
+      '"I have a plan," the rabbit told the others. "Trust me."\n\n' +
+      'The rabbit walked very… very… slowly toward the lion\'s den. By the time he arrived… the sun was already setting. <gasp>\n\n' +
+      '"You are late!" Bhasuraka roared, his eyes burning with rage. "And you are so tiny! Is this all they send me?"\n\n' +
+      '"Forgive me, Your Majesty," the rabbit said calmly. "I am late because something terrible happened. There is another lion in the forest… a lion even bigger and stronger than you! He grabbed four other rabbits that were meant for you… and ate them all." <gasp>\n\n' +
+      '"Another lion?!" Bhasuraka snarled. "In MY forest?! Take me to him at once!"\n\n' +
+      'The rabbit led the lion to a deep, old well. <chuckle> "He lives in there, Your Majesty. Look inside."\n\n' +
+      'The lion peered over the edge… and saw his own reflection in the dark water below. <gasp> He saw a fierce lion staring back at him!\n\n' +
+      '"There you are!" Bhasuraka roared… and leaped into the well to attack his rival. <gasp>\n\n' +
+      'But of course… there was no rival. The lion splashed into the deep water… and could not climb out. <sigh>\n\n' +
+      'The little rabbit hopped back to the forest. "The lion is gone," he announced quietly. <chuckle>\n\n' +
+      'The animals cheered. The deer danced. The birds sang. And the forest was free once more.\n\n' +
+      'And so… a tiny rabbit defeated a mighty lion… not with strength… but with cleverness. The lesson? The biggest battles are not won by the strongest… but by the smartest.',
+  },
+
+  // ===================================================================
+  // 4. THE LOYAL MONGOOSE (Panchatantra)
+  // ===================================================================
+  {
+    id: 'the-loyal-mongoose',
+    title: 'The Loyal Mongoose',
+    category: 'panchatantra',
+    content:
+      'In a small village… there lived a kind farmer and his wife. They had a baby boy… their whole world… and a pet mongoose they had raised since it was tiny. <chuckle>\n\n' +
+      'The mongoose loved the baby as if it were his own brother. He would sit beside the cradle for hours… watching over the little one with devoted eyes. <sigh>\n\n' +
+      'One morning… the farmer\'s wife needed to fetch water from the well. She looked at the mongoose… and then at her sleeping baby. <gasp>\n\n' +
+      '"Watch over my child," she said softly. The mongoose sat up proudly… as if he understood every word. <chuckle>\n\n' +
+      'While she was gone… a large, black cobra slithered into the house through a crack in the wall. <gasp> Its hood spread wide… its fangs dripping with venom… and it moved straight toward the baby\'s cradle.\n\n' +
+      'The mongoose saw the snake and sprang into action. <gasp> His fur stood on end. His eyes blazed with fury. He leaped at the cobra… biting and scratching with all his strength.\n\n' +
+      'The fight was fierce. The cobra struck again and again. The mongoose dodged… twisted… and fought back with everything he had. <sigh> Blood stained the floor.\n\n' +
+      'Finally… the mongoose sank his teeth into the cobra\'s neck… and the snake went still. <chuckle> The baby was safe. The loyal mongoose had won.\n\n' +
+      'He sat at the doorstep… panting… his mouth still red with the cobra\'s blood… waiting for his mistress to return.\n\n' +
+      'The farmer\'s wife came back. She saw the mongoose at the door… his mouth and paws covered in blood. <gasp>\n\n' +
+      '"Blood! My baby!" she screamed. Without a second thought… without even looking inside… she lifted the heavy water pot and brought it crashing down on the mongoose. <sniffle>\n\n' +
+      'The faithful creature fell to the ground… and did not move again. <sniffle>\n\n' +
+      'Then she ran inside… and found her baby sleeping peacefully. Beside the cradle… lay the dead cobra… torn apart by the brave mongoose.\n\n' +
+      'The mother understood what had happened. <gasp> She fell to her knees beside the mongoose… tears streaming down her face. "What have I done?" she wept. "He saved my child… and I killed him." <sigh>\n\n' +
+      'The farmer came home and found his wife sobbing. When he heard the story… he too wept bitterly.\n\n' +
+      'And so… the loyal mongoose gave his life for a child he loved. His only reward was death at the hands of those he served. The lesson cuts deep… never act in haste. Anger without thought… can destroy what matters most.',
+  },
+
+  // ===================================================================
+  // 5. BIRBAL'S KHICHDI (Akbar-Birbal)
+  // ===================================================================
+  {
+    id: 'birbal-khichdi',
+    title: "Birbal's Khichdi",
+    category: 'akbar-birbal',
+    content:
+      'Winter had come to Agra… and the nights were bitterly cold. <sigh> The Yamuna river flowed dark and icy under a pale moon.\n\n' +
+      'One evening… Emperor Akbar stood on his balcony, shivering. "Birbal," he asked… "do you think any man could stand in the freezing river all night?"\n\n' +
+      '"If the reward is great enough, Jahanpanah… a desperate man will endure anything," Birbal replied. <chuckle>\n\n' +
+      'Akbar smiled. "Let us test that. I offer one thousand gold coins to any man who can stand in the river from sunset to sunrise!"\n\n' +
+      'The announcement spread through the city. Many laughed… many shook their heads. But one poor man… a thin, shivering washerman named Ramu… stepped forward. <gasp>\n\n' +
+      '"I will do it," Ramu said. He had a sick mother at home… and no money for medicine. <sniffle>\n\n' +
+      'That night… Ramu walked into the freezing river. The cold bit into his bones like a thousand needles. <gasp> His teeth chattered… his body shook… and every moment felt like an hour.\n\n' +
+      'But far away… on a distant hill… he could see a tiny lamp burning in a temple. He fixed his eyes on that small flame… and through the longest night of his life… he held on. <sigh>\n\n' +
+      'When the sun finally rose… Ramu stumbled out of the river, barely alive. He had done it. <chuckle>\n\n' +
+      'But when he came to court to collect his reward… the jealous courtiers whispered to Akbar. "Your Majesty… he cheated! He was looking at a lamp burning on a distant hill. That lamp gave him warmth!" <gasp>\n\n' +
+      'Akbar frowned. "Is this true? Then the lamp kept you warm. You have not truly endured the cold. No reward for you."\n\n' +
+      'Ramu was devastated. <sniffle> He left the court with empty hands and a broken heart.\n\n' +
+      'When Birbal heard what happened… he was troubled. "This is not justice," he murmured. <sigh>\n\n' +
+      'The next day… Birbal did not come to court. Akbar sent for him. The messenger returned confused. "Jahanpanah… Birbal says he is cooking khichdi… and will come only when it is ready."\n\n' +
+      'Hours passed. Akbar grew impatient. Finally… he went to Birbal\'s house himself. <gasp>\n\n' +
+      'There… he found Birbal sitting beside a fire. Above the fire… on a pole twenty feet high… hung a small pot of rice and lentils. <chuckle>\n\n' +
+      '"Birbal! What is this madness?" Akbar demanded. "The pot is twenty feet above the fire! It will never cook!"\n\n' +
+      'Birbal looked up calmly. "But Jahanpanah… if a lamp burning on a distant hill can warm a man standing in a freezing river… then surely a fire twenty feet below can cook a pot of khichdi." <chuckle>\n\n' +
+      'Akbar stood still. The words hit him like a bolt of lightning. <gasp> He realized his mistake.\n\n' +
+      '"You are right, Birbal," the emperor said quietly. "I was wrong." <sigh>\n\n' +
+      'The next morning… Ramu was called to court. Emperor Akbar personally handed him one thousand gold coins… and apologized before the entire court. <chuckle>\n\n' +
+      'And so… Birbal proved that a lamp miles away cannot warm a freezing man… just as a fire far below cannot cook a meal. True justice sees through false logic… and that is why Birbal remains the wisest minister in all of history.',
+  },
+
+  // ===================================================================
+  // 6. THE BLIND MAN'S SIGHT (Akbar-Birbal)
+  // ===================================================================
+  {
+    id: 'the-blind-mans-sight',
+    title: "The Blind Man's Sight",
+    category: 'akbar-birbal',
+    content:
+      'In the bustling city of Agra… a man came to Emperor Akbar\'s court with a plea. <sniffle> "Your Majesty… I am blind from birth. I cannot see the light of day. I beg you… give me a pension so I may survive."\n\n' +
+      'The man\'s eyes were shut tight… his hands stretched out before him… and he walked with a stick, bumping into pillars. <sigh> The courtiers felt great pity for him.\n\n' +
+      'Akbar was moved. "Of course… this poor man deserves our help. Give him five gold coins every month from the royal treasury."\n\n' +
+      'But Birbal… who had been watching quietly… stepped forward. <chuckle> "Jahanpanah… may I examine this man before the pension is granted?"\n\n' +
+      '"Birbal, he is clearly blind. What is there to examine?" Akbar asked, surprised. <gasp>\n\n' +
+      '"Just a small test, Your Majesty. It will take only a moment." Birbal smiled.\n\n' +
+      'The emperor agreed. Birbal turned to the blind man. "Tell me, friend… have you always been blind?"\n\n' +
+      '"Yes, sir. From the day I was born. I have never seen a single thing in this world." <sniffle>\n\n' +
+      '"Very sad indeed," Birbal said. Then he called for a servant. "Bring me a piece of paper… a red piece of paper." <chuckle>\n\n' +
+      'The servant brought a bright red sheet. Birbal held it in front of the man\'s face. "Tell me… what am I holding?"\n\n' +
+      '"How would I know?" the man protested angrily. "I told you… I am blind!"\n\n' +
+      'Birbal nodded calmly. Then he turned to the court and said loudly… "I will now prove that this man can see perfectly well." <gasp>\n\n' +
+      'The court fell silent.\n\n' +
+      'Birbal faced the man again. "You say you were born blind… that you have never seen anything in your life. Tell me then… how did you just say \'How would I know?\' with such anger… when I held up the paper? If you were truly blind from birth… you would not even understand the concept of holding something up to your face. You would not know what \'holding\' looks like." <gasp>\n\n' +
+      'The man began to sweat.\n\n' +
+      'But Birbal was not finished. <chuckle> "Let me try something else." He reached into his pocket and pulled out a gold coin. He flicked it into the air… spinning and glinting in the sunlight. The man\'s eyes followed the coin… up… and down. <gasp>\n\n' +
+      '"His eyes moved!" a courtier shouted. "He watched the coin!"\n\n' +
+      'The man fell to his knees. "Forgive me, Your Majesty! I can see. I was pretending… I only wanted the money." <sniffle>\n\n' +
+      'Akbar\'s face hardened. "You lied in the court of the emperor. Guards… remove this man." <sigh>\n\n' +
+      'As the man was led away… Akbar turned to Birbal. "How did you suspect him?"\n\n' +
+      'Birbal smiled gently. <chuckle> "Jahanpanah… a truly blind man walks with trust. This man walked with fear… avoiding things he should not have been able to see. His act was good… but not good enough."\n\n' +
+      'And so… Birbal\'s keen eyes caught what an entire court had missed. The lesson? A lie may fool many… but it only takes one sharp mind to uncover the truth.',
+  },
+
+  // ===================================================================
+  // 7. THE WELL DISPUTE (Akbar-Birbal)
+  // ===================================================================
+  {
+    id: 'the-well-dispute',
+    title: 'The Well Dispute',
+    category: 'akbar-birbal',
+    content:
+      'One morning… two men came quarrelling into Emperor Akbar\'s court. <gasp> They were shouting so loudly that the guards had to hold them apart.\n\n' +
+      '"Jahanpanah… I demand justice!" cried the first man, a farmer named Iqbal. "This man… this cheat… sold me his well. I paid him a fair price. But now he will not let me draw water from it!"\n\n' +
+      'The second man… a merchant named Hakim… shook his head. <chuckle> "Your Majesty, I sold him the well. That is true. But I only sold the well… not the water inside it! The water is still mine."\n\n' +
+      'The court murmured. <gasp> What a strange argument!\n\n' +
+      'Akbar rubbed his chin thoughtfully. "Hakim… are you saying you sold the well but kept the water?"\n\n' +
+      '"Exactly, Your Majesty." Hakim bowed smugly. "The well is his. The water is mine. If he wants my water… he must pay separately." <chuckle>\n\n' +
+      'Iqbal clenched his fists. <sigh> "But what good is a well without water? This is trickery!"\n\n' +
+      'Akbar looked troubled. He turned to his courtiers… but no one could think of a fair solution. <sigh>\n\n' +
+      'Then Birbal stepped forward with a quiet smile. <chuckle> "Jahanpanah… may I speak with Hakim?"\n\n' +
+      '"Please, Birbal. This matter gives me a headache," Akbar said.\n\n' +
+      'Birbal walked up to Hakim. "So… you sold the well but not the water. Is that correct?"\n\n' +
+      '"Yes, that is correct," Hakim said confidently.\n\n' +
+      '"Very well then," Birbal said. "If the water is yours… but the well belongs to Iqbal… then your water is sitting inside his well without permission." <gasp>\n\n' +
+      'Hakim blinked. "What do you mean?"\n\n' +
+      '"I mean… you are keeping your property… your water… inside someone else\'s property… his well… without paying rent!" Birbal declared. <chuckle> "You have two choices, Hakim. Either pay Iqbal rent for storing your water in his well… or remove all your water from his well immediately." <gasp>\n\n' +
+      'The court burst into laughter. Hakim\'s face turned pale. <sigh>\n\n' +
+      '"But… but I cannot remove water from a well!" Hakim stammered.\n\n' +
+      '"Then pay rent… or accept that the water comes with the well," Birbal said calmly. <chuckle>\n\n' +
+      'Akbar clapped his hands. "Brilliant! Hakim… the judgment is clear. You sold the well… and the water inside it belongs to the buyer. Case closed." <gasp>\n\n' +
+      'Hakim hung his head and quietly left the court. Iqbal fell at Birbal\'s feet. <sniffle> "Thank you, sir. You have saved me."\n\n' +
+      'Birbal helped him up gently. "Justice is every man\'s right."\n\n' +
+      'And so… Birbal defeated trickery with trickery of his own. A dishonest man tried to cheat with clever words… and was undone by even cleverer ones. The lesson? Those who twist the truth… should beware of those who can twist it right back.',
+  },
+
+  // ===================================================================
+  // 8. VIKRAM AND THE FOUR DOLLS (Vikram-Betaal)
+  // ===================================================================
+  {
+    id: 'vikram-and-the-four-dolls',
+    title: 'Vikram and the Four Dolls',
+    category: 'vikram-betaal',
+    content:
+      'On another dark night… King Vikramaditya returned to the cremation ground. <sigh> The wind moaned through the twisted trees… and shadows slithered across the cold earth.\n\n' +
+      'He pulled Betaal down from the ancient banyan tree… threw the corpse over his shoulder… and began walking. <gasp>\n\n' +
+      '"Ah, Vikram," Betaal whispered from behind. <chuckle> "Shall I tell you a riddle to pass the time? Remember… if you know the answer and stay silent… your head will burst."\n\n' +
+      'Vikram walked on in silence.\n\n' +
+      '"A king once received four identical dolls as a gift," Betaal began. "They looked exactly the same… carved from the same wood… painted the same colour. But the merchant who brought them said… these four dolls are very different. Only the wisest king can tell them apart." <gasp>\n\n' +
+      '"The king examined them carefully. He turned them upside down. He weighed them. They were identical in every way. The courtiers were baffled." <sigh>\n\n' +
+      '"But the king\'s young daughter… a girl of just twelve… picked up a thin wire. She pushed it gently into the ear of the first doll. The wire came out of the other ear." <chuckle>\n\n' +
+      '"She tried the second doll. The wire went in through the ear… and came out of the mouth." <gasp>\n\n' +
+      '"For the third doll… the wire went in through the ear… and came out from the heart." <gasp>\n\n' +
+      '"And the fourth doll? The wire went in… and never came out at all." <chuckle>\n\n' +
+      '"Now tell me, Vikram," Betaal asked with a grin. "What do these four dolls represent? And which one is the most valuable?""\n\n' +
+      'Vikram thought carefully as he walked through the darkness. Then he spoke. <sigh>\n\n' +
+      '"The first doll… where the wire goes in one ear and out the other… that is the person who hears but does not listen. Nothing stays. Words pass through them like wind."\n\n' +
+      '"The second doll… where the wire goes in the ear and out the mouth… that is the gossip. Whatever they hear… they repeat to others. They cannot keep a secret." <chuckle>\n\n' +
+      '"The third doll… where the wire enters the ear and reaches the heart… that is the sensitive soul. Everything they hear moves them deeply. They feel the world\'s joy and pain as their own." <sniffle>\n\n' +
+      '"And the fourth doll… where the wire goes in and never comes out… that is the wise one. They listen… they absorb… they reflect… but they speak only when necessary. They guard knowledge with patience." <sigh>\n\n' +
+      '"The fourth doll is the most valuable. True wisdom lies not in speaking… but in knowing when to hold your silence."\n\n' +
+      'Betaal laughed with delight. <chuckle> "Correct, Vikram! But alas… you have spoken. And so… I fly back!" <gasp>\n\n' +
+      'Betaal leaped from Vikram\'s shoulder and soared back to his tree. Vikram sighed deeply… turned around… and walked back once more. For a king with a duty… the road never ends.',
+  },
+
+  // ===================================================================
+  // 9. THE MERCHANT'S DAUGHTER (Vikram-Betaal)
+  // ===================================================================
+  {
+    id: 'the-merchants-daughter',
+    title: "The Merchant's Daughter",
+    category: 'vikram-betaal',
+    content:
+      'Once more… Vikram walked through the cremation ground with Betaal draped over his shoulder. <sigh> The stars hid behind dark clouds… and the air smelled of damp earth and ancient sorrow.\n\n' +
+      '"Another story, Vikram?" Betaal murmured. <chuckle> "This one will test your heart."\n\n' +
+      '"In a prosperous city… there lived a wealthy merchant named Dharmapal. He had a daughter named Malini… beautiful as the morning sun… and kind as the spring rain." <sigh>\n\n' +
+      '"Three young men loved her. The first was a soldier named Veerbhadra… strong and fearless. The second was an astrologer named Jyotish… who could read the stars. The third was a healer named Dhanvantari… whose medicines could cure any illness."\n\n' +
+      '"One day… Malini went to the temple alone. On her way home… bandits attacked her caravan." <gasp> "They carried her away to their hideout deep in the mountains."\n\n' +
+      '"When the three young men heard the news… each sprang into action."\n\n' +
+      '"The astrologer, Jyotish… gazed at the stars and within moments discovered exactly where the bandits had taken Malini. He knew the cave… the mountain… even the number of guards." <gasp>\n\n' +
+      '"The soldier, Veerbhadra… took his sword and rode through the night. Using the astrologer\'s directions… he found the bandits\' hideout. He fought twelve men alone… his blade flashing like lightning… and rescued Malini." <chuckle>\n\n' +
+      '"But during the escape… Malini was struck by a poisoned arrow. <gasp> The venom spread through her body. Her face turned pale… her breathing grew shallow… and she lay on the edge of death." <sniffle>\n\n' +
+      '"The healer, Dhanvantari… rushed to her side. He prepared a sacred remedy from rare herbs… chanted healing verses… and worked through the night. By dawn… Malini opened her eyes. She was alive." <gasp>\n\n' +
+      '"Now, Vikram," Betaal asked. "Who should Malini marry? The astrologer who found her… the soldier who saved her… or the healer who brought her back from death\'s door?" <chuckle>\n\n' +
+      'Vikram walked in silence for a long time. Then he spoke.\n\n' +
+      '"The astrologer used his knowledge… that is what scholars do. It is their nature and duty. The healer cured her illness… that too is his calling and craft. But the soldier… he risked his own life. He rode into darkness… fought twelve armed men… and carried her to safety with no guarantee he would survive." <sigh>\n\n' +
+      '"Knowledge and healing are gifts of the mind. But courage that puts one\'s life at stake for another… that is love. Veerbhadra, the soldier, should marry Malini." <sniffle>\n\n' +
+      'Betaal cackled. <chuckle> "Right again, Vikram! But you spoke… so off I go!" And with a whoosh… he flew back to his tree. <gasp>\n\n' +
+      'Vikram turned around without complaint. A true king walks forward… even when the road leads him backward.',
+  },
+
+  // ===================================================================
+  // 10. TENALI AND THE CAT (Tenali Raman)
+  // ===================================================================
+  {
+    id: 'tenali-and-the-cat',
+    title: 'Tenali and the Cat',
+    category: 'tenali-raman',
+    content:
+      'King Krishnadevaraya loved cats. <chuckle> One day… a visiting saint told the king that feeding milk to cats would bring divine blessings and wash away sins.\n\n' +
+      'The king was delighted. <gasp> "I shall order every household in Vijayanagara to keep a cat… and feed it a bowl of milk every single day!"\n\n' +
+      'A royal decree was issued. Every family had to get a cat and feed it milk daily… or face a heavy fine. <sigh>\n\n' +
+      'The people groaned. Milk was precious… and many families could barely afford it for their own children. But who could argue with the king? <sniffle>\n\n' +
+      'Tenali Raman listened to the decree and shook his head. "This is not right," he muttered. <sigh> "I must show the king the truth… but gently."\n\n' +
+      'Tenali went home and got his cat. He heated a bowl of milk until it was very… very hot. Then he placed it before the cat. <chuckle>\n\n' +
+      'The cat eagerly dipped its tongue into the milk… and immediately leaped back with a howl. <gasp> The milk had burned its tongue! The poor cat hissed… knocked the bowl over… and ran to the corner of the room.\n\n' +
+      'Tenali did this the next day. And the next. And the next. Every time the cat saw a bowl of milk… it would hiss and run away. <chuckle>\n\n' +
+      'A few weeks later… the king decided to inspect his kingdom to see if everyone was following his order. He arrived at Tenali\'s house.\n\n' +
+      '"Tenali! Show me your cat. Is it well-fed with milk?" the king asked.\n\n' +
+      '"Of course, Your Majesty! Come in." Tenali brought out his cat… and placed a bowl of fresh, cool milk before it. <gasp>\n\n' +
+      'The cat took one look at the milk… hissed loudly… and bolted out of the room as fast as its legs could carry it.\n\n' +
+      'The king was shocked. "Your cat runs from milk! Why?" <gasp>\n\n' +
+      '"Your Majesty," Tenali said gently… "this is what happens when you force someone to accept what they do not want. Even a cat… who naturally loves milk… can be made to fear it." <chuckle>\n\n' +
+      'He continued. "The people of your kingdom are like this cat. If you force them to give away their precious milk… they will come to hate the very thing you wanted them to love. Kindness cannot be forced, My King." <sigh>\n\n' +
+      'The king stood silent for a long moment. Then his face softened. <sniffle> "You are right, Tenali. I have been foolish. The decree is cancelled from today."\n\n' +
+      'The people of Vijayanagara cheered when they heard the news. <chuckle>\n\n' +
+      'And so… Tenali taught the king a lesson without saying a single disrespectful word. True devotion must come from the heart… it can never be commanded by a decree.',
+  },
+
+  // ===================================================================
+  // 11. TENALI AND THE THIEVES (Tenali Raman)
+  // ===================================================================
+  {
+    id: 'tenali-and-the-thieves',
+    title: 'Tenali and the Thieves',
+    category: 'tenali-raman',
+    content:
+      'Tenali Raman was famous throughout the kingdom… and so was his wit. <chuckle> But fame, as they say, comes with its own troubles.\n\n' +
+      'One dark night… two thieves came to rob his house. They had heard that Tenali had received a large reward of gold from the king. <gasp>\n\n' +
+      '"This will be easy," whispered the first thief. "He is just a court jester. What can he do?"\n\n' +
+      '"Let us wait until midnight… then we sneak in," the second thief replied. <chuckle>\n\n' +
+      'But Tenali was no ordinary man. He had spotted the thieves hiding behind the bushes near his house earlier that evening. <gasp> His sharp eyes missed nothing.\n\n' +
+      'He whispered to his wife… "Two thieves are outside. Follow my lead… and do exactly as I say." <chuckle>\n\n' +
+      'His wife nodded nervously. <sigh>\n\n' +
+      'Tenali raised his voice so the thieves could hear him clearly. "Wife! I am worried. With all this gold in the house… thieves might come tonight. Let us hide it somewhere safe."\n\n' +
+      '"Where should we put it?" his wife asked loudly.\n\n' +
+      '"Let us put it in the old well in the garden! No thief would think to look there." <chuckle>\n\n' +
+      'The thieves outside grinned at each other. <gasp> "The fool is telling us exactly where the gold is!"\n\n' +
+      'Tenali picked up a large trunk… filled it with heavy stones wrapped in cloth… and dragged it to the garden well. With a great splash… he dropped it into the well. <gasp>\n\n' +
+      '"There. Now our gold is safe," he said loudly. Then he and his wife went inside and pretended to sleep.\n\n' +
+      'The thieves crept to the well immediately. <chuckle> "Quick! We need to get the water out to reach the trunk." They found two buckets nearby… and began pulling water out of the well.\n\n' +
+      'Bucket after bucket… hour after hour… they worked. <sigh> Their arms ached. Their backs screamed in pain. But the thought of gold kept them going.\n\n' +
+      'Inside the house… Tenali smiled. He had cleverly placed the buckets near the well… and both buckets had small holes in the bottom. <chuckle> The water the thieves poured out… flowed right back into the well through a channel Tenali had dug into his garden.\n\n' +
+      'By dawn… the exhausted thieves had watered Tenali\'s entire garden. <gasp> Every plant… every vegetable patch… every flower bed was thoroughly irrigated.\n\n' +
+      'When morning came… Tenali walked out, stretching happily. He looked at the two thieves… collapsed beside the well, drenched in sweat. <chuckle>\n\n' +
+      '"Ah! Thank you so much, friends! My garden has never looked better. You have saved me a whole day\'s work!" <gasp>\n\n' +
+      'The thieves looked at each other… then at the garden… then at the trunk full of stones they had finally pulled up. <sniffle>\n\n' +
+      '"We have been tricked," the first thief groaned. "By a court jester." <sigh>\n\n' +
+      'They slunk away in shame… never to return.\n\n' +
+      'And so… Tenali turned thieves into gardeners. The lesson? Never underestimate a clever mind. The sharpest weapon is not a sword… it is wit.',
+  },
+
+  // ===================================================================
+  // 12. THE GOLDEN DEER (Jataka Tale)
+  // ===================================================================
+  {
+    id: 'the-golden-deer',
+    title: 'The Golden Deer',
+    category: 'jataka',
+    content:
+      'In a peaceful forest… far from the noise of cities and kings… there lived a deer unlike any other. <gasp> His coat shimmered like liquid gold… his eyes were the colour of sapphires… and his antlers gleamed like polished silver. He was the Golden Deer.\n\n' +
+      'This deer was wise and gentle. He knew every plant that healed… every stream that was pure… and every path that was safe. The animals of the forest loved him like a brother. <chuckle>\n\n' +
+      'One day… a woodcutter lost his way in the forest. He wandered for hours… hungry, tired, and afraid. <sniffle> He stumbled into a rushing river… and the current pulled him under.\n\n' +
+      '"Help! Someone help me!" he screamed.\n\n' +
+      'The Golden Deer heard his cries. Without hesitation… he leaped into the river. <gasp> He swam against the fierce current… reached the drowning man… and let him grab onto his golden antlers. Slowly… with great effort… the deer pulled him to shore. <sigh>\n\n' +
+      'The woodcutter lay on the bank, gasping for breath. "You saved my life," he whispered. "How can I ever repay you?"\n\n' +
+      'The deer spoke gently. "I ask only one thing… never tell anyone about me. If people learn of a golden deer… hunters will come." <sigh>\n\n' +
+      'The woodcutter swore an oath. "I will never speak of you. I promise on my life." <chuckle>\n\n' +
+      'Time passed. One morning… the queen of the kingdom had a dream. She saw a magnificent deer with golden fur. <gasp> When she woke… she was consumed with desire.\n\n' +
+      '"I must have that deer!" she told the king. "Its golden skin shall be my robe. Find it for me… or I shall die of longing." <sniffle>\n\n' +
+      'The king sent out a proclamation. "Whoever leads me to the Golden Deer shall receive a cartload of gold and a village of his own."\n\n' +
+      'The woodcutter heard the proclamation. <gasp> His mind raced. A cartload of gold! A village! His poverty would end forever.\n\n' +
+      'He fought with his conscience. He remembered the deer\'s kind eyes… the gentle voice… the strong antlers that had pulled him from death. <sniffle> But greed is a fire that burns slowly… and it burned away his promise.\n\n' +
+      'He went to the king. "I know where the Golden Deer lives," he said. <sigh>\n\n' +
+      'The king and his hunters followed the woodcutter into the forest. They found the Golden Deer drinking at a stream.\n\n' +
+      'The deer looked up and saw the woodcutter. He understood everything. <gasp> There was no anger in his eyes… only a deep, quiet sadness.\n\n' +
+      '"I saved your life," the deer said softly. "And this is how you repay me?" <sniffle>\n\n' +
+      'The king lowered his bow. Something in the deer\'s voice pierced his heart. <sigh> He turned to the woodcutter. "You betrayed a creature that saved your life… for gold?"\n\n' +
+      'The woodcutter could not meet anyone\'s eyes. His face burned with shame.\n\n' +
+      'The king let the deer go free… and declared the forest a protected sanctuary. <chuckle> As for the woodcutter… he received no gold, no village… only the weight of a broken promise.\n\n' +
+      'And so… the Golden Deer taught the world that greed can make you betray even those who gave you life. <gasp> Keep your promises… for a broken word is a wound that never fully heals.',
+  },
+
+  // ===================================================================
+  // 13. THE WISE QUAIL (Jataka Tale)
+  // ===================================================================
+  {
+    id: 'the-wise-quail',
+    title: 'The Wise Quail',
+    category: 'jataka',
+    content:
+      'In a golden meadow… at the edge of a great forest… there lived a flock of a thousand quails. <chuckle> They were small birds… brown and humble… but they lived happily together.\n\n' +
+      'Their leader was a wise old quail… with feathers tinged silver by age. He was calm… patient… and very clever. The flock trusted him completely. <sigh>\n\n' +
+      'But one day… a hunter discovered their meadow. <gasp> He brought a large net… and every morning he would throw it over the quails as they fed. Day after day… he caught dozens of birds and took them to the market.\n\n' +
+      'The flock was terrified. <sniffle> "What will we do?" they cried. "He will catch us all!"\n\n' +
+      'The wise old quail called everyone together. "Listen carefully," he said. "The net is strong… but we are many. When the net falls on you… do not panic. Each of you must push your head through a hole in the net. Then… all together… at the count of three… fly upward. If we all fly at the same time… we can carry the net with us." <chuckle>\n\n' +
+      '"But where do we take it?" a young quail asked.\n\n' +
+      '"To the thorn bush on the hill. Drop the net on the thorns… it will get tangled… and we can escape from underneath." <chuckle>\n\n' +
+      'The next morning… the hunter threw his net. <gasp> The quails remembered their leader\'s words. Each one pushed through a hole… and on the count of three… a thousand birds rose into the air together.\n\n' +
+      'The hunter watched in disbelief as his net rose into the sky. <gasp> The quails flew to the thorn bush… dropped the net… and escaped. Every single one.\n\n' +
+      '"Impossible!" the hunter gasped. <sigh>\n\n' +
+      'He tried again the next day. And the next. But every time… the quails worked together and flew away with his net.\n\n' +
+      'The hunter\'s wife was frustrated. "You come home empty-handed every day! What is wrong with you?"\n\n' +
+      '"Those quails work together," the hunter said. "As long as they are united… I cannot catch even one. But don\'t worry… birds always quarrel eventually. I just need to wait." <chuckle>\n\n' +
+      'And he was right. <sigh> After many weeks… the quails began to argue. One quail accidentally stepped on another\'s wing.\n\n' +
+      '"Watch where you step, you clumsy fool!" <gasp>\n\n' +
+      '"You were in my way! Move aside!"\n\n' +
+      'The quarrel spread. Soon… the flock was divided into two groups, each refusing to speak to the other. <sniffle>\n\n' +
+      'The wise old quail pleaded. "Please… do not fight. Our strength is in our unity. If we are divided… the hunter will win."\n\n' +
+      'But the angry quails would not listen. <sigh>\n\n' +
+      'The next morning… the net fell. Half the quails tried to fly up. The other half refused to help. "Let them save themselves!" they said bitterly.\n\n' +
+      'Without the strength of the whole flock… the net stayed on the ground. <gasp> The hunter gathered them all.\n\n' +
+      'The wise old quail, who had flown to a nearby tree, watched with tears in his eyes. <sniffle> "I warned them," he whispered. "Unity was our only weapon… and they threw it away."\n\n' +
+      'And so… the tale teaches us the oldest truth in the world. United we stand… divided we fall. A thousand birds could defeat a hunter… but a handful of harsh words defeated the birds.',
+  },
+
+  // ===================================================================
+  // 14. SHRAVAN KUMAR (Epic)
+  // ===================================================================
+  {
+    id: 'shravan-kumar',
+    title: 'Shravan Kumar',
+    category: 'epic',
+    content:
+      'Long ago… in the age of kings and sages… there lived a boy named Shravan Kumar. <chuckle> He was no prince… no warrior… no scholar. He was simply a son. But what a son he was.\n\n' +
+      'Shravan\'s parents were old and blind. They could not see the sunrise… they could not see the flowers bloom… they could not see the face of the son who loved them more than life itself. <sniffle>\n\n' +
+      '"Mother… Father," Shravan said one day. "You have always wished to visit the holy places of our land. I will take you on a pilgrimage." <sigh>\n\n' +
+      '"But Shravan… we cannot walk," his mother said sadly. "We are old and blind. The journey is too long."\n\n' +
+      'Shravan smiled. "You will not need to walk." <chuckle>\n\n' +
+      'He built a special device… two large baskets hanging from a strong bamboo pole. He placed his mother in one basket and his father in the other. Then he lifted the pole onto his shoulders… and began to walk. <gasp>\n\n' +
+      'Mile after mile… through scorching sun and pouring rain… across rivers and over mountains… Shravan carried his parents. <sigh> His shoulders ached. His feet bled. But he never complained. Not once.\n\n' +
+      '"Shravan… are you tired?" his father would ask.\n\n' +
+      '"No, Father. I am not tired," Shravan would answer, even though his body screamed with pain. <chuckle>\n\n' +
+      '"Shravan… is the sun too hot?" his mother would worry.\n\n' +
+      '"The breeze is cool, Mother. Do not worry," he would say… while sweat poured down his face. <sniffle>\n\n' +
+      'Wherever they went… people stopped and stared. "Look at that boy," they whispered. "He carries his parents on his shoulders. Such devotion… such love." <gasp>\n\n' +
+      'One evening… the family stopped near a river to rest. <sigh> Shravan\'s parents were thirsty. "Let me fetch water for you," he said… and walked to the river with a clay pot.\n\n' +
+      'He knelt by the water… and dipped the pot in. <chuckle>\n\n' +
+      'But nearby… hidden in the trees… was King Dashrath… hunting in the forest. He heard the sound of water filling the pot… and mistook it for a deer drinking. <gasp>\n\n' +
+      'He drew his bow and released an arrow. <gasp>\n\n' +
+      'The arrow struck Shravan in the chest. He cried out and fell. <sniffle>\n\n' +
+      'King Dashrath ran to the river and found not a deer… but a young boy, bleeding and dying. "What have I done?" the king wept. <sniffle>\n\n' +
+      '"My parents…" Shravan whispered with his last breath. "They are blind… and waiting for me. Please… take them water. Tell them… I am sorry I could not finish the journey." <sigh>\n\n' +
+      'And with those words… Shravan Kumar closed his eyes forever.\n\n' +
+      'Dashrath carried the water to Shravan\'s parents. When they learned what happened… their grief was beyond words. <gasp> They wept until their hearts could weep no more… and passed away, unable to live without their beloved son.\n\n' +
+      'Shravan\'s father, with his dying breath, cursed Dashrath. "As I die grieving for my son… so shall you die one day… grieving for yours." <sigh>\n\n' +
+      'And so it came to pass. Years later… King Dashrath died of a broken heart when his son, Lord Rama, was sent into exile.\n\n' +
+      'But the world remembers Shravan Kumar… not for how he died… but for how he lived. <chuckle> A boy who carried his parents on his shoulders… because their happiness was his only destination. That is the truest form of love.',
+  },
+
+  // ===================================================================
+  // 15. EKLAVYA'S DEDICATION (Epic)
+  // ===================================================================
+  {
+    id: 'eklavya-dedication',
+    title: "Eklavya's Dedication",
+    category: 'epic',
+    content:
+      'In the forests near Hastinapura… lived a tribal boy named Eklavya. <chuckle> He was the son of a humble chieftain… dark-skinned, barefoot… with nothing but a burning dream in his heart.\n\n' +
+      'He wanted to become the greatest archer the world had ever seen. <gasp>\n\n' +
+      'He had heard of Guru Dronacharya… the legendary teacher who trained princes in the art of war. "If I can learn from Drona," Eklavya told his father… "I will become the best."\n\n' +
+      'So he walked for days through thick forests and open plains… until he reached Drona\'s ashram. <sigh> He fell at the guru\'s feet.\n\n' +
+      '"Gurudev… please teach me archery. I will serve you faithfully. I will do anything you ask."\n\n' +
+      'Drona looked at the boy. <sigh> He saw the fire in his eyes… the devotion in his voice. But Drona was bound by his promise to the Kuru princes.\n\n' +
+      '"I cannot teach you," Drona said. "I have pledged to train only the royal princes. You are not of noble birth. I am sorry." <sniffle>\n\n' +
+      'Eklavya\'s heart broke. But he did not argue. He did not beg. He bowed silently… and walked back into the forest. <sigh>\n\n' +
+      'But he did not give up. <gasp>\n\n' +
+      'Deep in the forest… Eklavya built a statue of Guru Dronacharya out of clay. He placed it under a great banyan tree… decorated it with flowers… and bowed before it every morning. <chuckle>\n\n' +
+      '"You may have refused me, Gurudev… but in my heart, you are still my teacher."\n\n' +
+      'Every single day… from dawn to dusk… Eklavya practised archery before that clay statue. He shot at leaves… at moving targets… at birds in flight. <gasp> When his fingers bled, he bandaged them and kept shooting. When his arms ached, he rested for a moment and then drew the bow again.\n\n' +
+      'Months turned into years. And Eklavya became extraordinary. <chuckle> His arrows could split a falling raindrop. He could hit a target in complete darkness, guided only by sound.\n\n' +
+      'One day… the Kuru princes came hunting in that forest with Guru Drona. Their royal dog ran ahead… and found Eklavya practising. The dog began to bark loudly. <gasp>\n\n' +
+      'Without even looking… Eklavya released seven arrows in rapid succession. <gasp> Each arrow pinned the dog\'s mouth shut without drawing a single drop of blood. The dog ran back to the princes, silenced but completely unharmed.\n\n' +
+      'The princes were stunned. <gasp> "Who could shoot like this?" Arjuna demanded. "You promised me I would be the greatest archer, Gurudev!"\n\n' +
+      'They found Eklavya in the forest. Drona saw the clay statue of himself… and understood everything. <sigh>\n\n' +
+      '"Who taught you this skill?" Drona asked, though he already knew.\n\n' +
+      '"You did, Gurudev," Eklavya said, bowing. "Your statue has been my teacher. Your image has guided every arrow I have ever shot." <chuckle>\n\n' +
+      'Drona was silent for a long time. Then he spoke words that would echo through the ages.\n\n' +
+      '"If I am your guru… then you owe me guru dakshina. A gift for your teacher." <sigh>\n\n' +
+      '"Anything, Gurudev. Name it and it is yours."\n\n' +
+      '"Give me… the thumb of your right hand." <gasp>\n\n' +
+      'The forest went silent. The princes held their breath. <sniffle> Without a thumb… Eklavya could never shoot an arrow the same way again. His life\'s work… his years of devotion… everything would change in one moment.\n\n' +
+      'Eklavya did not hesitate. He did not flinch. He smiled softly… drew his knife… and cut off his right thumb. <sniffle> He placed it at Drona\'s feet.\n\n' +
+      '"Here, Gurudev. It is yours." <sigh>\n\n' +
+      'Blood dripped onto the forest floor. But Eklavya stood tall. His eyes shone not with pain… but with the light of a devotion so pure that even the gods above fell silent. <gasp>\n\n' +
+      'The world remembers Eklavya not for the arrows he shot… but for the sacrifice he made. <chuckle> He proved that true dedication is not about talent… it is about the love and respect you carry in your heart for the one who guides you. Even a clay statue, worshipped with sincerity… can teach you to touch the sky.',
+  },
+];
+
+// =====================================================================
+// HINDI STORIES
+// =====================================================================
+
+const newStoriesHi = [
+  // ===================================================================
+  // 1. THE BLUE JACKAL (Hindi)
+  // ===================================================================
+  {
+    id: 'the-blue-jackal',
+    title: 'नीला सियार',
+    category: 'panchatantra',
+    content:
+      'एक घने जंगल में… एक सियार रहता था, जिसका नाम था चंदरव। <chuckle> वह दुबला-पतला था, हमेशा भूखा… और ज़्यादा बहादुर भी नहीं था।\n\n' +
+      'एक शाम… भूख से बेहाल होकर… वह पास के गाँव में खाना ढूँढने गया। लेकिन गाँव के कुत्तों ने उसे देख लिया। <gasp> "पकड़ो उसे!" वे भौंकते हुए तंग गलियों में उसके पीछे दौड़े।\n\n' +
+      'चंदरव जान बचाकर भागा… इधर-उधर कूदता हुआ… और एक बड़ी टंकी में गिर गया। <gasp> वह धोबी का नील का हौज था… गहरे नीले रंग से भरा हुआ!\n\n' +
+      'उसने साँस रोककर अंदर छिपे रहा… जब तक कुत्ते हारकर चले नहीं गए। <sigh> जब वह बाहर निकला… तो अपनी आँखों पर विश्वास नहीं कर पाया। उसका पूरा शरीर… नाक से पूँछ तक… चमकीला नीला हो गया था।\n\n' +
+      'चंदरव जंगल लौटा। जानवरों ने उसे देखा और जम गए। <gasp> "यह कौन सा प्राणी है?" हिरण ने फुसफुसाया। "ऐसा जीव तो मैंने कभी नहीं देखा!" हाथी ने कहा।\n\n' +
+      'चालाक सियार ने अपना मौका देख लिया। <chuckle> उसने छाती फुलाई और ऐलान किया… "मैं काकभुशुंडी हूँ… देवताओं ने मुझे तुम्हारा राजा बनाकर भेजा है! स्वर्ग ने मुझे इस जंगल पर राज करने के लिए चुना है।"\n\n' +
+      'जानवर हैरान रह गए। उन्होंने उसके सामने सिर झुकाया… उसके लिए बेहतरीन फल और माँस लाए… और उसे राजा की तरह रखा। <chuckle> शेर उसका अंगरक्षक बन गया। बाघ उसका मंत्री बन गया। विशाल हाथी भी बड़े पत्तों से उसे हवा करने लगा।\n\n' +
+      'दिन बीतते गए… और चंदरव सच में राजा की तरह जीने लगा। <sigh> वह लगभग भूल ही गया कि वह बस एक साधारण सियार है।\n\n' +
+      'लेकिन एक रात… सियारों का एक झुंड जंगल से गुज़रा। उन्होंने चाँद की ओर मुँह उठाया… और ज़ोर से हूँ-हूँ करने लगे। <gasp> वह लंबी, दर्दभरी आवाज़… उसने चंदरव के अंदर कुछ हिला दिया।\n\n' +
+      'उसने खुद को रोकने की कोशिश की… होंठ भींचे… मुँह ढका… लेकिन इच्छा बहुत तेज़ थी। उसने सिर पीछे किया और पूरी ताकत से चिल्लाकर हूँ-हूँ किया। <gasp>\n\n' +
+      'जानवरों ने दहशत से देखा। <sniffle> "यह कोई दिव्य प्राणी नहीं है," शेर ने गुर्राया। "यह तो बस एक सियार है… एक साधारण, झूठा सियार!"\n\n' +
+      'बाघ दहाड़ा। हाथी चिंघाड़ा। और सब जानवरों ने चंदरव को जंगल से खदेड़ दिया। <sigh> वह भागता गया… पीछे मुड़कर नहीं देखा… जो कुछ भी उसने पाया था, सब खो दिया।\n\n' +
+      'और इस तरह… नीले सियार ने एक कड़ा सबक सीखा। तुम वो होने का नाटक कर सकते हो जो तुम नहीं हो… लेकिन सच हमेशा बाहर आता है। <chuckle> रात में एक हूँ-हूँ ही काफ़ी थी… एक झूठे राजा को धराशायी करने के लिए।',
+  },
+
+  // ===================================================================
+  // 2. THE TORTOISE AND THE GEESE (Hindi)
+  // ===================================================================
+  {
+    id: 'the-tortoise-and-the-geese',
+    title: 'कछुआ और हंस',
+    category: 'panchatantra',
+    content:
+      'एक सुंदर झील के किनारे… जहाँ ऊँची घास और कमल के फूल थे… वहाँ एक कछुआ रहता था जिसका नाम था कम्बुग्रीव। <chuckle> उसके दो सबसे अच्छे दोस्त थे… दो हंस, जिनके नाम थे संकट और विकट।\n\n' +
+      'हर दिन… तीनों दोस्त घंटों साथ बिताते। हंस उड़ते हुए देखे दूर-दूर के देशों की कहानियाँ सुनाते… और कछुआ… बस बोलता रहता। बोलता ही रहता। बोलता ही रहता। <chuckle> वह बोलना बंद ही नहीं कर पाता था।\n\n' +
+      '"कम्बुग्रीव, तुम्हें कभी-कभी चुप रहना सीखना चाहिए," संकट प्यार से कहता। <sigh>\n\n' +
+      '"चुप? मैं? पर मुझे तो इतना कुछ कहना है!" कछुआ जवाब देता… और बोलता रहता।\n\n' +
+      'एक भयानक गर्मी में… झील सूखने लगी। <gasp> दिन-ब-दिन… पानी कम होता गया। मछलियाँ तड़पने लगीं। मेंढक उदास होकर टर्राने लगे। और कछुआ चिंतित हो गया।\n\n' +
+      '"प्यारे दोस्तों… अगर मैं यहाँ रहा तो मर जाऊँगा," कम्बुग्रीव ने कहा। <sniffle> "मेहरबानी करके… मुझे अपने साथ किसी और झील ले चलो।"\n\n' +
+      'हंसों ने ध्यान से सोचा। "हमारे पास एक तरकीब है," विकट ने कहा। "हम अपनी चोंच में एक मज़बूत डंडा पकड़ लेंगे। तुम बीच में डंडे को मुँह से दबाकर पकड़ लेना… और कसकर पकड़े रहना। हम तुम्हें उड़ाकर नई झील ले जाएँगे।"\n\n' +
+      '"लेकिन एक शर्त है," संकट ने गंभीरता से कहा। "तुम्हें अपना मुँह नहीं खोलना। कुछ भी हो… चुप रहना। अगर बोले… तो गिर जाओगे।" <gasp>\n\n' +
+      '"बिल्कुल! मैं कर सकता हूँ। बहुत आसान!" कछुए ने खुशी से कहा। <chuckle>\n\n' +
+      'अगली सुबह… हंसों ने डंडा उठाया… कछुए ने बीच में कसकर दाँत गड़ाए… और वे आसमान में उड़ गए। <gasp> ऊपर और ऊपर… जंगलों, खेतों और चमकती नदियों के ऊपर।\n\n' +
+      'नीचे… गाँव के बच्चों ने ऊपर देखा। "देखो! देखो!" वे चिल्लाए। "दो चिड़ियाँ एक कछुए को ले जा रही हैं! कितना अजीब! कितना मज़ेदार!" <chuckle>\n\n' +
+      'कछुए ने उनकी हँसी सुनी। उसका खून खौल उठा। वह चिल्लाना चाहता था… "मैं मज़ाकिया नहीं हूँ! मेरे दोस्त मेरी मदद कर रहे हैं!"\n\n' +
+      'उसने पकड़ बनाए रखी। उसका जबड़ा दुख रहा था… फिर भी पकड़ा रहा। <sigh>\n\n' +
+      'फिर और लोग इकट्ठा हुए… उँगली उठाकर हँसने लगे। "बेवकूफ़ कछुआ! मूर्ख जानवर!" वे मज़ाक उड़ाने लगे।\n\n' +
+      'यह बहुत ज़्यादा था। कम्बुग्रीव बर्दाश्त नहीं कर पाया। उसने मुँह खोला और चिल्लाया… "अपना काम करो, तुम लोग…" <gasp>\n\n' +
+      'लेकिन जैसे ही उसने मुँह खोला… डंडा छूट गया। <sniffle>\n\n' +
+      'नीचे… नीचे… नीचे वह गिरता गया… हवा में लुढ़कता हुआ। और बस… बेचारे कम्बुग्रीव का अंत हो गया। <sigh>\n\n' +
+      'हंस ऊपर चक्कर लगाते रहे… उनका दिल टूट रहा था। "हमने तो चेताया था," संकट ने उदासी से फुसफुसाया।\n\n' +
+      'और इस तरह… यह कहानी हमें वही पुराना सबक सिखाती है। चुप रहने में बड़ी ताकत होती है। कभी-कभी… सबसे समझदारी की बात यही है… कि अपना मुँह बंद रखो।',
+  },
+
+  // ===================================================================
+  // 3. THE LION AND THE RABBIT (Hindi)
+  // ===================================================================
+  {
+    id: 'the-lion-and-the-rabbit',
+    title: 'शेर और खरगोश',
+    category: 'panchatantra',
+    content:
+      'एक घने, अंधेरे जंगल में… एक भयंकर शेर राज करता था जिसका नाम था भासुरक। <gasp> वह क्रूर और लालची था… जितना खा सकता था उससे कहीं ज़्यादा जानवरों को मार डालता था।\n\n' +
+      'हर दिन… जानवर दहशत में जीते थे। हिरण झाड़ियों में छिपते… खरगोश अपने बिलों में काँपते… और भालू भी उसका रास्ता टालते थे। <sniffle>\n\n' +
+      'आखिरकार… जानवरों ने एक गुप्त सभा बुलाई। "हमें कुछ करना होगा," बूढ़े हाथी ने कहा। "इस रफ़्तार से… हम में से कोई नहीं बचेगा।"\n\n' +
+      'वे शेर के पास एक प्रस्ताव लेकर गए। "हे महान राजा… अगर आप शिकार न करने का वादा करें… तो हम हर दिन एक जानवर आपके भोजन के लिए भेजेंगे। आपको बिना मेहनत के खाना मिलेगा।" <sigh>\n\n' +
+      'आलसी शेर को यह विचार पसंद आया। <chuckle> "ठीक है। लेकिन अगर मेरा भोजन एक बार भी देर से आया… तो मैं तुम सबको मार डालूँगा।"\n\n' +
+      'और इस तरह… हर दिन… एक बदकिस्मत जानवर शेर की गुफा की ओर चल पड़ता। जंगल दुख से भारी था। <sniffle>\n\n' +
+      'एक दिन… एक छोटे से खरगोश की बारी आई। एक नन्हा सा खरगोश… चमकीली आँखों वाला और बहुत तेज़ दिमाग़ वाला। <chuckle>\n\n' +
+      '"मेरे पास एक तरकीब है," खरगोश ने बाकियों से कहा। "मुझ पर भरोसा रखो।"\n\n' +
+      'खरगोश बहुत… बहुत… धीरे-धीरे शेर की गुफा की ओर चला। जब तक वह पहुँचा… सूरज ढल चुका था। <gasp>\n\n' +
+      '"तुम लेट हो!" भासुरक ने गरजा, उसकी आँखें गुस्से से जल रही थीं। "और इतने छोटे हो! बस इतना ही भेजा है मेरे लिए?"\n\n' +
+      '"क्षमा करें, महाराज," खरगोश ने शांति से कहा। "मुझे देर इसलिए हुई क्योंकि कुछ भयानक हुआ। जंगल में एक और शेर है… आपसे भी बड़ा और ताकतवर! उसने चार खरगोशों को पकड़ लिया जो आपके लिए आ रहे थे… और सबको खा गया।" <gasp>\n\n' +
+      '"एक और शेर?!" भासुरक ने गुर्राया। "मेरे जंगल में?! तुरंत मुझे उसके पास ले चलो!"\n\n' +
+      'खरगोश ने शेर को एक गहरे, पुराने कुएँ के पास ले जाकर खड़ा किया। <chuckle> "वह इसके अंदर रहता है, महाराज। अंदर देखिए।"\n\n' +
+      'शेर ने किनारे से झाँका… और नीचे अंधेरे पानी में अपनी ही परछाई दिखी। <gasp> उसने एक भयंकर शेर को अपनी ओर घूरते देखा!\n\n' +
+      '"ये रहा तू!" भासुरक दहाड़ा… और अपने दुश्मन पर हमला करने के लिए कुएँ में कूद गया। <gasp>\n\n' +
+      'लेकिन ज़ाहिर है… कोई दुश्मन नहीं था। शेर गहरे पानी में जा गिरा… और बाहर नहीं निकल पाया। <sigh>\n\n' +
+      'नन्हा खरगोश उछलता हुआ जंगल वापस गया। "शेर गया," उसने शांति से बताया। <chuckle>\n\n' +
+      'जानवरों ने जश्न मनाया। हिरण नाचे। चिड़ियाँ गाने लगीं। और जंगल फिर से आज़ाद हो गया।\n\n' +
+      'और इस तरह… एक नन्हे खरगोश ने एक ताकतवर शेर को हराया… ताकत से नहीं… बल्कि चालाकी से। सीख? सबसे बड़ी लड़ाइयाँ सबसे ताकतवर नहीं… बल्कि सबसे चतुर जीतते हैं।',
+  },
+
+  // ===================================================================
+  // 4. THE LOYAL MONGOOSE (Hindi)
+  // ===================================================================
+  {
+    id: 'the-loyal-mongoose',
+    title: 'वफ़ादार नेवला',
+    category: 'panchatantra',
+    content:
+      'एक छोटे से गाँव में… एक दयालु किसान और उसकी पत्नी रहते थे। उनका एक छोटा बेटा था… उनकी पूरी दुनिया… और एक पालतू नेवला जिसे उन्होंने बचपन से पाला था। <chuckle>\n\n' +
+      'नेवला उस बच्चे से ऐसे प्यार करता था जैसे वह उसका अपना भाई हो। वह घंटों पालने के पास बैठा रहता… समर्पित आँखों से छोटे बच्चे की देखभाल करता। <sigh>\n\n' +
+      'एक सुबह… किसान की पत्नी को कुएँ से पानी लाना था। उसने नेवले को देखा… फिर अपने सोते बच्चे को। <gasp>\n\n' +
+      '"मेरे बच्चे की देखभाल करना," उसने धीरे से कहा। नेवला गर्व से सीधा बैठ गया… जैसे उसे हर शब्द समझ आया हो। <chuckle>\n\n' +
+      'जब वह गई हुई थी… एक बड़ा काला नाग दीवार की दरार से घर में घुस आया। <gasp> उसका फन फैला हुआ था… उसके दाँतों से ज़हर टपक रहा था… और वह सीधा बच्चे के पालने की ओर बढ़ रहा था।\n\n' +
+      'नेवले ने साँप को देखा और तुरंत हरकत में आ गया। <gasp> उसके बाल खड़े हो गए। उसकी आँखें गुस्से से चमक उठीं। वह नाग पर झपटा… पूरी ताकत से काटता और नोचता हुआ।\n\n' +
+      'लड़ाई भयंकर थी। नाग बार-बार वार करता। नेवला बचता… मुड़ता… और पूरी जान लगाकर लड़ता। <sigh> फ़र्श पर खून बिखर गया।\n\n' +
+      'आखिरकार… नेवले ने नाग की गर्दन में अपने दाँत गड़ा दिए… और साँप ठंडा पड़ गया। <chuckle> बच्चा सुरक्षित था। वफ़ादार नेवले ने जीत हासिल की।\n\n' +
+      'वह दरवाज़े पर बैठ गया… हाँफता हुआ… उसका मुँह अभी भी नाग के खून से लाल था… अपनी मालकिन का इंतज़ार करता हुआ।\n\n' +
+      'किसान की पत्नी लौटी। उसने दरवाज़े पर नेवले को देखा… उसका मुँह और पंजे खून से सने हुए। <gasp>\n\n' +
+      '"खून! मेरा बच्चा!" वह चीख पड़ी। बिना एक पल सोचे… बिना अंदर देखे… उसने भारी पानी का घड़ा उठाया और नेवले पर दे मारा। <sniffle>\n\n' +
+      'वफ़ादार जीव ज़मीन पर गिर गया… और फिर कभी नहीं उठा। <sniffle>\n\n' +
+      'फिर वह अंदर भागी… और अपने बच्चे को चैन से सोता पाया। पालने के बगल में… मरा हुआ नाग पड़ा था… बहादुर नेवले द्वारा टुकड़े-टुकड़े किया हुआ।\n\n' +
+      'माँ को सब समझ आ गया। <gasp> वह नेवले के पास घुटनों के बल गिर पड़ी… आँखों से आँसू बह रहे थे। "मैंने क्या कर दिया?" वह रोई। "उसने मेरे बच्चे को बचाया… और मैंने उसे मार डाला।" <sigh>\n\n' +
+      'किसान घर आया और अपनी पत्नी को रोते पाया। जब उसने कहानी सुनी… वह भी फूट-फूटकर रोया।\n\n' +
+      'और इस तरह… वफ़ादार नेवले ने उस बच्चे के लिए अपनी जान दे दी जिससे वह प्यार करता था। उसका इनाम? उन्हीं हाथों से मौत जिनकी उसने सेवा की। सीख दिल को चीर देती है… कभी जल्दबाज़ी में काम मत करो। बिना सोचे-समझे गुस्सा… सबसे कीमती चीज़ तबाह कर सकता है।',
+  },
+
+  // ===================================================================
+  // 5. BIRBAL'S KHICHDI (Hindi)
+  // ===================================================================
+  {
+    id: 'birbal-khichdi',
+    title: 'बीरबल की खिचड़ी',
+    category: 'akbar-birbal',
+    content:
+      'सर्दी का मौसम आगरा में आ चुका था… और रातें कड़ाके की ठंड वाली थीं। <sigh> यमुना नदी हल्के चाँद के नीचे काली और बर्फ़ीली बह रही थी।\n\n' +
+      'एक शाम… बादशाह अकबर अपनी बालकनी पर खड़े काँप रहे थे। "बीरबल," उन्होंने पूछा… "क्या तुम्हें लगता है कोई आदमी पूरी रात ठंडी नदी में खड़ा रह सकता है?"\n\n' +
+      '"अगर इनाम काफ़ी बड़ा हो, जहाँपनाह… तो एक मजबूर इंसान कुछ भी सह सकता है," बीरबल ने जवाब दिया। <chuckle>\n\n' +
+      'अकबर मुस्कुराए। "चलो परखते हैं। मैं उस आदमी को एक हज़ार सोने के सिक्के दूँगा जो सूरज ढलने से लेकर सूरज निकलने तक नदी में खड़ा रहे!"\n\n' +
+      'ऐलान पूरे शहर में फैल गया। बहुतों ने हँसकर टाल दिया। लेकिन एक ग़रीब आदमी… एक दुबला-पतला, काँपता धोबी जिसका नाम रामू था… आगे आया। <gasp>\n\n' +
+      '"मैं करूँगा," रामू ने कहा। उसकी बीमार माँ घर पर थी… और दवाई के लिए पैसे नहीं थे। <sniffle>\n\n' +
+      'उस रात… रामू जमा देने वाली नदी में उतरा। ठंड उसकी हड्डियों में हज़ार सुइयों की तरह चुभ रही थी। <gasp> उसके दाँत बज रहे थे… शरीर काँप रहा था… और हर पल एक घंटे जैसा लग रहा था।\n\n' +
+      'लेकिन दूर… एक पहाड़ी पर… एक मंदिर में एक छोटा सा दीपक जल रहा था। उसने अपनी नज़रें उस छोटी लौ पर टिका दीं… और अपनी ज़िंदगी की सबसे लंबी रात… वह टिका रहा। <sigh>\n\n' +
+      'जब सूरज आखिरकार निकला… रामू नदी से लड़खड़ाता हुआ बाहर आया, मुश्किल से जीवित। उसने कर दिखाया। <chuckle>\n\n' +
+      'लेकिन जब वह दरबार में इनाम लेने आया… ईर्ष्यालु दरबारियों ने अकबर के कान भरे। "जहाँपनाह… उसने धोखा किया! वह दूर पहाड़ी पर जलते दीपक को देख रहा था। उस दीपक ने उसे गर्मी दी!" <gasp>\n\n' +
+      'अकबर ने भौंहें सिकोड़ीं। "यह सच है? तो दीपक ने तुम्हें गर्म रखा। तुमने सच में ठंड नहीं सही। कोई इनाम नहीं।"\n\n' +
+      'रामू तबाह हो गया। <sniffle> वह खाली हाथ और टूटे दिल से दरबार से चला गया।\n\n' +
+      'जब बीरबल ने सुना तो वह परेशान हो गए। "यह न्याय नहीं है," उन्होंने बड़बड़ाया। <sigh>\n\n' +
+      'अगले दिन… बीरबल दरबार में नहीं आए। अकबर ने उन्हें बुलवाया। संदेशवाहक हैरान लौटा। "जहाँपनाह… बीरबल कहते हैं वे खिचड़ी पका रहे हैं… और जब तक तैयार नहीं हो जाती, तब तक नहीं आएँगे।"\n\n' +
+      'घंटे बीते। अकबर का सब्र जवाब दे गया। आखिरकार… वे खुद बीरबल के घर गए। <gasp>\n\n' +
+      'वहाँ… उन्होंने बीरबल को आग के पास बैठा पाया। आग के ऊपर… बीस फ़ीट ऊँचे एक खंभे पर… चावल-दाल की एक छोटी हांडी लटकी हुई थी। <chuckle>\n\n' +
+      '"बीरबल! यह क्या पागलपन है?" अकबर ने कहा। "हांडी आग से बीस फ़ीट ऊपर है! यह कभी नहीं पकेगी!"\n\n' +
+      'बीरबल ने शांति से ऊपर देखा। "लेकिन जहाँपनाह… अगर दूर पहाड़ी पर जलता दीपक ठंडी नदी में खड़े आदमी को गर्म कर सकता है… तो बीस फ़ीट नीचे की आग ज़रूर एक हांडी खिचड़ी पका सकती है।" <chuckle>\n\n' +
+      'अकबर ठिठक गए। यह बात उन पर बिजली की तरह गिरी। <gasp> उन्हें अपनी ग़लती समझ आ गई।\n\n' +
+      '"तुम सही हो, बीरबल," बादशाह ने धीरे से कहा। "मैं ग़लत था।" <sigh>\n\n' +
+      'अगली सुबह… रामू को दरबार में बुलाया गया। बादशाह अकबर ने ख़ुद अपने हाथों से उसे एक हज़ार सोने के सिक्के दिए… और पूरे दरबार के सामने माफ़ी माँगी। <chuckle>\n\n' +
+      'और इस तरह… बीरबल ने साबित किया कि मीलों दूर का दीपक ठंडे आदमी को गर्म नहीं कर सकता… जैसे दूर की आग खाना नहीं पका सकती। सच्चा न्याय झूठे तर्क को पहचानता है… और इसीलिए बीरबल इतिहास के सबसे बुद्धिमान मंत्री हैं।',
+  },
+
+  // ===================================================================
+  // 6. THE BLIND MAN'S SIGHT (Hindi)
+  // ===================================================================
+  {
+    id: 'the-blind-mans-sight',
+    title: 'अंधे की नज़र',
+    category: 'akbar-birbal',
+    content:
+      'भीड़भाड़ वाले आगरा शहर में… एक आदमी बादशाह अकबर के दरबार में फ़रियाद लेकर आया। <sniffle> "जहाँपनाह… मैं जन्म से अंधा हूँ। दिन की रोशनी नहीं देख सकता। मैं विनती करता हूँ… मुझे पेंशन दे दीजिए ताकि मैं ज़िंदा रह सकूँ।"\n\n' +
+      'उस आदमी की आँखें बंद थीं… हाथ आगे फैले हुए… और वह लाठी लेकर खंभों से टकराता हुआ चल रहा था। <sigh> दरबारियों को उस पर बड़ी दया आई।\n\n' +
+      'अकबर द्रवित हो गए। "बिल्कुल… इस बेचारे आदमी को हमारी मदद मिलनी चाहिए। शाही खज़ाने से हर महीने पाँच सोने के सिक्के दो।"\n\n' +
+      'लेकिन बीरबल… जो चुपचाप देख रहे थे… आगे आए। <chuckle> "जहाँपनाह… क्या मैं पेंशन देने से पहले इस आदमी की जाँच कर सकता हूँ?"\n\n' +
+      '"बीरबल, वह साफ़ तौर पर अंधा है। जाँच क्या करोगे?" अकबर ने हैरानी से पूछा। <gasp>\n\n' +
+      '"बस एक छोटी सी परीक्षा, हुज़ूर। एक पल ही लगेगा।" बीरबल मुस्कुराए।\n\n' +
+      'बादशाह ने इजाज़त दे दी। बीरबल उस अंधे आदमी की ओर मुड़े। "बताओ, दोस्त… क्या तुम हमेशा से अंधे हो?"\n\n' +
+      '"जी हाँ, साहब। जिस दिन पैदा हुआ, उसी दिन से। इस दुनिया में कभी कुछ नहीं देखा।" <sniffle>\n\n' +
+      '"बहुत दुखद," बीरबल ने कहा। फिर उन्होंने एक सेवक को बुलाया। "मेरे लिए एक काग़ज़ लाओ… लाल रंग का काग़ज़।" <chuckle>\n\n' +
+      'सेवक एक चमकदार लाल काग़ज़ लेकर आया। बीरबल ने उसे आदमी के चेहरे के सामने रखा। "बताओ… मेरे हाथ में क्या है?"\n\n' +
+      '"मुझे कैसे पता होगा?" आदमी ने गुस्से से कहा। "मैंने बताया ना… मैं अंधा हूँ!"\n\n' +
+      'बीरबल ने शांति से सिर हिलाया। फिर दरबार की ओर मुड़कर ज़ोर से बोले… "अब मैं साबित करूँगा कि यह आदमी बिल्कुल सही देख सकता है।" <gasp>\n\n' +
+      'दरबार में सन्नाटा छा गया।\n\n' +
+      'बीरबल फिर उस आदमी की ओर मुड़े। "तुम कहते हो जन्म से अंधे हो… कभी कुछ नहीं देखा। तो बताओ… जब मैंने काग़ज़ उठाया तो तुमने इतने गुस्से से \'मुझे कैसे पता होगा?\' कैसे कहा? अगर तुम सच में जन्म से अंधे होते… तो तुम्हें \'चेहरे के सामने कुछ रखने\' का मतलब ही नहीं पता होता।" <gasp>\n\n' +
+      'आदमी को पसीना आने लगा।\n\n' +
+      'लेकिन बीरबल ने अभी बात ख़त्म नहीं की थी। <chuckle> "एक और चीज़ आज़माता हूँ।" उन्होंने जेब से एक सोने का सिक्का निकाला। उसे हवा में उछाला… धूप में चमकता और घूमता हुआ। उस आदमी की आँखें सिक्के के पीछे गईं… ऊपर… और नीचे। <gasp>\n\n' +
+      '"इसकी आँखें हिलीं!" एक दरबारी चिल्लाया। "इसने सिक्के को देखा!"\n\n' +
+      'आदमी घुटनों पर गिर गया। "माफ़ कीजिए, जहाँपनाह! मैं देख सकता हूँ। मैं नाटक कर रहा था… मुझे बस पैसे चाहिए थे।" <sniffle>\n\n' +
+      'अकबर का चेहरा सख़्त हो गया। "तुमने बादशाह के दरबार में झूठ बोला। सिपाहियो… इसे ले जाओ।" <sigh>\n\n' +
+      'जब आदमी को ले जाया गया… अकबर ने बीरबल की ओर मुड़कर पूछा। "तुम्हें शक कैसे हुआ?"\n\n' +
+      'बीरबल ने हल्के से मुस्कुराकर कहा। <chuckle> "जहाँपनाह… सच में अंधा आदमी भरोसे से चलता है। यह आदमी डर से चल रहा था… उन चीज़ों से बचता हुआ जो उसे देखनी ही नहीं चाहिए थीं। उसका नाटक अच्छा था… लेकिन इतना अच्छा नहीं।"\n\n' +
+      'और इस तरह… बीरबल की तेज़ नज़रों ने वो पकड़ लिया जो पूरा दरबार चूक गया। सीख? झूठ बहुतों को बेवकूफ़ बना सकता है… लेकिन सच उजागर करने के लिए बस एक तेज़ दिमाग़ काफ़ी है।',
+  },
+
+  // ===================================================================
+  // 7. THE WELL DISPUTE (Hindi)
+  // ===================================================================
+  {
+    id: 'the-well-dispute',
+    title: 'कुएँ का झगड़ा',
+    category: 'akbar-birbal',
+    content:
+      'एक सुबह… दो आदमी झगड़ते हुए बादशाह अकबर के दरबार में आए। <gasp> वे इतना चिल्ला रहे थे कि सिपाहियों को उन्हें अलग करना पड़ा।\n\n' +
+      '"जहाँपनाह… मुझे इंसाफ़ चाहिए!" पहले आदमी ने चिल्लाकर कहा, वह एक किसान था जिसका नाम इक़बाल था। "इस आदमी ने… इस धोखेबाज़ ने… मुझे अपना कुआँ बेचा। मैंने पूरे पैसे दिए। लेकिन अब यह मुझे कुएँ से पानी नहीं भरने देता!"\n\n' +
+      'दूसरा आदमी… एक व्यापारी जिसका नाम हाकिम था… ने सिर हिलाया। <chuckle> "जहाँपनाह, मैंने इसे कुआँ बेचा। यह सच है। लेकिन मैंने सिर्फ़ कुआँ बेचा… कुएँ के अंदर का पानी नहीं! पानी अभी भी मेरा है।"\n\n' +
+      'दरबार में खुसुर-पुसुर हुई। <gasp> क्या अजीब दलील थी!\n\n' +
+      'अकबर ने सोचते हुए ठोड़ी रगड़ी। "हाकिम… क्या तुम कह रहे हो कि तुमने कुआँ बेच दिया लेकिन पानी रख लिया?"\n\n' +
+      '"बिल्कुल, जहाँपनाह।" हाकिम ने अकड़कर सिर झुकाया। "कुआँ इसका। पानी मेरा। अगर इसे मेरा पानी चाहिए… तो अलग से पैसे दे।" <chuckle>\n\n' +
+      'इक़बाल ने मुट्ठियाँ भींच लीं। <sigh> "लेकिन पानी के बिना कुएँ का क्या फ़ायदा? यह तो धोखाधड़ी है!"\n\n' +
+      'अकबर परेशान दिखे। उन्होंने दरबारियों की ओर देखा… लेकिन किसी को कोई उचित हल नहीं सूझा। <sigh>\n\n' +
+      'तभी बीरबल हल्की सी मुस्कान लिए आगे आए। <chuckle> "जहाँपनाह… क्या मैं हाकिम से बात कर सकता हूँ?"\n\n' +
+      '"हाँ बीरबल, करो। इस मामले से मेरा सिर दुख रहा है," अकबर ने कहा।\n\n' +
+      'बीरबल हाकिम के पास गए। "तो… तुमने कुआँ बेचा लेकिन पानी नहीं। यह सही है?"\n\n' +
+      '"हाँ, बिल्कुल सही," हाकिम ने भरोसे से कहा।\n\n' +
+      '"बहुत अच्छा," बीरबल ने कहा। "अगर पानी तुम्हारा है… लेकिन कुआँ इक़बाल का है… तो तुम्हारा पानी उसके कुएँ में बिना इजाज़त बैठा है।" <gasp>\n\n' +
+      'हाकिम ने पलकें झपकाईं। "मतलब?"\n\n' +
+      '"मतलब… तुम अपनी संपत्ति… अपना पानी… किसी और की संपत्ति… उसके कुएँ… में बिना किराया दिए रखे हुए हो!" बीरबल ने ऐलान किया। <chuckle> "तुम्हारे पास दो रास्ते हैं, हाकिम। या तो इक़बाल को अपना पानी उसके कुएँ में रखने का किराया दो… या अपना सारा पानी उसके कुएँ से निकाल लो।" <gasp>\n\n' +
+      'दरबार हँसी से गूँज उठा। हाकिम का चेहरा पीला पड़ गया। <sigh>\n\n' +
+      '"लेकिन… लेकिन मैं कुएँ से पानी कैसे निकालूँगा!" हाकिम ने हकलाते हुए कहा।\n\n' +
+      '"तो किराया दो… या मान लो कि पानी कुएँ के साथ आता है," बीरबल ने शांति से कहा। <chuckle>\n\n' +
+      'अकबर ने तालियाँ बजाईं। "शानदार! हाकिम… फ़ैसला साफ़ है। तुमने कुआँ बेचा… और अंदर का पानी ख़रीदार का है। मामला ख़त्म।" <gasp>\n\n' +
+      'हाकिम ने सिर झुकाया और चुपचाप दरबार से चला गया। इक़बाल बीरबल के पैरों पर गिर गया। <sniffle> "शुक्रिया, हुज़ूर। आपने मुझे बचा लिया।"\n\n' +
+      'बीरबल ने उसे प्यार से उठाया। "इंसाफ़ हर इंसान का हक़ है।"\n\n' +
+      'और इस तरह… बीरबल ने चालाकी को चालाकी से हराया। एक बेईमान आदमी ने चतुर शब्दों से धोखा देने की कोशिश की… और उससे भी चतुर शब्दों से हार गया। सीख? जो लोग सच को तोड़-मरोड़ते हैं… उन्हें उनसे सावधान रहना चाहिए जो उसे सीधा करना जानते हैं।',
+  },
+
+  // ===================================================================
+  // 8. VIKRAM AND THE FOUR DOLLS (Hindi)
+  // ===================================================================
+  {
+    id: 'vikram-and-the-four-dolls',
+    title: 'विक्रम और चार गुड़ियाँ',
+    category: 'vikram-betaal',
+    content:
+      'एक और अंधेरी रात… राजा विक्रमादित्य फिर श्मशान भूमि में लौटे। <sigh> हवा टेढ़े-मेढ़े पेड़ों से सिसकियाँ भर रही थी… और परछाइयाँ ठंडी ज़मीन पर रेंग रही थीं।\n\n' +
+      'उन्होंने बेताल को पुराने बरगद से उतारा… शव को कंधे पर रखा… और चलने लगे। <gasp>\n\n' +
+      '"अहा, विक्रम," बेताल ने पीछे से फुसफुसाया। <chuckle> "वक़्त काटने के लिए एक पहेली सुनोगे? याद रखना… अगर जवाब जानते हो और चुप रहे… तो तुम्हारा सिर फट जाएगा।"\n\n' +
+      'विक्रम चुपचाप चलते रहे।\n\n' +
+      '"एक राजा को तोहफ़े में चार एक जैसी गुड़ियाँ मिलीं," बेताल ने शुरू किया। "वे बिल्कुल एक जैसी दिखती थीं… एक ही लकड़ी से बनी… एक ही रंग से रँगी। लेकिन व्यापारी ने कहा… ये चारों बहुत अलग हैं। सिर्फ़ सबसे बुद्धिमान राजा ही इन्हें पहचान सकता है।" <gasp>\n\n' +
+      '"राजा ने ध्यान से देखा। उलट-पलट किया। तौला। हर तरह से एक जैसी थीं। दरबारी हैरान रह गए।" <sigh>\n\n' +
+      '"लेकिन राजा की छोटी बेटी… सिर्फ़ बारह साल की… ने एक पतला तार उठाया। उसने पहली गुड़िया के कान में तार डाला। तार दूसरे कान से बाहर आ गया।" <chuckle>\n\n' +
+      '"उसने दूसरी गुड़िया आज़माई। तार कान से गया… और मुँह से बाहर आया।" <gasp>\n\n' +
+      '"तीसरी गुड़िया में… तार कान से गया… और दिल तक पहुँचा।" <gasp>\n\n' +
+      '"और चौथी गुड़िया? तार अंदर गया… और बाहर ही नहीं आया।" <chuckle>\n\n' +
+      '"अब बताओ, विक्रम," बेताल ने मुस्कुराते हुए पूछा। "ये चार गुड़ियाँ किसका प्रतीक हैं? और कौन सी सबसे क़ीमती है?"\n\n' +
+      'विक्रम अंधेरे में चलते हुए ध्यान से सोचते रहे। फिर बोले। <sigh>\n\n' +
+      '"पहली गुड़िया… जहाँ तार एक कान से जाकर दूसरे से निकल जाता है… वह वो इंसान है जो सुनता है लेकिन ध्यान नहीं देता। कुछ टिकता नहीं। बातें हवा की तरह गुज़र जाती हैं।"\n\n' +
+      '"दूसरी गुड़िया… जहाँ तार कान से जाकर मुँह से निकलता है… वह है चुग़लख़ोर। जो भी सुनते हैं… दूसरों को बता देते हैं। कोई राज़ नहीं रख सकते।" <chuckle>\n\n' +
+      '"तीसरी गुड़िया… जहाँ तार कान से दिल तक पहुँचता है… वह है भावुक आत्मा। जो भी सुनते हैं, गहराई से महसूस करते हैं। दुनिया की ख़ुशी और दर्द अपना मान लेते हैं।" <sniffle>\n\n' +
+      '"और चौथी गुड़िया… जहाँ तार अंदर जाता है और बाहर नहीं आता… वह है बुद्धिमान। वे सुनते हैं… सोखते हैं… मनन करते हैं… लेकिन बोलते तभी हैं जब ज़रूरी हो। वे धैर्य से ज्ञान की रक्षा करते हैं।" <sigh>\n\n' +
+      '"चौथी गुड़िया सबसे क़ीमती है। सच्ची बुद्धिमानी बोलने में नहीं… बल्कि यह जानने में है कि कब चुप रहना है।"\n\n' +
+      'बेताल ख़ुशी से हँसा। <chuckle> "सही जवाब, विक्रम! लेकिन अफ़सोस… तुमने बोल दिया। तो मैं वापस उड़ता हूँ!" <gasp>\n\n' +
+      'बेताल विक्रम के कंधे से उछलकर अपने पेड़ पर लौट गया। विक्रम ने गहरी साँस ली… पलटे… और फिर से चल पड़े। क्योंकि जिस राजा पर कर्तव्य हो… उसका रास्ता कभी ख़त्म नहीं होता।',
+  },
+
+  // ===================================================================
+  // 9. THE MERCHANT'S DAUGHTER (Hindi)
+  // ===================================================================
+  {
+    id: 'the-merchants-daughter',
+    title: 'सौदागर की बेटी',
+    category: 'vikram-betaal',
+    content:
+      'एक बार फिर… विक्रम बेताल को कंधे पर लादे श्मशान में चल रहे थे। <sigh> तारे काले बादलों के पीछे छिपे थे… और हवा में गीली मिट्टी और पुराने दुख की गंध थी।\n\n' +
+      '"एक और कहानी, विक्रम?" बेताल ने फुसफुसाया। <chuckle> "यह तुम्हारे दिल की परीक्षा लेगी।"\n\n' +
+      '"एक समृद्ध शहर में… एक धनी सौदागर रहता था जिसका नाम धर्मपाल था। उसकी एक बेटी थी मालिनी… सुबह के सूरज जैसी सुंदर… और बसंत की बारिश जैसी दयालु।" <sigh>\n\n' +
+      '"तीन नौजवान उससे प्यार करते थे। पहला था वीरभद्र नाम का सैनिक… ताकतवर और निडर। दूसरा था ज्योतिष नाम का नक्षत्रविद… जो तारों को पढ़ सकता था। और तीसरा था धन्वंतरि नाम का वैद्य… जिसकी दवाइयाँ हर रोग ठीक कर सकती थीं।"\n\n' +
+      '"एक दिन… मालिनी अकेली मंदिर गई। घर लौटते समय… डाकुओं ने उसके काफ़िले पर हमला कर दिया।" <gasp> "वे उसे पहाड़ों में अपने ठिकाने पर ले गए।"\n\n' +
+      '"जब तीनों नौजवानों ने सुना… हर एक हरकत में आ गया।"\n\n' +
+      '"ज्योतिष ने तारों को देखा… और पलभर में पता लगा लिया कि डाकू मालिनी को कहाँ ले गए हैं। गुफा… पहाड़… पहरेदारों की संख्या… सब।" <gasp>\n\n' +
+      '"वीरभद्र ने तलवार उठाई और रात भर घोड़ा दौड़ाया। ज्योतिष के बताए रास्ते से डाकुओं का ठिकाना ढूँढ़ा। उसने अकेले बारह आदमियों से लड़ाई लड़ी… उसकी तलवार बिजली की तरह चमक रही थी… और मालिनी को बचा लिया।" <chuckle>\n\n' +
+      '"लेकिन भागते समय… मालिनी को ज़हरीला तीर लग गया। <gasp> ज़हर उसके पूरे शरीर में फैल गया। चेहरा सफ़ेद पड़ गया… साँसें उखड़ गईं… और वह मौत के दरवाज़े पर खड़ी थी।" <sniffle>\n\n' +
+      '"धन्वंतरि भागकर उसके पास आया। दुर्लभ जड़ी-बूटियों से पवित्र दवा तैयार की… मंत्र पढ़े… और रातभर सेवा की। सुबह होते-होते… मालिनी ने आँखें खोलीं। वह जीवित थी।" <gasp>\n\n' +
+      '"अब बताओ, विक्रम," बेताल ने पूछा। "मालिनी की शादी किससे होनी चाहिए? ज्योतिष से जिसने उसे खोजा… सैनिक से जिसने बचाया… या वैद्य से जिसने मौत के मुँह से वापस लाया?" <chuckle>\n\n' +
+      'विक्रम बहुत देर तक चुपचाप चलते रहे। फिर बोले।\n\n' +
+      '"ज्योतिष ने अपने ज्ञान का इस्तेमाल किया… यही विद्वानों का काम है। यह उनका स्वभाव और कर्तव्य है। वैद्य ने बीमारी ठीक की… यह भी उसकी विद्या और कला है। लेकिन सैनिक ने… अपनी जान ख़तरे में डाली। अंधेरे में निकला… बारह हथियारबंद आदमियों से लड़ा… बिना किसी गारंटी के कि ख़ुद बचेगा।" <sigh>\n\n' +
+      '"ज्ञान और उपचार दिमाग़ की देन हैं। लेकिन वह हिम्मत जो दूसरे के लिए अपनी जान दाँव पर लगा दे… वह प्यार है। वीरभद्र, सैनिक, को मालिनी से शादी करनी चाहिए।" <sniffle>\n\n' +
+      'बेताल ठहाका मारकर हँसा। <chuckle> "फिर सही, विक्रम! लेकिन बोल दिया… तो मैं चला!" और सूँ… करके वह अपने पेड़ पर उड़ गया। <gasp>\n\n' +
+      'विक्रम बिना शिकायत पलट गए। सच्चा राजा आगे बढ़ता है… भले ही रास्ता उसे पीछे ले जाए।',
+  },
+
+  // ===================================================================
+  // 10. TENALI AND THE CAT (Hindi)
+  // ===================================================================
+  {
+    id: 'tenali-and-the-cat',
+    title: 'तेनाली और बिल्ली',
+    category: 'tenali-raman',
+    content:
+      'राजा कृष्णदेवराय को बिल्लियों से बहुत प्यार था। <chuckle> एक दिन… एक संत ने राजा से कहा कि बिल्लियों को दूध पिलाने से दिव्य आशीर्वाद मिलता है और पाप धुल जाते हैं।\n\n' +
+      'राजा बहुत खुश हुए। <gasp> "मैं विजयनगर के हर घर को आदेश दूँगा कि वे एक बिल्ली रखें… और हर रोज़ उसे एक कटोरी दूध पिलाएँ!"\n\n' +
+      'शाही फ़रमान जारी हुआ। हर परिवार को एक बिल्ली रखनी होगी और रोज़ दूध देना होगा… वरना भारी जुर्माना। <sigh>\n\n' +
+      'लोग परेशान हो गए। दूध कीमती था… और कई परिवार अपने बच्चों के लिए भी मुश्किल से जुटा पाते थे। लेकिन राजा से कौन बहस करे? <sniffle>\n\n' +
+      'तेनाली रामन ने फ़रमान सुना और सिर हिलाया। "यह सही नहीं है," उन्होंने बड़बड़ाया। <sigh> "मुझे राजा को सच दिखाना होगा… लेकिन नरमी से।"\n\n' +
+      'तेनाली घर गए और अपनी बिल्ली को लाए। उन्होंने एक कटोरी दूध को बहुत… बहुत गर्म किया। फिर बिल्ली के सामने रख दिया। <chuckle>\n\n' +
+      'बिल्ली ने उत्साह से दूध में जीभ डाली… और फ़ौरन चीखकर पीछे कूद गई। <gasp> गर्म दूध ने उसकी जीभ जला दी! बेचारी बिल्ली ने फुफकारा… कटोरी गिरा दी… और कमरे के कोने में भाग गई।\n\n' +
+      'तेनाली ने अगले दिन भी यही किया। और उसके अगले दिन भी। हर बार बिल्ली दूध की कटोरी देखती… फुफकारती और भाग जाती। <chuckle>\n\n' +
+      'कुछ हफ़्तों बाद… राजा ने अपने राज्य का निरीक्षण करने का फ़ैसला किया। वे तेनाली के घर पहुँचे।\n\n' +
+      '"तेनाली! अपनी बिल्ली दिखाओ। क्या उसे दूध मिल रहा है?" राजा ने पूछा।\n\n' +
+      '"बिल्कुल, महाराज! अंदर आइए।" तेनाली ने बिल्ली बाहर लाई… और उसके सामने ताज़ा, ठंडा दूध रखा। <gasp>\n\n' +
+      'बिल्ली ने दूध की ओर एक नज़र देखा… ज़ोर से फुफकारी… और जितनी तेज़ उसके पैर भाग सकते थे, उतनी तेज़ भाग गई।\n\n' +
+      'राजा हैरान रह गए। "तुम्हारी बिल्ली दूध से भागती है! क्यों?" <gasp>\n\n' +
+      '"महाराज," तेनाली ने नरमी से कहा… "यही होता है जब किसी को ज़बरदस्ती कोई चीज़ स्वीकार कराई जाए। एक बिल्ली भी… जो कुदरती तौर पर दूध से प्यार करती है… उससे डरने लगती है।" <chuckle>\n\n' +
+      'उन्होंने आगे कहा। "आपकी प्रजा इस बिल्ली की तरह है। अगर आप उन्हें अपना कीमती दूध देने पर मजबूर करेंगे… तो वे उसी चीज़ से नफ़रत करने लगेंगे जिसे आप प्यार कराना चाहते हैं। दया ज़बरदस्ती नहीं हो सकती, महाराज।" <sigh>\n\n' +
+      'राजा कुछ देर चुप खड़े रहे। फिर उनका चेहरा नरम हो गया। <sniffle> "तुम सही कहते हो, तेनाली। मैं मूर्ख था। आज से यह फ़रमान रद्द।"\n\n' +
+      'विजयनगर के लोगों ने यह ख़बर सुनकर जश्न मनाया। <chuckle>\n\n' +
+      'और इस तरह… तेनाली ने बिना एक भी बेअदबी का शब्द बोले राजा को सबक सिखाया। सच्ची भक्ति दिल से आनी चाहिए… वह किसी फ़रमान से नहीं आ सकती।',
+  },
+
+  // ===================================================================
+  // 11. TENALI AND THE THIEVES (Hindi)
+  // ===================================================================
+  {
+    id: 'tenali-and-the-thieves',
+    title: 'तेनाली और चोर',
+    category: 'tenali-raman',
+    content:
+      'तेनाली रामन पूरे राज्य में मशहूर थे… और उनकी चतुराई भी। <chuckle> लेकिन शोहरत अपनी मुसीबतें साथ लाती है।\n\n' +
+      'एक अंधेरी रात… दो चोर उनके घर लूटने आए। उन्होंने सुना था कि तेनाली को राजा से सोने का बड़ा इनाम मिला है। <gasp>\n\n' +
+      '"यह आसान होगा," पहले चोर ने फुसफुसाया। "वह तो बस दरबार का विदूषक है। क्या कर लेगा?"\n\n' +
+      '"आधी रात तक रुकते हैं… फिर अंदर घुसते हैं," दूसरे चोर ने जवाब दिया। <chuckle>\n\n' +
+      'लेकिन तेनाली कोई साधारण आदमी नहीं थे। उन्होंने उस शाम पहले ही चोरों को घर के पास झाड़ियों में छिपे देख लिया था। <gasp> उनकी तेज़ नज़रों से कुछ नहीं बचता था।\n\n' +
+      'उन्होंने अपनी पत्नी से फुसफुसाकर कहा… "बाहर दो चोर हैं। मेरा साथ दो… जो कहूँ बस वही करना।" <chuckle>\n\n' +
+      'पत्नी ने घबराकर सिर हिलाया। <sigh>\n\n' +
+      'तेनाली ने आवाज़ ऊँची की ताकि चोरों को साफ़ सुनाई दे। "अरी सुनो! मुझे चिंता हो रही है। इतना सोना घर में है… कहीं रात को चोर न आ जाएँ। चलो कहीं सुरक्षित जगह छिपा देते हैं।"\n\n' +
+      '"कहाँ रखें?" पत्नी ने ज़ोर से पूछा।\n\n' +
+      '"बगीचे के पुराने कुएँ में! कोई चोर वहाँ देखने नहीं जाएगा।" <chuckle>\n\n' +
+      'बाहर बैठे चोर एक-दूसरे को देखकर मुस्कुराए। <gasp> "बेवकूफ़ हमें ख़ुद बता रहा है सोना कहाँ है!"\n\n' +
+      'तेनाली ने एक बड़ा संदूक उठाया… उसमें कपड़े में लिपटे भारी पत्थर भरे… और घसीटकर बगीचे के कुएँ तक ले गए। बड़े छपाके से उसे कुएँ में गिरा दिया। <gasp>\n\n' +
+      '"लो। अब हमारा सोना सुरक्षित है," उन्होंने ज़ोर से कहा। फिर पत्नी के साथ अंदर गए और सोने का नाटक किया।\n\n' +
+      'चोर फ़ौरन कुएँ के पास पहुँचे। <chuckle> "जल्दी! पानी बाहर निकालना होगा ताकि संदूक तक पहुँचें।" उन्हें पास में दो बाल्टियाँ मिलीं… और पानी उलीचना शुरू कर दिया।\n\n' +
+      'बाल्टी पर बाल्टी… घंटा दर घंटा… वे काम करते रहे। <sigh> बाँहें दुख रहीं। कमर टूट रही थी। लेकिन सोने का ख़याल उन्हें चलाए रखता।\n\n' +
+      'घर के अंदर… तेनाली मुस्कुरा रहे थे। उन्होंने चतुराई से दोनों बाल्टियों की तली में छोटे-छोटे छेद कर रखे थे। <chuckle> चोर जो पानी बाहर डालते… वह एक नाली से वापस कुएँ में बह जाता, जो तेनाली ने बगीचे में खोदी थी।\n\n' +
+      'सुबह तक… थके-हारे चोरों ने तेनाली का पूरा बगीचा सींच दिया। <gasp> हर पौधा… हर सब्ज़ी की क्यारी… हर फूलों की मेड़ बखूबी सिंचित।\n\n' +
+      'सुबह हुई… तेनाली खुशी से अँगड़ाई लेते बाहर आए। उन्होंने दो चोरों को देखा… कुएँ के पास गिरे पड़े, पसीने से लथपथ। <chuckle>\n\n' +
+      '"अरे! बहुत-बहुत शुक्रिया, दोस्तों! मेरा बगीचा इतना अच्छा कभी नहीं दिखा। तुमने मेरा पूरे दिन का काम बचा दिया!" <gasp>\n\n' +
+      'चोरों ने एक-दूसरे को देखा… फिर बगीचे को… फिर पत्थरों से भरे संदूक को जो उन्होंने आखिर बाहर निकाला था। <sniffle>\n\n' +
+      '"हम ठगे गए," पहले चोर ने कराहा। "एक विदूषक ने ठगा।" <sigh>\n\n' +
+      'वे शर्मिंदा होकर चुपके से खिसक गए… फिर कभी नहीं लौटे।\n\n' +
+      'और इस तरह… तेनाली ने चोरों को माली बना दिया। सीख? एक चतुर दिमाग़ को कभी कम मत आँकना। सबसे तेज़ हथियार तलवार नहीं… बुद्धि है।',
+  },
+
+  // ===================================================================
+  // 12. THE GOLDEN DEER (Hindi)
+  // ===================================================================
+  {
+    id: 'the-golden-deer',
+    title: 'सोने का हिरण',
+    category: 'jataka',
+    content:
+      'एक शांत जंगल में… शहरों और राजाओं के शोर से दूर… एक ऐसा हिरण रहता था जो किसी और जैसा नहीं था। <gasp> उसकी खाल पिघले सोने की तरह चमकती थी… उसकी आँखें नीलम जैसी थीं… और उसके सींग चमकती चाँदी जैसे दमकते थे। वह था सोने का हिरण।\n\n' +
+      'यह हिरण बुद्धिमान और सौम्य था। उसे हर औषधि का पौधा पता था… हर शुद्ध झरना… और हर सुरक्षित रास्ता। जंगल के जानवर उसे भाई की तरह प्यार करते थे। <chuckle>\n\n' +
+      'एक दिन… एक लकड़हारा जंगल में रास्ता भटक गया। घंटों भटकता रहा… भूखा, थका, और डरा हुआ। <sniffle> वह एक तेज़ बहती नदी में गिर गया… और धारा उसे खींचकर नीचे ले गई।\n\n' +
+      '"बचाओ! कोई बचाओ!" वह चिल्लाया।\n\n' +
+      'सोने के हिरण ने उसकी पुकार सुनी। बिना एक पल सोचे… वह नदी में कूद गया। <gasp> तेज़ धारा के विरुद्ध तैरा… डूबते हुए आदमी तक पहुँचा… और उसे अपने सुनहरे सींगों से पकड़ने दिया। धीरे-धीरे… बड़ी मेहनत से… उसे किनारे तक खींचकर लाया। <sigh>\n\n' +
+      'लकड़हारा किनारे पर लेटा, हाँफ रहा था। "तुमने मेरी जान बचाई," उसने फुसफुसाया। "मैं इसका बदला कैसे चुकाऊँगा?"\n\n' +
+      'हिरण ने नरमी से कहा। "मैं बस एक बात चाहता हूँ… किसी को मेरे बारे में मत बताना। अगर लोगों को सुनहरे हिरण का पता चला… तो शिकारी आएँगे।" <sigh>\n\n' +
+      'लकड़हारे ने कसम खाई। "मैं कभी तुम्हारे बारे में नहीं बोलूँगा। अपनी जान की कसम।" <chuckle>\n\n' +
+      'समय बीता। एक सुबह… राज्य की रानी ने एक सपना देखा। उसमें एक शानदार सुनहरी खाल वाला हिरण था। <gasp> जब उठी… वह बेचैन हो गई।\n\n' +
+      '"मुझे वह हिरण चाहिए!" उसने राजा से कहा। "उसकी सुनहरी खाल मेरा वस्त्र होगा। मेरे लिए खोजो… नहीं तो मैं तड़प-तड़पकर मर जाऊँगी।" <sniffle>\n\n' +
+      'राजा ने ऐलान करवाया। "जो कोई मुझे सोने के हिरण तक ले जाएगा, उसे एक गाड़ी भर सोना और एक गाँव मिलेगा।"\n\n' +
+      'लकड़हारे ने ऐलान सुना। <gasp> उसका दिमाग़ दौड़ने लगा। एक गाड़ी भर सोना! एक गाँव! उसकी ग़रीबी हमेशा के लिए ख़त्म!\n\n' +
+      'वह अपनी ज़मीर से लड़ता रहा। उसे हिरण की दयालु आँखें याद आईं… नरम आवाज़… वे मज़बूत सींग जिन्होंने उसे मौत से बचाया। <sniffle> लेकिन लालच एक ऐसी आग है जो धीरे-धीरे जलती है… और उसने उसका वादा जला दिया।\n\n' +
+      'वह राजा के पास गया। "मैं जानता हूँ सोने का हिरण कहाँ रहता है," उसने कहा। <sigh>\n\n' +
+      'राजा और उनके शिकारी लकड़हारे के पीछे जंगल में गए। उन्होंने सोने के हिरण को एक झरने पर पानी पीते पाया।\n\n' +
+      'हिरण ने ऊपर देखा और लकड़हारे को पहचान लिया। उसे सब समझ आ गया। <gasp> उसकी आँखों में गुस्सा नहीं था… बस एक गहरी, शांत उदासी।\n\n' +
+      '"मैंने तुम्हारी जान बचाई थी," हिरण ने धीरे से कहा। "और तुम इस तरह बदला चुका रहे हो?" <sniffle>\n\n' +
+      'राजा ने अपना धनुष नीचे किया। हिरण की आवाज़ में कुछ था जो उसके दिल को छेद गया। <sigh> उसने लकड़हारे की ओर देखा। "तुमने उस जीव को धोखा दिया जिसने तुम्हारी जान बचाई… सोने के लिए?"\n\n' +
+      'लकड़हारा किसी की आँखों में नहीं देख पा रहा था। उसका चेहरा शर्म से जल रहा था।\n\n' +
+      'राजा ने हिरण को आज़ाद छोड़ दिया… और उस जंगल को संरक्षित अभयारण्य घोषित कर दिया। <chuckle> रही बात लकड़हारे की… उसे न सोना मिला, न गाँव… सिर्फ़ एक टूटे वादे का बोझ।\n\n' +
+      'और इस तरह… सोने के हिरण ने दुनिया को सिखाया कि लालच उन लोगों को भी धोखा दिला सकता है जिन्होंने तुम्हें जीवन दिया। <gasp> अपने वादे रखो… क्योंकि टूटा हुआ वचन एक ऐसा ज़ख़्म है जो कभी पूरी तरह नहीं भरता।',
+  },
+
+  // ===================================================================
+  // 13. THE WISE QUAIL (Hindi)
+  // ===================================================================
+  {
+    id: 'the-wise-quail',
+    title: 'समझदार बटेर',
+    category: 'jataka',
+    content:
+      'एक सुनहरे मैदान में… एक बड़े जंगल के किनारे… एक हज़ार बटेरों का झुंड रहता था। <chuckle> वे छोटी चिड़ियाँ थीं… भूरी और साधारण… लेकिन खुशी-खुशी एक साथ रहती थीं।\n\n' +
+      'उनका नेता एक बूढ़ा बुद्धिमान बटेर था… जिसके पंख उम्र की चाँदी से रँगे थे। वह शांत था… धैर्यवान… और बहुत चतुर। झुंड को उस पर पूरा भरोसा था। <sigh>\n\n' +
+      'लेकिन एक दिन… एक शिकारी ने उनका मैदान खोज लिया। <gasp> वह एक बड़ा जाल लेकर आया… और हर सुबह बटेरों पर जाल फेंकता। दिन-ब-दिन… वह दर्जनों चिड़ियाँ पकड़कर बाज़ार ले जाता।\n\n' +
+      'झुंड दहशत में था। <sniffle> "हम क्या करें?" वे रोए। "वह हम सबको पकड़ लेगा!"\n\n' +
+      'बूढ़े बटेर ने सबको इकट्ठा किया। "ध्यान से सुनो," उसने कहा। "जाल मज़बूत है… लेकिन हम बहुत सारे हैं। जब जाल तुम पर गिरे… घबराना नहीं। हर एक अपना सिर जाल के एक छेद से बाहर निकालो। फिर… सब मिलकर… तीन की गिनती पर… ऊपर उड़ो। अगर हम सब एक साथ उड़ें… तो जाल को अपने साथ उठा सकते हैं।" <chuckle>\n\n' +
+      '"लेकिन ले जाएँ कहाँ?" एक छोटे बटेर ने पूछा।\n\n' +
+      '"पहाड़ी पर काँटों की झाड़ी पर। जाल काँटों में उलझ जाएगा… और हम नीचे से निकल जाएँगे।" <chuckle>\n\n' +
+      'अगली सुबह… शिकारी ने जाल फेंका। <gasp> बटेरों को अपने नेता की बात याद थी। हर एक ने छेद से सिर निकाला… और तीन की गिनती पर… एक हज़ार चिड़ियाँ एक साथ आसमान में उड़ गईं।\n\n' +
+      'शिकारी ने अविश्वास से देखा जब उसका जाल आसमान में उठ गया। <gasp> बटेर काँटों की झाड़ी पर गए… जाल गिराया… और बच निकले। हर एक।\n\n' +
+      '"नामुमकिन!" शिकारी हैरान रह गया। <sigh>\n\n' +
+      'उसने अगले दिन फिर कोशिश की। और उसके अगले दिन भी। लेकिन हर बार… बटेर मिलकर काम करते और जाल लेकर उड़ जाते।\n\n' +
+      'शिकारी की पत्नी परेशान हो गई। "तुम हर दिन खाली हाथ लौटते हो! क्या बात है?"\n\n' +
+      '"वे बटेर मिलकर काम करते हैं," शिकारी ने कहा। "जब तक वे एकजुट हैं… मैं एक भी नहीं पकड़ सकता। लेकिन चिंता मत करो… चिड़ियाँ आपस में लड़ती ज़रूर हैं। बस इंतज़ार करना है।" <chuckle>\n\n' +
+      'और वह सही था। <sigh> कई हफ़्तों बाद… बटेरों में लड़ाई शुरू हो गई। एक बटेर का पैर गलती से दूसरे के पंख पर पड़ गया।\n\n' +
+      '"देखकर चल, भद्दे!" <gasp>\n\n' +
+      '"तू रास्ते में थी! हट जा!"\n\n' +
+      'झगड़ा फैल गया। जल्दी ही… झुंड दो गुटों में बँट गया, जो एक-दूसरे से बात नहीं करते थे। <sniffle>\n\n' +
+      'बूढ़े बटेर ने मिन्नत की। "कृपया… लड़ो मत। हमारी ताकत हमारी एकता में है। अगर हम बँट गए… तो शिकारी जीत जाएगा।"\n\n' +
+      'लेकिन नाराज़ बटेरों ने नहीं सुना। <sigh>\n\n' +
+      'अगली सुबह… जाल गिरा। आधे बटेरों ने उड़ने की कोशिश की। दूसरे आधे ने मदद करने से इनकार कर दिया। "खुद बच लो!" उन्होंने कड़वाहट से कहा।\n\n' +
+      'पूरे झुंड की ताकत के बिना… जाल ज़मीन पर ही रहा। <gasp> शिकारी ने सबको पकड़ लिया।\n\n' +
+      'बूढ़ा बटेर, जो पास के पेड़ पर उड़ गया था, आँखों में आँसू लिए देखता रहा। <sniffle> "मैंने चेताया था," उसने फुसफुसाया। "एकता हमारा एकमात्र हथियार था… और उन्होंने उसे फेंक दिया।"\n\n' +
+      'और इस तरह… यह कहानी दुनिया का सबसे पुराना सच सिखाती है। एक रहो तो बचोगे… बँट गए तो बिखर जाओगे। एक हज़ार चिड़ियाँ एक शिकारी को हरा सकती थीं… लेकिन मुट्ठी भर कड़वे शब्दों ने चिड़ियों को हरा दिया।',
+  },
+
+  // ===================================================================
+  // 14. SHRAVAN KUMAR (Hindi)
+  // ===================================================================
+  {
+    id: 'shravan-kumar',
+    title: 'श्रवण कुमार',
+    category: 'epic',
+    content:
+      'बहुत पहले… राजाओं और ऋषियों के युग में… एक लड़का था जिसका नाम था श्रवण कुमार। <chuckle> वह न राजकुमार था… न योद्धा… न विद्वान। वह बस एक बेटा था। लेकिन कैसा बेटा।\n\n' +
+      'श्रवण के माता-पिता बूढ़े और अंधे थे। वे सूरज की रोशनी नहीं देख सकते थे… फूलों को खिलते नहीं देख सकते थे… उस बेटे का चेहरा नहीं देख सकते थे जो उनसे अपनी जान से ज़्यादा प्यार करता था। <sniffle>\n\n' +
+      '"माँ… पिताजी," श्रवण ने एक दिन कहा। "आपकी हमेशा से इच्छा रही है कि पवित्र तीर्थस्थलों की यात्रा करें। मैं आपको तीर्थयात्रा पर ले चलूँगा।" <sigh>\n\n' +
+      '"लेकिन श्रवण… हम चल नहीं सकते," माँ ने उदास होकर कहा। "हम बूढ़े और अंधे हैं। रास्ता बहुत लंबा है।"\n\n' +
+      'श्रवण मुस्कुराया। "आपको चलने की ज़रूरत नहीं होगी।" <chuckle>\n\n' +
+      'उसने एक काविड़ बनाई… एक मज़बूत बाँस के डंडे से लटकी दो बड़ी टोकरियाँ। माँ को एक टोकरी में बैठाया और पिता को दूसरी में। फिर डंडा अपने कंधों पर उठाया… और चल पड़ा। <gasp>\n\n' +
+      'कोस दर कोस… जलती धूप और बरसती बारिश में… नदियों को पार करते, पहाड़ चढ़ते… श्रवण अपने माता-पिता को ले चला। <sigh> उसके कंधे दुख रहे थे। उसके पैरों से खून बह रहा था। लेकिन उसने कभी शिकायत नहीं की। एक बार भी नहीं।\n\n' +
+      '"श्रवण… थक गए?" पिता पूछते।\n\n' +
+      '"नहीं पिताजी। मैं थका नहीं हूँ," श्रवण जवाब देता, भले ही उसका शरीर दर्द से चीख रहा था। <chuckle>\n\n' +
+      '"श्रवण… धूप बहुत तेज़ है?" माँ चिंता करतीं।\n\n' +
+      '"हवा ठंडी है, माँ। चिंता मत करो," वह कहता… जबकि पसीने की धारें बह रही थीं। <sniffle>\n\n' +
+      'जहाँ भी जाते… लोग रुककर देखते। "देखो उस लड़के को," वे फुसफुसाते। "अपने माता-पिता को कंधों पर ले जा रहा है। कैसी भक्ति… कैसा प्रेम।" <gasp>\n\n' +
+      'एक शाम… परिवार एक नदी के पास रुका। <sigh> श्रवण के माता-पिता को प्यास लगी थी। "मैं आपके लिए पानी लाता हूँ," उसने कहा… और मिट्टी का घड़ा लेकर नदी की ओर गया।\n\n' +
+      'वह पानी के पास झुका… और घड़े को डुबोया। <chuckle>\n\n' +
+      'लेकिन पास में… पेड़ों में छिपे… राजा दशरथ शिकार कर रहे थे। उन्हें पानी भरने की आवाज़ सुनाई दी… और उन्होंने समझा कि कोई हिरण पानी पी रहा है। <gasp>\n\n' +
+      'उन्होंने धनुष खींचा और तीर छोड़ दिया। <gasp>\n\n' +
+      'तीर श्रवण की छाती में लगा। वह चीखकर गिर गया। <sniffle>\n\n' +
+      'राजा दशरथ भागकर नदी पर आए और हिरण की जगह एक लड़के को खून बहता, मरता पाया। "मैंने यह क्या किया?" राजा रो पड़े। <sniffle>\n\n' +
+      '"मेरे माता-पिता…" श्रवण ने आखिरी साँसों में फुसफुसाया। "वे अंधे हैं… और मेरा इंतज़ार कर रहे हैं। कृपया… उन्हें पानी दीजिए। उनसे कहिएगा… मुझे माफ़ करें कि मैं यात्रा पूरी नहीं कर पाया।" <sigh>\n\n' +
+      'और इन शब्दों के साथ… श्रवण कुमार ने हमेशा के लिए आँखें बंद कर लीं।\n\n' +
+      'दशरथ ने पानी श्रवण के माता-पिता तक पहुँचाया। जब उन्हें पता चला क्या हुआ… उनका दुख शब्दों से परे था। <gasp> वे तब तक रोए जब तक उनका दिल रो सका… और अपने प्रिय पुत्र के बिना जी न पाकर, उन्होंने भी प्राण त्याग दिए।\n\n' +
+      'श्रवण के पिता ने अंतिम साँस लेते हुए दशरथ को श्राप दिया। "जैसे मैं अपने बेटे के वियोग में मर रहा हूँ… वैसे ही तुम भी एक दिन अपने बेटे के वियोग में मरोगे।" <sigh>\n\n' +
+      'और ऐसा ही हुआ। वर्षों बाद… राजा दशरथ टूटे दिल से मर गए जब उनके पुत्र भगवान राम को वनवास भेजा गया।\n\n' +
+      'लेकिन दुनिया श्रवण कुमार को याद करती है… कैसे मरा इसके लिए नहीं… बल्कि कैसे जिया इसके लिए। <chuckle> एक लड़का जिसने अपने माता-पिता को कंधों पर उठाया… क्योंकि उनकी खुशी ही उसकी मंज़िल थी। यही प्रेम का सबसे सच्चा रूप है।',
+  },
+
+  // ===================================================================
+  // 15. EKLAVYA'S DEDICATION (Hindi)
+  // ===================================================================
+  {
+    id: 'eklavya-dedication',
+    title: 'एकलव्य की निष्ठा',
+    category: 'epic',
+    content:
+      'हस्तिनापुर के पास के जंगलों में… एक आदिवासी लड़का रहता था जिसका नाम एकलव्य था। <chuckle> वह एक साधारण मुखिया का बेटा था… साँवला, नंगे पैर… दिल में बस एक धधकता सपना।\n\n' +
+      'वह दुनिया का सबसे महान धनुर्धर बनना चाहता था। <gasp>\n\n' +
+      'उसने गुरु द्रोणाचार्य के बारे में सुना था… वे महान गुरु जो राजकुमारों को युद्ध कला सिखाते थे। "अगर मैं द्रोण से सीख सकूँ," एकलव्य ने अपने पिता से कहा… "तो मैं सबसे अच्छा बन जाऊँगा।"\n\n' +
+      'तो वह दिनों तक घने जंगलों और खुले मैदानों से चलता गया… जब तक द्रोण के आश्रम नहीं पहुँच गया। <sigh> वह गुरु के चरणों में गिर गया।\n\n' +
+      '"गुरुदेव… कृपया मुझे धनुर्विद्या सिखाइए। मैं आपकी सच्ची सेवा करूँगा। जो कहेंगे, करूँगा।"\n\n' +
+      'द्रोण ने लड़के को देखा। <sigh> उन्होंने उसकी आँखों में आग देखी… आवाज़ में समर्पण। लेकिन द्रोण कुरु राजकुमारों से बँधे थे।\n\n' +
+      '"मैं तुम्हें नहीं सिखा सकता," द्रोण ने कहा। "मैंने केवल राजकुमारों को प्रशिक्षित करने का वचन दिया है। तुम राजवंशी नहीं हो। मुझे खेद है।" <sniffle>\n\n' +
+      'एकलव्य का दिल टूट गया। लेकिन उसने बहस नहीं की। विनती नहीं की। चुपचाप सिर झुकाया… और जंगल में वापस चला गया। <sigh>\n\n' +
+      'लेकिन उसने हार नहीं मानी। <gasp>\n\n' +
+      'जंगल की गहराई में… एकलव्य ने गुरु द्रोणाचार्य की मिट्टी की मूर्ति बनाई। एक बड़े बरगद के पेड़ के नीचे रखी… फूलों से सजाई… और हर सुबह उसके सामने नमन किया। <chuckle>\n\n' +
+      '"आपने मुझे मना कर दिया, गुरुदेव… लेकिन मेरे दिल में आप अब भी मेरे गुरु हैं।"\n\n' +
+      'हर एक दिन… सुबह से शाम तक… एकलव्य उस मिट्टी की मूर्ति के सामने तीरंदाज़ी का अभ्यास करता। पत्तों पर निशाना… चलते लक्ष्य पर… उड़ती चिड़ियों पर। <gasp> जब उसकी उँगलियों से खून बहता, पट्टी बाँधकर फिर चलाता। जब बाँहें दुखतीं, एक पल रुककर फिर धनुष उठा लेता।\n\n' +
+      'महीने सालों में बदल गए। और एकलव्य असाधारण हो गया। <chuckle> उसके तीर गिरती बूँद को चीर सकते थे। वह पूर्ण अंधकार में, सिर्फ़ आवाज़ के सहारे निशाना लगा सकता था।\n\n' +
+      'एक दिन… कुरु राजकुमार गुरु द्रोण के साथ उसी जंगल में शिकार करने आए। उनका शाही कुत्ता आगे भागा… और एकलव्य को अभ्यास करते पाया। कुत्ता ज़ोर-ज़ोर से भौंकने लगा। <gasp>\n\n' +
+      'बिना देखे भी… एकलव्य ने लगातार सात तीर छोड़े। <gasp> हर तीर ने कुत्ते का मुँह बंद कर दिया बिना खून की एक बूँद भी बहाए। कुत्ता चुप होकर राजकुमारों के पास भागा, पूरी तरह सलामत।\n\n' +
+      'राजकुमार हैरान रह गए। <gasp> "ऐसे कौन चला सकता है?" अर्जुन ने माँग की। "आपने वादा किया था मैं सबसे बड़ा धनुर्धर बनूँगा, गुरुदेव!"\n\n' +
+      'उन्होंने एकलव्य को जंगल में ढूँढा। द्रोण ने अपनी मिट्टी की मूर्ति देखी… और सब समझ गए। <sigh>\n\n' +
+      '"तुम्हें यह विद्या किसने सिखाई?" द्रोण ने पूछा, हालाँकि उन्हें पता था।\n\n' +
+      '"आपने, गुरुदेव," एकलव्य ने सिर झुकाकर कहा। "आपकी मूर्ति मेरी गुरु रही है। आपकी तस्वीर ने मेरे हर तीर का मार्गदर्शन किया है।" <chuckle>\n\n' +
+      'द्रोण बहुत देर तक चुप रहे। फिर उन्होंने वे शब्द कहे जो युगों तक गूँजते रहे।\n\n' +
+      '"अगर मैं तुम्हारा गुरु हूँ… तो तुम मुझे गुरु दक्षिणा देते हो। गुरु का उपहार।" <sigh>\n\n' +
+      '"कुछ भी, गुरुदेव। बस बोलिए और आपका है।"\n\n' +
+      '"मुझे दो… अपने दाहिने हाथ का अँगूठा।" <gasp>\n\n' +
+      'जंगल में सन्नाटा छा गया। राजकुमारों ने साँस रोक ली। <sniffle> अँगूठे के बिना… एकलव्य कभी पहले जैसा तीर नहीं चला पाएगा। उसकी ज़िंदगी भर की मेहनत… उसके सालों का समर्पण… सब एक पल में बदल जाएगा।\n\n' +
+      'एकलव्य ने एक पल भी नहीं सोचा। न हिचकिचाया। न काँपा। उसने हल्के से मुस्कुराकर… अपना चाकू निकाला… और अपना दाहिना अँगूठा काट दिया। <sniffle> उसे द्रोण के चरणों में रख दिया।\n\n' +
+      '"लीजिए, गुरुदेव। यह आपका है।" <sigh>\n\n' +
+      'खून जंगल की ज़मीन पर टपक रहा था। लेकिन एकलव्य सीधा खड़ा था। उसकी आँखों में दर्द नहीं… बल्कि इतनी शुद्ध भक्ति की रोशनी थी कि ऊपर देवता भी मौन हो गए। <gasp>\n\n' +
+      'दुनिया एकलव्य को उन तीरों के लिए नहीं याद करती जो उसने चलाए… बल्कि उस बलिदान के लिए जो उसने दिया। <chuckle> उसने साबित किया कि सच्ची निष्ठा प्रतिभा में नहीं होती… बल्कि उस प्रेम और सम्मान में जो आप अपने मार्गदर्शक के लिए दिल में रखते हैं। एक मिट्टी की मूर्ति भी, सच्ची श्रद्धा से पूजी जाए… तो आसमान छूना सिखा सकती है।',
+  },
+];
+
+module.exports = { newStoriesEn, newStoriesHi };
