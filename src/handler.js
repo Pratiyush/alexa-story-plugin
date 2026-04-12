@@ -55,7 +55,7 @@ const SPEECH = {
     storyList: (titles) => `I have these stories: ${titles.join(', ')}. Which one would you like to hear?`,
     playingStory: (title) => `Here is ${title}.`,
     storyEnd:
-      'That was the end of the story! Say "play again" to hear it once more, or "another story" to hear something else.',
+      'That was the end of the story! Say "play again" to hear it once more, or "play a story" for another one.',
     storyEndMultiPart: 'Say "next" to continue, or "stop" to end.',
     notFound: 'I could not find that story. Say "list stories" to hear what is available.',
     repeatPrompt: 'Which story would you like to hear?',
@@ -77,7 +77,7 @@ const SPEECH = {
     noStories: 'इस भाषा में अभी कोई कहानी नहीं है। "अंग्रेज़ी" या "हिंदी" बोलकर देखें।',
     storyList: (titles) => `मेरे पास ये कहानियाँ हैं: ${titles.join(', ')}। कौन सी सुनना चाहेंगे?`,
     playingStory: (title) => `यह रही ${title}।`,
-    storyEnd: 'कहानी ख़त्म! "फिर से सुनाओ" बोलें दोबारा सुनने के लिए, या "दूसरी कहानी" बोलें।',
+    storyEnd: 'कहानी ख़त्म! "फिर से सुनाओ" बोलें दोबारा सुनने के लिए, या "कहानी सुनाओ" एक और कहानी के लिए।',
     storyEndMultiPart: '"आगे" बोलें जारी रखने के लिए, या "रुको" बोलें।',
     notFound: 'वह कहानी नहीं मिली। "कहानियाँ बताओ" बोलें उपलब्ध कहानियों के लिए।',
     repeatPrompt: 'कौन सी कहानी सुनना चाहेंगे?',
@@ -222,7 +222,7 @@ const NextPartIntentHandler = {
   canHandle(handlerInput) {
     return (
       Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
-      ['NextPartIntent', 'AMAZON.NextIntent', 'AMAZON.YesIntent'].includes(
+      ['NextPartIntent', 'AMAZON.NextIntent'].includes(
         Alexa.getIntentName(handlerInput.requestEnvelope)
       )
     );
@@ -257,6 +257,12 @@ const NextPartIntentHandler = {
     }
 
     const parts = toSsmlParts(story.content, lang);
+    if (!parts[nextPart]) {
+      return handlerInput.responseBuilder
+        .speak(`<speak>${speech(lang, 'noParts')}</speak>`)
+        .reprompt(`<speak>${speech(lang, 'repeatPrompt')}</speak>`)
+        .getResponse();
+    }
     const storyBody = parts[nextPart].replace(/<\/?speak>/g, '');
     const isLast = nextPart === parts.length - 1;
     const ending = isLast ? speech(lang, 'storyEnd') : speech(lang, 'storyEndMultiPart');
@@ -334,7 +340,7 @@ const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return (
       Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
-      ['AMAZON.CancelIntent', 'AMAZON.StopIntent', 'AMAZON.NoIntent'].includes(
+      ['AMAZON.CancelIntent', 'AMAZON.StopIntent'].includes(
         Alexa.getIntentName(handlerInput.requestEnvelope)
       )
     );

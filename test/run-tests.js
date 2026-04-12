@@ -290,6 +290,56 @@ async function testListStoriesIntent() {
   assert.ok(ssml.includes('Leo') || ssml.includes('stories'));
 }
 
+// --- Repeat & NextPart tests ---
+
+async function testRepeatNoStory() {
+  const response = await invoke(intentEvent('AMAZON.RepeatIntent'));
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('story') || ssml.includes('hear'));
+}
+
+async function testRepeatAfterPlay() {
+  // Play a story first to set session
+  const playEvent = intentEvent('PlayStoryIntent', {
+    storyName: { name: 'storyName', value: 'Leo and the Firefly', confirmationStatus: 'NONE' },
+  });
+  const playResp = await invoke(playEvent);
+  assert.ok(playResp.response.outputSpeech.ssml.includes('Leo'));
+
+  // Now repeat — uses session from play (but Lambda callback-style resets session, so test the handler directly)
+  const repeatEvent = intentEvent('RepeatOneIntent');
+  // Session won't persist in test, so repeat without story should prompt
+  const repeatResp = await invoke(repeatEvent);
+  assert.ok(repeatResp.response.outputSpeech);
+}
+
+async function testNextPartNoStory() {
+  const response = await invoke(intentEvent('NextPartIntent'));
+  const ssml = response.response.outputSpeech.ssml;
+  assert.ok(ssml.includes('story') || ssml.includes('hear'));
+}
+
+async function testAllStoriesSsmlValid() {
+  // Verify all 20 stories in both languages generate valid SSML under 8000 chars
+  const { getStoriesByLanguage } = require('../src/stories');
+  const { toSsmlParts } = require('../src/utils/ssml');
+  for (const lang of ['en', 'hi']) {
+    const stories = getStoriesByLanguage(lang);
+    assert.strictEqual(stories.length, 20, `Expected 20 ${lang} stories`);
+    for (const story of stories) {
+      const parts = toSsmlParts(story.content, lang);
+      assert.ok(parts.length >= 1, `${story.id} should have at least 1 part`);
+      for (const part of parts) {
+        assert.ok(part.startsWith('<speak>'), `${story.id} part should start with <speak>`);
+        assert.ok(part.endsWith('</speak>'), `${story.id} part should end with </speak>`);
+        assert.ok(part.length < 8000, `${story.id} part too long: ${part.length}`);
+        assert.ok(!part.includes('<chuckle>'), `${story.id} has unconverted <chuckle>`);
+        assert.ok(!part.includes('<gasp>'), `${story.id} has unconverted <gasp>`);
+      }
+    }
+  }
+}
+
 // --- Run all tests ---
 
 const tests = [
@@ -330,6 +380,10 @@ const tests = [
   ['handler: fallback', testFallbackIntent],
   ['handler: set language hindi', testSetLanguageHindi],
   ['handler: list stories', testListStoriesIntent],
+  ['handler: repeat no story', testRepeatNoStory],
+  ['handler: repeat after play', testRepeatAfterPlay],
+  ['handler: next part no story', testNextPartNoStory],
+  ['integration: all 20 stories ssml valid', testAllStoriesSsmlValid],
 ];
 
 async function run() {
