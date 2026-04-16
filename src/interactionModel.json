@@ -17,7 +17,14 @@
             "surprise me",
             "another story",
             "tell me another story",
-            "a different story"
+            "a different story",
+            "play a random story",
+            "random story",
+            "any story",
+            "play something",
+            "give me a story",
+            "narrate a story",
+            "play one more"
           ]
         },
         {
@@ -25,7 +32,7 @@
           "slots": [
             {
               "name": "storyName",
-              "type": "AMAZON.SearchQuery"
+              "type": "StoryName"
             }
           ],
           "samples": [
@@ -36,7 +43,14 @@
             "play the story {storyName}",
             "tell me the story {storyName}",
             "I want to hear {storyName}",
-            "start {storyName}"
+            "start {storyName}",
+            "narrate {storyName}",
+            "tell {storyName}",
+            "play the {storyName} story",
+            "I want {storyName}",
+            "read me {storyName}",
+            "can you tell {storyName}",
+            "let me hear {storyName}"
           ]
         },
         {
@@ -55,7 +69,15 @@
             "speak in {language}",
             "tell in {language}",
             "use {language}",
-            "set language {language}"
+            "set language {language}",
+            "play in {language}",
+            "tell me in {language}",
+            "narrate in {language}",
+            "switch language to {language}",
+            "change to {language}",
+            "{language} please",
+            "{language} mode",
+            "language {language}"
           ]
         },
         {
@@ -67,7 +89,14 @@
             "which stories are available",
             "show me stories",
             "tell me the stories",
-            "what can you read"
+            "what can you read",
+            "what are the stories",
+            "list all stories",
+            "all stories",
+            "stories list",
+            "what stories are there",
+            "give me the list",
+            "tell me what stories"
           ]
         },
         {
@@ -79,7 +108,28 @@
             "next part",
             "go on",
             "keep going",
-            "more"
+            "more",
+            "what next",
+            "tell me more",
+            "and then",
+            "carry on",
+            "go ahead",
+            "proceed",
+            "next chapter"
+          ]
+        },
+        {
+          "name": "PreviousPartIntent",
+          "slots": [],
+          "samples": [
+            "previous",
+            "previous part",
+            "go back",
+            "back",
+            "last part",
+            "previous chapter",
+            "rewind",
+            "step back"
           ]
         },
         {
@@ -92,7 +142,11 @@
             "tell it again",
             "start over",
             "from the beginning",
-            "replay"
+            "replay",
+            "say it again",
+            "play it once more",
+            "restart",
+            "say that again"
           ]
         },
         {
@@ -100,7 +154,9 @@
           "samples": [
             "help",
             "what can I say",
-            "what can you do"
+            "what can you do",
+            "I need help",
+            "tell me how"
           ]
         },
         {
@@ -130,14 +186,390 @@
         {
           "name": "AMAZON.NextIntent",
           "samples": []
+        },
+        {
+          "name": "AMAZON.PreviousIntent",
+          "samples": []
         }
       ],
       "types": [
         {
           "name": "LanguageType",
           "values": [
-            { "name": { "value": "English", "synonyms": ["english", "angrezi", "angrezee"] } },
-            { "name": { "value": "Hindi", "synonyms": ["hindi", "हिंदी", "हिन्दी"] } }
+            {
+              "name": {
+                "value": "English",
+                "synonyms": [
+                  "english",
+                  "angrezi",
+                  "angrezee",
+                  "इंग्लिश",
+                  "अंग्रेज़ी",
+                  "अंग्रेजी"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "Hindi",
+                "synonyms": [
+                  "hindi",
+                  "हिंदी",
+                  "हिन्दी",
+                  "हिंदी में"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "StoryName",
+          "values": [
+            {
+              "id": "leo-and-the-firefly",
+              "name": {
+                "value": "Leo and the Firefly",
+                "synonyms": [
+                  "leo and the firefly",
+                  "leo and firefly",
+                  "firefly story",
+                  "leo story",
+                  "the firefly",
+                  "leo firefly",
+                  "लियो और जुगनू",
+                  "लियो",
+                  "जुगनू",
+                  "जुगनू की कहानी",
+                  "लियो जुगनू"
+                ]
+              }
+            },
+            {
+              "id": "the-monkey-and-the-crocodile",
+              "name": {
+                "value": "The Monkey and the Crocodile",
+                "synonyms": [
+                  "the monkey and the crocodile",
+                  "monkey and crocodile",
+                  "monkey crocodile",
+                  "monkey story",
+                  "crocodile story",
+                  "the monkey",
+                  "बंदर और मगरमच्छ",
+                  "बंदर",
+                  "मगरमच्छ",
+                  "बंदर मगरमच्छ",
+                  "बंदर की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "birbal-counts-the-crows",
+              "name": {
+                "value": "Birbal Counts the Crows",
+                "synonyms": [
+                  "birbal counts the crows",
+                  "birbal and crows",
+                  "birbal crows",
+                  "count the crows",
+                  "crows counting",
+                  "birbal crow story",
+                  "बीरबल ने गिने कौवे",
+                  "बीरबल और कौवे",
+                  "बीरबल कौवे",
+                  "कौवे गिनना",
+                  "बीरबल की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "vikram-and-the-three-suitors",
+              "name": {
+                "value": "Vikram and the Three Suitors",
+                "synonyms": [
+                  "vikram and the three suitors",
+                  "vikram and suitors",
+                  "three suitors",
+                  "vikram suitors",
+                  "vikram betaal",
+                  "three lovers",
+                  "विक्रम और तीन चाहने वाले",
+                  "विक्रम और तीन",
+                  "तीन चाहने वाले",
+                  "विक्रम बेताल",
+                  "विक्रम तीन"
+                ]
+              }
+            },
+            {
+              "id": "tenali-and-the-biggest-fool",
+              "name": {
+                "value": "Tenali Raman and the Biggest Fool",
+                "synonyms": [
+                  "tenali raman and the biggest fool",
+                  "tenali fool",
+                  "biggest fool",
+                  "tenali biggest fool",
+                  "tenali raman fool",
+                  "the fool story",
+                  "तेनाली रामन और सबसे बड़ा मूर्ख",
+                  "तेनाली और मूर्ख",
+                  "सबसे बड़ा मूर्ख",
+                  "तेनाली रामन",
+                  "मूर्ख की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "the-blue-jackal",
+              "name": {
+                "value": "The Blue Jackal",
+                "synonyms": [
+                  "the blue jackal",
+                  "blue jackal",
+                  "jackal story",
+                  "the jackal",
+                  "blue jackal story",
+                  "नीला सियार",
+                  "सियार",
+                  "नीला सियार की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "the-tortoise-and-the-geese",
+              "name": {
+                "value": "The Tortoise and the Geese",
+                "synonyms": [
+                  "the tortoise and the geese",
+                  "tortoise and geese",
+                  "tortoise geese",
+                  "flying tortoise",
+                  "tortoise story",
+                  "the tortoise",
+                  "कछुआ और हंस",
+                  "कछुआ",
+                  "हंस",
+                  "कछुआ हंस",
+                  "उड़ता कछुआ"
+                ]
+              }
+            },
+            {
+              "id": "the-lion-and-the-rabbit",
+              "name": {
+                "value": "The Lion and the Rabbit",
+                "synonyms": [
+                  "the lion and the rabbit",
+                  "lion and rabbit",
+                  "lion rabbit",
+                  "clever rabbit",
+                  "rabbit story",
+                  "the lion",
+                  "शेर और खरगोश",
+                  "खरगोश",
+                  "शेर",
+                  "चालाक खरगोश",
+                  "शेर खरगोश"
+                ]
+              }
+            },
+            {
+              "id": "the-loyal-mongoose",
+              "name": {
+                "value": "The Loyal Mongoose",
+                "synonyms": [
+                  "the loyal mongoose",
+                  "loyal mongoose",
+                  "the mongoose",
+                  "mongoose story",
+                  "mongoose and snake",
+                  "वफ़ादार नेवला",
+                  "वफादार नेवला",
+                  "नेवला",
+                  "नेवला की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "birbal-khichdi",
+              "name": {
+                "value": "Birbal's Khichdi",
+                "synonyms": [
+                  "birbal's khichdi",
+                  "birbal khichdi",
+                  "khichdi story",
+                  "khichdi",
+                  "birbal cooking",
+                  "बीरबल की खिचड़ी",
+                  "खिचड़ी",
+                  "बीरबल खिचड़ी"
+                ]
+              }
+            },
+            {
+              "id": "the-blind-mans-sight",
+              "name": {
+                "value": "The Blind Man's Sight",
+                "synonyms": [
+                  "the blind man's sight",
+                  "blind man sight",
+                  "blind man",
+                  "fake blind man",
+                  "blind beggar",
+                  "अंधे की नज़र",
+                  "अंधा आदमी",
+                  "नकली अंधा"
+                ]
+              }
+            },
+            {
+              "id": "the-well-dispute",
+              "name": {
+                "value": "The Well Dispute",
+                "synonyms": [
+                  "the well dispute",
+                  "well dispute",
+                  "birbal well",
+                  "the well",
+                  "well story",
+                  "कुएँ का झगड़ा",
+                  "कुआं",
+                  "कुएं की कहानी",
+                  "बीरबल कुआं"
+                ]
+              }
+            },
+            {
+              "id": "vikram-and-the-four-dolls",
+              "name": {
+                "value": "Vikram and the Four Dolls",
+                "synonyms": [
+                  "vikram and the four dolls",
+                  "four dolls",
+                  "vikram dolls",
+                  "vikram and dolls",
+                  "four wax dolls",
+                  "विक्रम और चार गुड़ियाँ",
+                  "चार गुड़ियाँ",
+                  "विक्रम और गुड़िया",
+                  "चार गुड़िया"
+                ]
+              }
+            },
+            {
+              "id": "the-merchants-daughter",
+              "name": {
+                "value": "The Merchant's Daughter",
+                "synonyms": [
+                  "the merchant's daughter",
+                  "merchant daughter",
+                  "the merchant",
+                  "merchant story",
+                  "सौदागर की बेटी",
+                  "सौदागर",
+                  "व्यापारी की बेटी"
+                ]
+              }
+            },
+            {
+              "id": "tenali-and-the-cat",
+              "name": {
+                "value": "Tenali and the Cat",
+                "synonyms": [
+                  "tenali and the cat",
+                  "tenali cat",
+                  "tenali and cat",
+                  "cat story",
+                  "the cat",
+                  "तेनाली और बिल्ली",
+                  "बिल्ली",
+                  "तेनाली बिल्ली"
+                ]
+              }
+            },
+            {
+              "id": "tenali-and-the-thieves",
+              "name": {
+                "value": "Tenali and the Thieves",
+                "synonyms": [
+                  "tenali and the thieves",
+                  "tenali thieves",
+                  "tenali and thieves",
+                  "thieves story",
+                  "tenali robbers",
+                  "तेनाली और चोर",
+                  "चोर",
+                  "तेनाली चोर",
+                  "चोरों की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "the-golden-deer",
+              "name": {
+                "value": "The Golden Deer",
+                "synonyms": [
+                  "the golden deer",
+                  "golden deer",
+                  "the deer",
+                  "gold deer story",
+                  "सोने का हिरण",
+                  "सोने का हिरन",
+                  "हिरण",
+                  "सुनहरा हिरण"
+                ]
+              }
+            },
+            {
+              "id": "the-wise-quail",
+              "name": {
+                "value": "The Wise Quail",
+                "synonyms": [
+                  "the wise quail",
+                  "wise quail",
+                  "quail story",
+                  "the quail",
+                  "quails and net",
+                  "समझदार बटेर",
+                  "बटेर",
+                  "समझदार बटेर की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "shravan-kumar",
+              "name": {
+                "value": "Shravan Kumar",
+                "synonyms": [
+                  "shravan kumar",
+                  "shravan",
+                  "shravan story",
+                  "devoted son",
+                  "श्रवण कुमार",
+                  "श्रवण",
+                  "श्रवण कुमार की कहानी"
+                ]
+              }
+            },
+            {
+              "id": "eklavya-dedication",
+              "name": {
+                "value": "Eklavya's Dedication",
+                "synonyms": [
+                  "eklavya's dedication",
+                  "eklavya",
+                  "eklavya dedication",
+                  "eklavya story",
+                  "eklavya thumb",
+                  "the archer",
+                  "एकलव्य की निष्ठा",
+                  "एकलव्य",
+                  "एकलव्य की कहानी",
+                  "एकलव्य धनुर्धर"
+                ]
+              }
+            }
           ]
         }
       ]

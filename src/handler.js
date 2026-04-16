@@ -179,10 +179,23 @@ const PlayStoryIntentHandler = {
     const slots = handlerInput.requestEnvelope.request.intent.slots || {};
     const storyNameSlot = slots.storyName && slots.storyName.value;
 
+    // Try to extract resolved slot ID (preferred — Alexa already matched a synonym)
+    let resolvedId = null;
+    if (slots.storyName && slots.storyName.resolutions && slots.storyName.resolutions.resolutionsPerAuthority) {
+      for (const r of slots.storyName.resolutions.resolutionsPerAuthority) {
+        if (r.status && r.status.code === 'ER_SUCCESS_MATCH' && r.values && r.values.length > 0) {
+          resolvedId = r.values[0].value.id;
+          break;
+        }
+      }
+    }
+
     let story;
 
-    if (intentName === 'PlayLatestIntent' || !storyNameSlot) {
+    if (intentName === 'PlayLatestIntent' || (!storyNameSlot && !resolvedId)) {
       story = pickRandomStory(lang);
+    } else if (resolvedId) {
+      story = findStory(lang, resolvedId);
     } else {
       story = findStoryByTitle(lang, storyNameSlot) || findStory(lang, storyNameSlot);
     }
@@ -272,6 +285,64 @@ const NextPartIntentHandler = {
     return handlerInput.responseBuilder
       .speak(
         `<speak>${speech(lang, 'nextPart')} <break time="500ms"/> ${storyBody} <break time="1s"/> ${ending}</speak>`
+      )
+      .reprompt(`<speak>${speech(lang, 'repeatPrompt')}</speak>`)
+      .getResponse();
+  },
+};
+
+const PreviousPartIntentHandler = {
+  canHandle(handlerInput) {
+    return (
+      Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest' &&
+      ['PreviousPartIntent', 'AMAZON.PreviousIntent'].includes(
+        Alexa.getIntentName(handlerInput.requestEnvelope)
+      )
+    );
+  },
+  handle(handlerInput) {
+    const lang = getLang(handlerInput);
+    const session = getSession(handlerInput);
+    const { currentStoryId, currentPart } = session;
+
+    if (!currentStoryId) {
+      return handlerInput.responseBuilder
+        .speak(`<speak>${speech(lang, 'repeatPrompt')}</speak>`)
+        .reprompt(`<speak>${speech(lang, 'repeatPrompt')}</speak>`)
+        .getResponse();
+    }
+
+    const prevPart = (currentPart || 0) - 1;
+    if (prevPart < 0) {
+      return handlerInput.responseBuilder
+        .speak(`<speak>${speech(lang, 'noParts')}</speak>`)
+        .reprompt(`<speak>${speech(lang, 'repeatPrompt')}</speak>`)
+        .getResponse();
+    }
+
+    const story = findStory(lang, currentStoryId);
+    if (!story) {
+      return handlerInput.responseBuilder
+        .speak(`<speak>${speech(lang, 'notFound')}</speak>`)
+        .getResponse();
+    }
+
+    const parts = toSsmlParts(story.content, lang);
+    if (!parts[prevPart]) {
+      return handlerInput.responseBuilder
+        .speak(`<speak>${speech(lang, 'noParts')}</speak>`)
+        .reprompt(`<speak>${speech(lang, 'repeatPrompt')}</speak>`)
+        .getResponse();
+    }
+    const storyBody = parts[prevPart].replace(/<\/?speak>/g, '');
+    const isMultiPart = parts.length > 1;
+    const ending = isMultiPart ? speech(lang, 'storyEndMultiPart') : speech(lang, 'storyEnd');
+
+    setSession(handlerInput, { currentPart: prevPart });
+
+    return handlerInput.responseBuilder
+      .speak(
+        `<speak>${storyBody} <break time="1s"/> ${ending}</speak>`
       )
       .reprompt(`<speak>${speech(lang, 'repeatPrompt')}</speak>`)
       .getResponse();
@@ -408,6 +479,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     ListStoriesIntentHandler,
     PlayStoryIntentHandler,
     NextPartIntentHandler,
+    PreviousPartIntentHandler,
     RepeatIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
